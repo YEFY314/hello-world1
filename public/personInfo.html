@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>个人中心</title>
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<style>
+        body{
+            background-color: #ededed;
+        }
+        .container{
+            width: 1000px;
+        }
+        nav.navbar{
+            font-size: 16px;
+        }
+        ul.nav>li{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        ul.nav.navbar-right>li{
+            padding-right: 5px;
+            padding-left:5px;
+        }
+        #main{
+            margin:10px auto;
+            padding-top: 51px;
+            width:1000px;
+            /*background-color: #1b6d85;*/
+        }
+        #personInfo,#personFunc{
+            background-color: #ffffff;
+        }
+        #personInfo>div,#personFunc>div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #personInfo>div{
+            padding: 40px;
+        }
+        #personInfoLeft{
+            text-align: center;
+            width:250px;
+        }
+        #personInfoRight{
+            position: relative;
+        }
+        #personFunc>div{
+            margin-top: 10px;
+        }
+        .leftAd,.rightAd{
+            display: inline-block;
+            height:330px;
+        }
+        .leftAd{
+            /* padding-top: 10px;
+             padding-left: 10px;*/
+            float: right;
+        }
+        .leftAd img{
+            width:300px;
+            height:150px;
+            margin-bottom: 30px;
+        }
+        .carousel-inner{
+            height:330px;
+            width:680px;
+        }
+        #personInfoRight>div,#personInfoMiddle>div{
+            width:274px;
+        }
+        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
+            font-weight:bold;
+            width:100px;
+        }
+        #personInfoMiddle>div p, #personInfoRight>div p{
+            display: inline-block;
+        }
+        #personInfoMiddle>div,#personInfoRight>div{
+            padding-top: 15px;
+        }
+        #login{
+            display: none;
+        }
+        #preview, .img, #preview img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+        }
+        #preview {
+            border: 1px solid #3c763d;
+            border-radius: 50px;
+        }
+        .pagination{
+            float: right;
+        }
+        #file{
+            display: none;
+        }
+        #filelLabel{
+            display: inline-block;
+            border:1px solid #3c763d;
+            border-radius: 3px;
+            cursor: pointer;
+            padding:3px;
+            margin-left: 15px;
+            margin-top: 10px;
+            width:68px;
+        }
+        label{
+            width:100px;
+        }
+        #infoButtom{
+            margin-left: 235px;
+            margin-top: 30px;
+        }
+        #infoTop>div, #infoButtom>div{
+            height:50px;
+        }
+        #infoButtom input, #infoTop input{
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+    </style>-->
+    <link href="./css/yefy.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">公司介绍</a></li>
+                    <li><a href="#">产品商城</a></li>
+                    <li><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main" style="margin-top: 40px;">
+        <div id="personInfo">
+            <div id="personInfoLeft">
+                <img v-bind:src="userInfo.user_photo" style="width:100px;height:100px;border-radius: 50px;">
+                <p><strong>{{userInfo.user_nickname}}</strong></p>
+                <p>{{userInfo.user_sign}}</p>
+            </div>
+            <div id="personInfoMiddle">
+                <div><p>性别</p><p>{{userInfo.user_sex}}</p></div>
+                <div><p>地址</p><p>{{userInfo.user_address}}</p></div>
+                <div><p>联系邮箱</p><p>{{userInfo.user_email}}</p></div>
+            </div>
+            <div id="personInfoRight">
+                <div><p>年龄</p><p>{{userInfo.user_age}}</p></div>
+                <div><p>拥有星星</p><p>{{userInfo.user_points}}<span class="glyphicon glyphicon-star"></span></p></div>
+                <div><p>电话</p><p>{{userInfo.user_tel}}</p></div>
+                <div style="text-align: right;">
+                    <button  type="button" class="btn  btn-primary" data-toggle="modal" data-target="#postInfo">编辑资料</button>
+                </div>
+            </div>
+        </div>
+        <div id="postInfo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">编辑资料</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form enctype="multipart/form-data" method="post" name="upform" action="/myapp/conn/updateUserInfomationAndPhoto.php">
+                            <div>
+                                <div style="display: inline-block;margin-left: 80px;">
+                                    <div id="preview"></div>
+                                    <div><label for="file" id="filelLabel">上传头像</label><input name="file" type="file" id="file"  onchange="preview(this)"/></div>
+                                    <div style="margin-left: -40px;">(格式为jpg、png，小于20k)</div>
+                                </div>
+                                <div id="infoTop" style="display: inline-block;margin-left: 50px;">
+                                    <div><label>昵称</label><input type="text" name="nickname" v-bind:value="userInfo.user_nickname"/></div>
+                                    <div><label>签名</label><input type="text" name="sign" v-bind:value="userInfo.user_sign" /></div>
+                                    <div><label>性别</label><label><input type="radio" name="sex" value="男"/>男</label><label><input type="radio" name="sex" value="女"/>女</label></div>
+                                </div>
+                            </div>
+                            <div style="width:100%;border:1px solid #000; "></div>
+                            <div id="infoButtom">
+                                <div>
+                                    <label for="children">子女年龄</label>
+                                    <select  style="width:174px;height:26px;border-radius: 5px;border: 1px solid #000; margin-left: -3px;" name="children" id="children">
+                                        <option value="little">0-5岁</option>
+                                        <option value="medium">6-10岁</option>
+                                        <option value="big">11-15岁</option>
+                                    </select>
+                                </div>
+                                <div><label>邮箱</label><input type="email" name="email" v-bind:value="userInfo.user_email" /></div>
+                                <div><label>电话</label><input type="text" name="tel" v-bind:value="userInfo.user_tel" /></div>
+                                <div><label>地址</label><input type="text" name="address" v-bind:value="userInfo.user_address"/></div>
+                                <div style="display: none;">地址:<input type="text" name="account" v-bind:value="userInfo.user_id" /></div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left: -5px;">取消</button>
+                                <button type="submit" class="btn btn-primary" style="margin-left: 50px;">确定</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="personFunc" style="margin-top:40px;min-height: 500px;">
+            <div id="personFuncLeft" style="width:200px;display: inline-block;">
+                <ul id="myTab" class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#message" data-toggle="tab"><span class="glyphicon glyphicon-bell"></span>系统消息</a></li>
+                    <li><a href="#post" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span>我的帖子</a></li>
+                    <li><a href="#collection" data-toggle="tab"><span class="glyphicon glyphicon-star-empty"></span>我的收藏</a></li>
+                </ul>
+            </div>
+            <div id="personFuncRight" style="width:750px;display: inline-block;">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade" id="post">
+                        <mynews></mynews>
+                    </div>
+                    <div class="tab-pane fade" id="collection">
+                        <mycollections></mycollections>
+                    </div>
+                    <div class="tab-pane fade in active" id="message">
+                        <systeminfo></systeminfo>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-template" id="myNews">
+    <div>
+         <div v-for="item in news" style="border-bottom: 1px solid #000;">
+             <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
+             <div class="title" style="font-weight: bold;">{{item.news_title}}</div>
+             <div>{{item.news_content}}</div>
+             <p><span>{{item.news_comments}}评论</span>&nbsp&nbsp<span>{{item.news_readtimes}}阅读</span>&nbsp&nbsp<span>{{item.news_liketimes}}点赞</span></p>
+         </div>
+        <ul class="pagination" v-show="allpage>1" >
+            <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
+            <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#" >{{index}}</a>
+            </li>
+            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
+        </ul>
+    </div>
+</script>
+<script type="text/x-template" id="myCollections">
+    <div>
+        <div v-for="item in collections" style="border-bottom: 1px solid #000;margin-top: 30px;">
+            <div class="time" style="float: right;color:grey;">{{item.col_time}}</div>
+            <div class="title" style="font-weight: bold;">{{item.news_title}}</div>
+        </div>
+        <ul class="pagination"  v-show="allpage>1" >
+            <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
+            <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#" >{{index}}</a>
+            </li>
+            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
+        </ul>
+    </div>
+</script>
+<script type="text/x-template" id="systemInfo">
+    <div>
+        <div v-for="item in info" style="border-bottom: 1px solid #000;">
+            <div class="time" style="float: right;color:grey;">{{item.sys_sendtime}}</div>
+            <div class="title" style="font-weight: bold;"><p v-show="item.sys_type-0">系统消息</p><p v-show="!(item.sys_type-0)">动态更新</p></div>
+            <p>{{item.sys_content}}</p>
+        </div>
+        <ul class="pagination" v-show="allpage>1"  >
+            <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
+            <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#" >{{index}}</a>
+            </li>
+            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
+        </ul>
+    </div>
+</script>
+<script src="./js/jquery-3.1.1.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./js/vue.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if(login){
+            $("#login").css("display","block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            "user_id": "7",
+            "user_accounts": "Bob",
+            "user_nickname": "Jack",
+            "user_email": "123@qq.com",
+            "user_sex": "男",
+            "user_tel": "15996362164",
+            "user_age": "35",
+            "user_photo": "image/1.jpg",
+            "user_address": "江苏省南京市",
+            "user_points": "0",
+            "user_sign":"nihaoaho"
+        };
+        Vue.component("mynews",{              //我的帖子组件
+            props:['userInfo'],
+            template:"#myNews",
+            data:function(){
+                return{
+                    current:1,
+                    showItem:5,
+                    allpage:1,
+                    news:[]
+                }
+            },
+            computed:{
+                pages:function(){
+                    var pag = [];
+                    if( this.current < this.showItem ){ //如果当前的激活的项 小于要显示的条数
+                        //总页数和要显示的条数那个大就显示多少条
+                        var i = Math.min(this.showItem,this.allpage);
+                        while(i){
+                            pag.unshift(i--);
+                        }
+                    }else{ //当前页数大于显示页数了
+                        var middle = this.current - Math.floor(this.showItem / 2 ),//从哪里开始
+                                i = this.showItem;
+                        if( middle >  (this.allpage - this.showItem)  ){
+                            middle = (this.allpage - this.showItem) + 1
+                        }
+                        while(i--){
+                            pag.push( middle++ );
+                        }
+                    }
+                    return pag;
+                }
+            },
+            created:function(){
+                var contextPath = 'http://localhost:3000';                      //post地址，需要后端改
+                var that = this;
+                var postData = JSON.stringify(["1","2",userInfo.user_id,"1"]);
+                $.ajax({
+                    type: "POST",
+                    url: contextPath + "/myapp/news/readNewsByOthers.php",
+                    data: "check=10086&data="+postData,
+                    success: function (data) {
+                        that.news = JSON.parse(data);
+                        for(a in that.news){
+                            console.log(typeof that.news[a].news_content);
+                            that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
+                        }
+                        console.log(that.news);
+                    }
+                });
+                var postData1 = JSON.stringify(["1","1",userInfo.user_id]);
+                $.ajax({
+                    type: "POST",
+                    url: contextPath + "/myapp/news/readNewsTotalPageByOthers.php",
+                    data: "check=10086&data="+postData1,
+                    success: function (data) {
+//                        console.log(typeof data,"yefy");
+                        that.allpage = data-0;
+//                        console.log(that.allpage);
+                    }
+                });
+            },
+            methods:{
+                goto:function(index){
+                    if(index == this.current) return;
+                    this.current = index;
+                    var data = ["1","2",userInfo.user_id,index];
+                    data = JSON.stringify(data);
+                    //这里可以发送ajax请求
+                    var contextPath = 'http://localhost:3000';                 //post地址 需要后端改
+                    var that = this;
+                    $.ajax({
+                        type: "POST",
+                        url: contextPath + "/myapp/news/readNewsByOthers.php",
+                        data: "check=10086&data="+data,
+                        success: function (data) {
+                            that.news = JSON.parse(data);
+                            for(a in that.news){
+                                console.log(typeof that.news[a].news_content);
+                                that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
+                            }
+                        }
+                    });
+                }
+            }
+        });                                         //我的帖子组件
+
+        Vue.component("mycollections",{           //我的收藏组件
+            props:['userInfo'],
+            template:"#myCollections",
+            data:function(){
+                return{
+                    current:1,
+                    showItem:5,
+                    allpage:1,
+                    collections:[]
+                }
+            },
+            computed:{
+                pages:function(){
+                    var pag = [];
+                    if( this.current < this.showItem ){ //如果当前的激活的项 小于要显示的条数
+                        //总页数和要显示的条数那个大就显示多少条
+                        var i = Math.min(this.showItem,this.allpage);
+                        while(i){
+                            pag.unshift(i--);
+                        }
+                    }else{ //当前页数大于显示页数了
+                        var middle = this.current - Math.floor(this.showItem / 2 ),//从哪里开始
+                                i = this.showItem;
+                        if( middle >  (this.allpage - this.showItem)  ){
+                            middle = (this.allpage - this.showItem) + 1
+                        }
+                        while(i--){
+                            pag.push( middle++ );
+                        }
+                    }
+                    return pag;
+                }
+            },
+            created:function(){
+                var contextPath = 'http://localhost:3000';                         //post地址    需要后端改
+                var that = this;
+                var data = [userInfo.user_id,"1"];
+                data = JSON.stringify(data);
+                $.ajax({
+                    type: "POST",
+                    url: contextPath + "/myapp/conn/getUserCollectInfo.php",
+                    data: "check=10086&data="+data,
+                    success: function (data) {
+                        that.collections = JSON.parse(data);
+                        console.log(that.collections);
+                    }
+                });
+                var pageData = [userInfo.user_id];
+                pageData = JSON.stringify(pageData);
+                $.ajax({
+                    type:"POST",
+                    url:contextPath + "/myapp/conn/readSystemInfoOfTotalPage.php",
+                    data:"check=10086&data="+pageData,
+                    success:function(data){
+                        that.allpage=data-0;
+                    }
+
+                })
+            },
+            methods:{
+                goto:function(index){
+                    if(index == this.current) return;
+                    this.current = index;
+                    var data = [userInfo.user_id,index];
+                    data = JSON.stringify(data);
+                    //这里可以发送ajax请求
+                    var contextPath = 'http://localhost:3000';                         //post地址   需要后端改
+                    var that = this;
+                    $.ajax({
+                        type: "POST",
+                        url: contextPath + "/myapp/conn/getUserCollectInfo.php",
+                        data: "check=10086&data="+data,
+                        success: function (data) {
+                            that.collections = JSON.parse(data);
+                        }
+                    });
+                }
+            }
+        });                    //我的收藏组件
+
+        Vue.component("systeminfo",{
+            props:['userInfo'],
+            template:"#systemInfo",
+            data:function(){
+                return{
+                    current:1,
+                    showItem:5,
+                    allpage:1,
+                    info:[]
+                }
+            },
+            computed:{
+                pages:function(){
+                    var pag = [];
+                    if( this.current < this.showItem ){ //如果当前的激活的项 小于要显示的条数
+                        //总页数和要显示的条数那个大就显示多少条
+                        var i = Math.min(this.showItem,this.allpage);
+                        while(i){
+                            pag.unshift(i--);
+                        }
+                    }else{ //当前页数大于显示页数了
+                        var middle = this.current - Math.floor(this.showItem / 2 ),//从哪里开始
+                                i = this.showItem;
+                        if( middle >  (this.allpage - this.showItem)  ){
+                            middle = (this.allpage - this.showItem) + 1
+                        }
+                        while(i--){
+                            pag.push( middle++ );
+                        }
+                    }
+                    return pag;
+                }
+            },
+            created:function(){
+                var contextPath = 'http://localhost:3000';                                    // post地址   需要后端改
+                var that = this;
+                var data = [userInfo.user_id,"1"];
+                data = JSON.stringify(data);
+                $.ajax({
+                    type: "POST",
+                    url: contextPath + "/myapp/conn/readSystemInfoOfUser.php",
+                    data: "check=10086&data="+data,
+                    success: function (data) {
+                        that.info = JSON.parse(data);
+                        console.log(that.info);
+                    }
+                });
+                var pageData = [userInfo.user_id];
+                pageData = JSON.stringify(pageData);
+                $.ajax({
+                    type:"POST",
+                    url:contextPath+"/myapp/conn/readSystemInfoOfTotalPage.php",
+                    data:"check=10086&data="+pageData,
+                    success:function(data){
+                        that.allpage = data-0;
+                    }
+                })
+            },
+            methods:{
+                goto:function(index){
+                    if(index == this.current) return;
+                    this.current = index;
+                    index = index+'';
+                    var data = [userInfo.user_id,index];
+                    data = JSON.stringify(data);
+                    //这里可以发送ajax请求
+                    var contextPath = 'http://localhost:3000';              // post地址   需要后端改
+                    var that = this;
+                    $.ajax({
+                        type: "POST",
+                        url: contextPath + "/myapp/conn/readSystemInfoOfUser.php",
+                        data: "check=10086&data="+data,
+                        success: function (data) {
+                            that.info = JSON.parse(data);
+                        }
+                    });
+                }
+            }
+        });
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                userInfo:userInfo
+            },
+            methods:{
+
+            }
+        });
+       /* var contextPath = 'http://localhost:3000';
+        $.ajax({
+            type: "POST",
+            url:  contextPath + "/myapp/conn/getUserCollectInfo.php",
+            data: "check=10086&data=[\"7\"]",
+            success: function(data){
+                console.log(data,"hahah");
+            }
+        });*/
+    });
+    function preview(file) {
+        var prevDiv = document.getElementById('preview');
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+            };
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+        }
+    }
+</script>
+</body>
+</html>

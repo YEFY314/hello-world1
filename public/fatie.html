@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发帖</title>
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- umeditor样式文件 -->
+    <link rel="stylesheet" href="./plugins/umeditor/themes/default/css/umeditor.css">
+    <!--<style>
+        body{
+            background-color: #ededed;
+        }
+        .container{
+            width: 1040px;
+        }
+        nav.navbar{
+            font-size: 16px;
+        }
+        ul.nav>li{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        ul.nav.navbar-right>li{
+            padding-right: 5px;
+            padding-left:5px;
+        }
+        #main{
+            margin:10px auto;
+            padding-top: 51px;
+            width:1040px;
+            background-color: #ffffff;
+        }
+        #personInfo,#personFunc{
+            background-color: #ffffff;
+        }
+        #personInfo>div,#personFunc>div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #personInfo>div{
+            padding: 40px;
+        }
+        #personInfoLeft{
+            text-align: center;
+            width:250px;
+        }
+        #personInfoRight{
+            position: relative;
+        }
+        #personFunc>div{
+            margin-top: 10px;
+        }
+        .leftAd,.rightAd{
+            display: inline-block;
+            height:330px;
+        }
+        .leftAd{
+            /* padding-top: 10px;
+             padding-left: 10px;*/
+            float: right;
+        }
+        .leftAd img{
+            width:300px;
+            height:150px;
+            margin-bottom: 30px;
+        }
+        .carousel-inner{
+            height:330px;
+            width:680px;
+        }
+        #personInfoRight>div,#personInfoMiddle>div{
+            width:274px;
+        }
+        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
+            font-weight:bold;
+            width:100px;
+        }
+        #personInfoMiddle>div p, #personInfoRight>div p{
+            display: inline-block;
+        }
+        #personInfoMiddle>div,#personInfoRight>div{
+            padding-top: 15px;
+        }
+        #login{
+            display: none;
+        }
+        #preview, .img, #preview img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+        }
+        #preview {
+            border: 1px solid #3c763d;
+            border-radius: 50px;
+        }
+        .pagination{
+            float: right;
+        }
+        #file{
+            display: none;
+        }
+        #filelLabel{
+            display: inline-block;
+            border:1px solid #3c763d;
+            border-radius: 3px;
+            cursor: pointer;
+            padding:3px;
+            margin-left: 15px;
+            margin-top: 10px;
+            width:68px;
+        }
+        label{
+            width:100px;
+        }
+        #infoButtom{
+            margin-left: 235px;
+            margin-top: 30px;
+        }
+        #infoTop>div, #infoButtom>div{
+            height:50px;
+        }
+        #infoButtom input, #infoTop input{
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+        #group{
+            margin-top: 50px;
+        }
+        #group>div{
+            display: inline-block;
+            height: 352px;
+            width:450px;
+        }
+        #group>div>div:first-child{
+            height:255px;
+            background-color:#E2E6AC;
+            position: relative;
+        }
+        #group>div>div:nth-child(2){
+            background-color: #f8f8f8;
+            height:100px;
+        }
+        #group>div>div:nth-child(2)>p{
+            margin-left: 30px;
+        }
+        #group>div>div>div{
+            height:26px;
+            width:93px;
+            position:relative;
+            left: -10px;
+            top:15px;
+            background-color: #F4AB42;
+        }
+        #upPart{
+            height: 509px;
+        }
+        #upPart>div{
+            display: inline-block;
+            background-color: #ffffff;
+            vertical-align: top;
+        }
+        #upPartLeft{
+            width:777px;
+            height:540px;
+            margin-right: 19px;
+        }
+        #xiaozhu>div{
+            display: inline-block;
+            width:350px;
+            height:200px;
+            margin: 10px 18px;
+            border-radius: 5px;
+            border:1px solid gray;
+        }
+        #xiaozhu>div>div:nth-child(2){
+            display: inline-block;
+            height:200px;
+            width:190px;
+            vertical-align: top;
+            margin-left: 4px;
+        }
+        #xiaozhu>div>div:first-child{
+            display: inline-block;
+            width:150px;
+            height:150px;
+            vertical-align: top;
+            margin-top: 20px;
+        }
+        #xiaozhu>div img{
+            width: 150px;
+            height:150px;
+        }
+        #upPartRight{
+            height:540px;
+            width:240px;
+        }
+        #downPart{
+            margin-top: 55px;
+        }
+        #downPartLeft{
+            display: inline-block;
+            background-color: #ffffff;
+            width:777px;
+            margin-right: 19px;
+        }
+        #downPartRight{
+            width:240px;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #ffffff;
+        }
+    </style>-->
+    <link href="./css/yefy.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">公司介绍</a></li>
+                    <li><a href="#">产品商城</a></li>
+                    <li><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <form>
+            帖子题目：<input type="text" name="title" placeholder="请输入标题">
+        </form>
+        <script id="contents" name="content" type="text/plain" style="width:600px;height:200px;">
+            这里写你的帖子内容
+        </script>
+    </div>
+</div>
+<script src="./js/jquery-3.1.1.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./js/vue.js"></script>
+<!-- 引入 etpl -->
+<script type="text/javascript" src="./plugins/umeditor/third-party/template.min.js"></script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="./plugins/umeditor/umeditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="./plugins/umeditor/umeditor.js"></script>
+<!-- 语言包文件 -->
+<script type="text/javascript" src="./plugins/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function(){
+        window.um = UM.getEditor('contents', {
+            /* 传入配置参数,可配参数列表看umeditor.config.js */
+            toolbar: [
+                'undo redo | bold italic underline | forecolor backcolor | removeformat | insertorderedlist insertunorderedlist | fontsize ',
+                '| justifyleft justifycenter justifyright justifyjustify | image'
+            ]
+        });
+        UM.getEditor('contents').setWidth(1040);
+    });
+</script>
+</body>
+</html>

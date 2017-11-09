@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小组概览</title>
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<style>
+        body{
+            background-color: #ededed;
+        }
+        .container{
+            width: 1040px;
+        }
+        nav.navbar{
+            font-size: 16px;
+        }
+        ul.nav>li{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        ul.nav.navbar-right>li{
+            padding-right: 5px;
+            padding-left:5px;
+        }
+        #main{
+            margin:10px auto;
+            padding-top: 51px;
+            width:1040px;
+            /*background-color: #1b6d85;*/
+        }
+        #personInfo,#personFunc{
+            background-color: #ffffff;
+        }
+        #personInfo>div,#personFunc>div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #personInfo>div{
+            padding: 40px;
+        }
+        #personInfoLeft{
+            text-align: center;
+            width:250px;
+        }
+        #personInfoRight{
+            position: relative;
+        }
+        #personFunc>div{
+            margin-top: 10px;
+        }
+        .leftAd,.rightAd{
+            display: inline-block;
+            height:330px;
+        }
+        .leftAd{
+            /* padding-top: 10px;
+             padding-left: 10px;*/
+            float: right;
+        }
+        .leftAd img{
+            width:300px;
+            height:150px;
+            margin-bottom: 30px;
+        }
+        .carousel-inner{
+            height:330px;
+            width:680px;
+        }
+        #personInfoRight>div,#personInfoMiddle>div{
+            width:274px;
+        }
+        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
+            font-weight:bold;
+            width:100px;
+        }
+        #personInfoMiddle>div p, #personInfoRight>div p{
+            display: inline-block;
+        }
+        #personInfoMiddle>div,#personInfoRight>div{
+            padding-top: 15px;
+        }
+        #login{
+            display: none;
+        }
+        #preview, .img, #preview img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+        }
+        #preview {
+            border: 1px solid #3c763d;
+            border-radius: 50px;
+        }
+        .pagination{
+            float: right;
+        }
+        #file{
+            display: none;
+        }
+        #filelLabel{
+            display: inline-block;
+            border:1px solid #3c763d;
+            border-radius: 3px;
+            cursor: pointer;
+            padding:3px;
+            margin-left: 15px;
+            margin-top: 10px;
+            width:68px;
+        }
+        label{
+            width:100px;
+        }
+        #infoButtom{
+            margin-left: 235px;
+            margin-top: 30px;
+        }
+        #infoTop>div, #infoButtom>div{
+            height:50px;
+        }
+        #infoButtom input, #infoTop input{
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+        #group>div:nth-child(odd){
+            margin-right: 65px;
+            margin-left: 30px;
+        }
+        #group>div{
+            display: inline-block;
+            height: 352px;
+            width:465px;
+            margin-top: 50px;
+
+        }
+        #group>div>div:first-child{
+            height:255px;
+            background-color:#E2E6AC;
+            position: relative;
+        }
+        #group>div>div:nth-child(2){
+            background-color: #f8f8f8;
+            height:100px;
+        }
+        #group>div>div:nth-child(2)>p{
+            margin-left: 30px;
+        }
+        #group>div>div>div{
+            height:26px;
+            width:93px;
+            position:relative;
+            left: -10px;
+            top:15px;
+            background-color: #F4AB42;
+
+        }
+    </style>-->
+    <link href="./css/yefy.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">产品商城</a></li>
+                    <li><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div style="height:62px;text-align: center;margin-top: 20px;background-color: #ffffff;"><h3 style="padding-top: 17px;">小组概览</h3></hi></div>
+        <div id="group">
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <p>组长：叶孤城</p>
+                    <p>人数：111111<button class="btn btn-default" style="float:right;border-color: #F4AB42;color:#F4AB42;margin-right: 30px;">进入小组</button></p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <p>组长：叶孤城</p>
+                    <p>人数：111111<button class="btn btn-default" style="float:right;border-color: #F4AB42;color:#F4AB42;margin-right: 30px;">进入小组</button></p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <p>组长：叶孤城</p>
+                    <p>人数：111111<button class="btn btn-default" style="float:right;border-color: #F4AB42;color:#F4AB42;margin-right: 30px;">进入小组</button></p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div></div>
+                </div>
+                <div>
+                    <p>组长：叶孤城</p>
+                    <p>人数：111111<button class="btn btn-default" style="float:right;border-color: #F4AB42;color:#F4AB42;margin-right: 30px;">进入小组</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/jquery-3.1.1.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./js/vue.js"></script>
+<script type="application/javascript">
+    $(function(){
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if(login){
+            $("#login").css("display","block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            "user_id": "7",
+            "user_accounts": "Bob",
+            "user_nickname": "Jack",
+            "user_email": "123@qq.com",
+            "user_sex": "男",
+            "user_tel": "15996362164",
+            "user_age": "35",
+            "user_photo": "image/1.jpg",
+            "user_address": "江苏省南京市",
+            "user_points": "0",
+            "user_sign":"nihaoaho"
+        };
+        var contextPath = 'http://localhost:3000';
+        var postData = JSON.stringify(["0","1","1","1","1"]);
+        $.ajax({
+            type: "POST",
+            url: contextPath + "/myapp/news/readNewsByOthers.php",
+            data: "check=10086&data="+postData,
+            success: function (data) {
+                var results = JSON.parse(data);
+                console.log(results);
+                console.log("yefy");
+            }
+        });
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                userInfo:userInfo
+            },
+            methods:{
+
+            }
+        });
+    })
+</script>
+</body>
+</html>
