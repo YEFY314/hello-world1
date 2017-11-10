@@ -173,9 +173,9 @@
         <div id="searchPart">
             <form>
                 <input type="text" name="search" style="width:675px;height:56px;border-radius: 5px;border: 1px solid #979797;font-size: 45px;"/>
-                <button class="btn btn-default" style="height:56px; width:65px;background-color: #F4AB42;color:#ffffff;margin-bottom: 25px;">搜索</button>
+                <button v-on:click.prevent="search()" class="btn btn-default" style="height:56px; width:65px;background-color: #F4AB42;color:#ffffff;margin-bottom: 25px;margin-left:10px;">搜索</button>
             </form>
-            <searchresults></searchresults>
+            <!--<searchresults></searchresults>-->
         </div>
 
     </div>
@@ -226,9 +226,9 @@
             "user_points": "0",
             "user_sign":"nihaoaho"
         };
-        Vue.component("newscomments",{              //我的帖子组件
+        Vue.component("searchresults",{              //我的帖子组件
             props:['userInfo','newsInfo'],
-            template:"#newsCommnets",
+            template:"#searchresults",
             data:function(){
                 return{
                     current:1,
@@ -306,7 +306,8 @@
                 showBox: function ($event) {
                     console.log(event.target.nextSibling.nextSibling);
                     event.target.nextSibling.nextSibling.style.display = "block";
-                }
+                },
+
             }
         });
         var vm = new Vue({
@@ -334,9 +335,20 @@
                 });
             },
             methods:{
-                showBox: function ($event) {
-                    console.log(event.target.nextSibling.nextSibling);
-                    event.target.nextSibling.nextSibling.style.display = "block";
+                search:function(){
+                    var title = $("input").val().trim();
+                    if(title == ""){
+                        alert("搜索内容为空！");
+                        return;
+                    }
+                    $.ajax({
+                        type:"post",
+                        url: 'http://localhost:3000/myapp/news/searchNewsTitle.php',
+                        data: "check=10086&data="+JSON.stringify([title,"1"]),
+                        success: function (data) {
+                            console.log(JSON.parse(data),"yefy");
+                        }
+                    })
                 }
             }
         });

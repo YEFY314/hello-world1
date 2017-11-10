@@ -159,7 +159,7 @@ label{
     display: inline-block;
     width:350px;
     height:200px;
-    margin: 10px 18px;
+    margin: 10px 9px;
     border-radius: 5px;
     border:1px solid gray;
 }
@@ -191,7 +191,7 @@ label{
 }
 #downPart{
     margin-top: 55px;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     padding: 10px 18px;
 }
 #downPartLeft{
@@ -210,4 +210,12 @@ label{
     background-color: #FFFFFF;
     padding-left: 32px;
     padding-top:30px;
+}
+.textOver{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+.textOver:hover{
+    overflow: visible;
 }
