@@ -316,7 +316,7 @@
                 <div style="border: 1px solid gray; border-radius: 5px;width:190px;height:127px;margin-left: 20px;">
                     <p>每日签到送3朵鲜花</p>
                 </div>
-                <button v-on:click.prevent="checkIn()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:10px;"> 签到</button>
+                <button v-on:click.prevent="checkIn()" v-bind:disabled="checkStatus" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:10px;"> 签到</button>
             </div>
         </div>
         <div id="downPart" style="padding:0px 0px;">
@@ -370,9 +370,9 @@
                 </div>
                 <div style="display: inline-block;width: 690px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
-                    <div class="title" style="font-weight: bold;"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</div>
+                    <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
-                        <p style="display: inline-block;"><span>作者：{{item.news_comments}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;"><span>作者：{{item.user_nickname}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_lastcomment}}</span></p>
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
@@ -390,12 +390,19 @@
 </script>
 <script type="text/x-template" id="latestNews">
     <div>
-        <div v-for="item in collections" style="border-bottom: 1px solid #000;">
-            <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
-            <div class="title" style="font-weight: bold;"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</div>
-            <div>
-                <p style="display: inline-block;"><span>作者：{{item.user_nickname}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_readtimes}}</span></p>
-                <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
+        <div style="padding-bottom: 50px;">
+            <div v-for="item in collections" style="border-bottom: 1px solid #000;">
+                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
+                    <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
+                </div>
+                <div style="display: inline-block;width: 690px;vertical-align: top;">
+                    <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
+                    <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
+                    <div>
+                        <p style="display: inline-block;"><span>作者：{{item.user_nickname}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
+                    </div>
+                </div>
             </div>
         </div>
         <ul class="pagination" v-show="allpage>1" >
@@ -719,13 +726,14 @@
                    var that = this;
                     $.ajax({
                         type:"POST",
-                        url:"http:localhost:3000/myapp/conn/userCheckIn.php",
+                        url:"http://localhost:3000/myapp/conn/userCheckIn.php",
                         data:"check=10086&data="+JSON.stringify([that.userInfo.user_id]),
                         success: function (data) {
                             if(data == "3"){
-                                console.log(" check in success");
-                            }
+                                that.checkStatus = true;
+                                alert("签到成功，获得3鲜花！");
 
+                            }
                         }
                     })
                 }

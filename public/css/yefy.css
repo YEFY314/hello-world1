@@ -143,7 +143,7 @@ label{
     background-color: #F4AB42;
 }
 #upPart{
-    height: 509px;
+    min-height: 540px;
 }
 #upPart>div{
     display: inline-block;
@@ -190,7 +190,7 @@ label{
     padding-right: 18px;
 }
 #downPart{
-    margin-top: 55px;
+    margin-top: 22px;
     /*background-color: #ffffff;*/
     padding: 10px 18px;
 }
@@ -219,3 +219,10 @@ label{
 .textOver:hover{
     overflow: visible;
 }
+#contents img{
+    max-width:740px;
+    display: inline-block;
+}
+/*#contents p{
+    text-indent: 2em;
+}*/

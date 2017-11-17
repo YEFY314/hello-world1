@@ -160,13 +160,13 @@
         </div>
     </nav>
     <div id="main">
-        <div id="upPart">
-            <div id="upPartLeft">
-                <h3 class="textOver">帖子的标题是不是不能太长呢？</h3>
-                <div style="border: 1px solid #000000;"></div>
-                <div><span>2017-10-30 16:35</span>&nbsp;<span>收藏 4</span>&nbsp; <span>评论 5</span> <span style="float: right;">小组名称</span></div>
-                <div>
-                    帖子内容，哈哈哈哈我不管!
+        <div id="upPart" >
+            <div id="upPartLeft" style="min-height:540px;height:auto;width:777px;padding-bottom: 20px;">
+                <h3 class="textOver" v-html="newsInfo.news_title" style="border-bottom: 1px solid #000000;"></h3>
+                <!--<div style="border: 1px solid #000000;"></div>-->
+                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;<span>喜欢</span><span v-html="newsInfo.news_liketimes"></span>&nbsp; <span>评论 5</span> <span style="float: right;">小组名称</span></div>
+                <div id="contents">
+
                 </div>
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center"><button class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span class="glyphicon glyphicon-thumbs-up"></span>12</button></div>
@@ -192,19 +192,24 @@
                     <button v-on:click.prevent="saySomething()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-top:10px;">发表</button>
                 </form>
                 <h3>热门评论</h3>
-                <!--<newscomments></newscomments>-->
                 <div>
                     <div v-for="item in comments" style="border-bottom: 1px solid grey;margin-top:10px;">
                         <p style="float:right;"><span class="glyphicon glyphicon-thumbs-up"></span>{{item.infomation.com_like}}</p>
                         <p><img src="./image/1.jpg" style="width:50px;height:50px; border-radius: 25px;">&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>
                         <p>{{item.infomation.com_content}}</p>
-                        <p style="cursor:pointer;" v-on:click="showBox($event)"><span class="glyphicon glyphicon-edit"></span> 回复</p>
+                        <div style="background-color: #BBBBBB;">
+                            <div v-for="answer in item.comcom">
+                                <p><b>{{answer.user_nickname}}:</b>&nbsp;&nbsp;{{answer.comc_content}}</p>
+                                <p style="text-align: right;"><span>{{answer.comc_createtime}}</span>&nbsp;&nbsp;<button v-on:click="showBoxWithName(answer.user_nickname,answer.user_id)">回复TA</button></p>
+                            </div>
+                        </div>
+                        <p style="cursor:pointer;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span> 回复</p>
                         <form method="post" style="display: none;">
-                            <textarea rows="2" cols="100" value="" name="comments"></textarea>
-                            <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)" v-bind:comid="item.infomation.com_id" v-bind:comuser="item.infomation.com_user" class="btn btn-default" style="margin-bottom: 25px;">确定</button>
+                            <textarea rows="2" cols="100" value="" answerWho="" name="comments"></textarea>
+                            <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)"  class="btn btn-default" style="margin-bottom: 25px;">确定</button>
                         </form>
                     </div>
-                    <ul class="pagination" v-show="allpage>1"  >
+                    <ul class="pagination" v-show="allpage>1">
                         <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
                         <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
                             <a href="#" >{{index}}</a>
@@ -213,8 +218,6 @@
                     </ul>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -263,37 +266,25 @@
             "user_points": "0",
             "user_sign":"nihaoaho"
         };
-        var newsInfo = {
-            news_id:"8",
-            news_title:"please input the title",
-            news_content:"<p>u5927u5bb6u597duff0cu8fd9u662fu6211u7684u7b2cu4e00u7bc7u5e16u5b50</p>",
-            news_createtime:"2017-10-16 15:37:15",
-            news_readtimes:"0",
-            news_liketimes:"0",
-            news_class:"1",
-            news_user:"7",
-            news_comments:"0",
-            news_grade:"0",
-            news_istop:"0",
-            news_isgreat:"0"
-        };
+        var newsInfo = {};
+
         var search = window.location.search;
         if(search != ""){
             var arr = search.split("=");
-            var id = arr[1];
-            if(arr[1] != ""){
+            var id = parseInt(arr[1]);
+            if(id != ""){
                 console.log(id);
                 $.ajax({
                     type:"post",
+                    async:false,
                     url: 'http://localhost:3000/myapp/news/readNewsById.php',
                     data: "check=10086&data="+JSON.stringify([id]),
                     success: function (data) {
                         console.log("read success!");
-                        newsInfo = JSON.parse(data);
+                        newsInfo = JSON.parse(data)[0];
                         console.log(newsInfo);
-                        for(a in newsInfo){
-                            newsInfo[a].news_content = newsInfo[a].news_content.replace(/<.*?>/ig,"");
-                        }
+//                        newsInfo.news_content = newsInfo.news_content.replace(/<.*?>/ig,"");
+                        document.getElementById("contents").innerHTML += newsInfo.news_content;
                     }
                 });
             }
@@ -303,9 +294,7 @@
             data: {
                 login:login,     //判断登录 需要后端改
                 userInfo:userInfo,        //判断登录 需要后端改
-                newsInfo:{               //判断登录 需要后端改
-                    news_id:"8"
-                },
+                newsInfo:newsInfo,
                 current:1,
                 showItem:20,
                 allpage:1,
@@ -346,6 +335,14 @@
                         console.log(that.comments, "hahha");
                     }
                 });
+                $.ajax({
+                    type:"POST",
+                    url:contextPath+"/myapp/news/newsCommentsReadPage.php",
+                    data: "check=10086&data="+  JSON.stringify([newsInfo.news_id]),
+                    success:function(data){
+                        that.allpage = data-0;
+                    }
+                })
             },
             methods:{
                 saySomething: function () {
@@ -360,7 +357,10 @@
                         data: "check=10086&data="+JSON.stringify([that.newsInfo.news_id,that.userInfo.user_id,encodeURIComponent(contents)]),
                         success: function (data) {
                             if(data == "success"){
-                                $("#comments").val("");
+                                console.log("success");
+//                                window.location.reload(true);
+                                that.gotoWhatever(that.allpage);
+                           /*     $("#comments").val("");
                                 that.comments.unshift({
                                     infomation:{
                                         com_content: contents,
@@ -369,7 +369,7 @@
                                         user_nickname:userInfo.user_nickname,
                                         user_photo:userInfo.user_photo
                                     }
-                                });
+                                });*/
 
                             }
                         }
@@ -393,8 +393,27 @@
                         }
                     });
                 },
-                showBox: function (event) {
+                gotoWhatever:function(index){
+                    this.current = index;
+                    index = index + "";
+                    var data = [newsInfo.news_id,index];
+                    data = JSON.stringify(data);
+                    //这里可以发送ajax请求
+                    var contextPath = 'http://localhost:3000';                 //post地址 需要后端改
+                    var that = this;
+                    $.ajax({
+                        type: "POST",
+                        url: contextPath + "/myapp/news/newsCommentsRead.php",
+                        data: "check=10086&data="+data,
+                        success: function (data) {
+                            that.comments = JSON.parse(data);
+                        }
+                    });
+                },
+                showBox: function (answerWho){
                     console.log(event.target.nextSibling.nextSibling);
+                    event.target.nextSibling.nextSibling.firstChild.value = "";
+                    event.target.nextSibling.nextSibling.firstChild.answerWho = answerWho;
                     if(event.target.nextSibling.nextSibling.style.display == "block"){
                         event.target.nextSibling.nextSibling.style.display = "none";
                     }else{
@@ -402,16 +421,19 @@
                     }
                 },
                 answerComment: function (comId,comUser) {
-                    console.log(event.target.previousSibling.previousSibling.value,comId,comUser);
+                    console.log(event.target.previousSibling.previousSibling.value,event.target.previousSibling.previousSibling.answerWho,comId,comUser);
+                    event.target.previousSibling.previousSibling.parentNode.style.display = "none";
+                    console.log(event.target.previousSibling.previousSibling.parentNode.style.display);
                     var contents = encodeURIComponent(event.target.previousSibling.previousSibling.value);
                     var that = this;
                     $.ajax({
                         type:"post",
                         url: 'http://localhost:3000/myapp/news/createCommentsCom.php',
-                        data: "check=10086&data="+JSON.stringify([contents,comId,that.userInfo.user_id,comUser,that.newsInfo.news_id]),
+                        data: "check=10086&data="+JSON.stringify([contents,comId,that.userInfo.user_id,that.newsInfo.news_user,that.newsInfo.news_id,comUser,event.target.previousSibling.previousSibling.answerWho]),
                         success: function (data) {
+                            console.log(data,"123");
                           if(data == "1"){
-                              console.log("success");
+                              that.gotoWhatever(that.current);
                           }
                         }
                     });
@@ -425,6 +447,16 @@
                         alert("搜索内容为空！");
                     }
                     window.location.href = "http://localhost:3000/search.html?search="+keyword;
+                },
+                showBoxWithName:function(nickname,answerWho){
+                    console.log(event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.firstChild);
+                    event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.value = "回复" + nickname +":";
+                    event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.answerWho = answerWho;
+                    if(event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style.display == "block"){
+                        event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style.display = "none";
+                    }else{
+                        event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style.display = "block";
+                    }
                 }
             }
         });
