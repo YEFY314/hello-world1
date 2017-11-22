@@ -133,10 +133,19 @@
             </div>
             <div class="nav narbar-nav">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
-                    <li><a href="#">公司介绍</a></li>
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">产品商城</a></li>
-                    <li><a href="#">交流社区</a></li>
+                    <li class="active"><a href="#">交流社区</a></li>
                     <li><a href="#">资源下载</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="logout">
@@ -169,7 +178,11 @@
 
                 </div>
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
-                <div style="text-align: center"><button class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span class="glyphicon glyphicon-thumbs-up"></span>12</button></div>
+                <div style="text-align: center">
+                    <a href="#" rel="popover" id="likeIt" v-on:click.prevent="likeIt()" role="button" tabindex="0" data-container="body" data-toggle="popover" data-placement="top" data-content="每人只能点赞一次，再次点击取消点赞！" data-trigger="hover" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span class="glyphicon glyphicon-thumbs-up"></span>{{newsInfo.news_liketimes}}</a>
+                    <a href="#" rel="popover" id="collectIt" v-on:click.prevent="collectIt()" role="button" tabindex="0" data-container="body" data-toggle="popover" data-placement="top" data-content="每人只能点赞一次，再次点击取消点赞！" data-trigger="hover" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;">收藏</a>
+                </div>
+                <div id="qrcode"></div>
             </div>
             <div id="upPartRight">
                 <form style="margin-left: 20px;margin-top:20px;">
@@ -245,6 +258,7 @@
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="./js/vue.js"></script>
+<script src="./plugins/jquery-qrcode-master/jquery.qrcode.min.js" type="application/javascript"></script>
 <script type="application/javascript">
     $(function(){
         var login = false;      //login获取登录状态后标记的变量   需要后端改
@@ -254,17 +268,17 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            "user_id": "7",
-            "user_accounts": "Bob",
-            "user_nickname": "Jack",
-            "user_email": "123@qq.com",
-            "user_sex": "男",
-            "user_tel": "15996362164",
-            "user_age": "35",
-            "user_photo": "image/1.jpg",
-            "user_address": "江苏省南京市",
-            "user_points": "0",
-            "user_sign":"nihaoaho"
+            user_id: "7",
+            user_accounts: "Bob",
+            user_nickname: "Jack",
+            user_email: "123@qq.com",
+            user_sex: "男",
+            user_tel: "15996362164",
+            user_age: "35",
+            user_photo: "image/1.jpg",
+            user_address: "江苏省南京市",
+            user_points: "0",
+            user_sign:"nihaoaho"
         };
         var newsInfo = {};
 
@@ -289,6 +303,8 @@
                 });
             }
         }
+        console.log(window.location.href);
+
         var vm = new Vue({
             el: "#app",
             data: {
@@ -360,6 +376,7 @@
                                 console.log("success");
 //                                window.location.reload(true);
                                 that.gotoWhatever(that.allpage);
+                                $("#comments").val("");
                            /*     $("#comments").val("");
                                 that.comments.unshift({
                                     infomation:{
@@ -457,8 +474,52 @@
                     }else{
                         event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.style.display = "block";
                     }
+                },
+                likeIt:function(){
+                    var that = this;
+                    $.ajax({
+                        type:"POST",
+                        url:"http://localhost:3000/myapp/news/changeFavorState.php",
+                        data:"check=10086&data="+JSON.stringify([that.newsInfo.news_id,"0",that.userInfo.user_id]),
+                        success:function(data){
+                            if(data=="success"){
+                                $.ajax({
+                                    type:"post",
+                                    url: 'http://localhost:3000/myapp/news/readNewsById.php',
+                                    data: "check=10086&data="+JSON.stringify([that.newsInfo.news_id]),
+                                    success: function (data) {
+                                        that.newsInfo = JSON.parse(data)[0];
+                                    }
+                                });
+                            }
+                        }
+                    })
+                },
+                collectIt:function(){
+                    var that = this;
+                    $.ajax({
+                        type:"POST",
+                        url:"http://localhost:3000/myapp/news/changeCollectState.php",
+                        data:"check=10086&data="+JSON.stringify([that.newsInfo.news_id,that.userInfo.user_id]),
+                        success:function(data){
+                            if(data=="success"){
+                              alert('collect success!');
+                            }
+                        }
+                    })
                 }
             }
+        });
+        $("#likeIt").popover();
+        $("#qrcode").qrcode({
+            text: "http://www.baidu.com", //设置二维码内容
+            render : "canvas",//设置渲染方式
+            width: 256,     //设置宽度,默认生成的二维码大小是 256×256
+            height : 256,     //设置高度
+            typeNumber : -1,      //计算模式
+//            correctLevel : QRErrorCorrectLevel.H,//纠错等级
+            background : "#ffffff",//背景颜色
+            foreground : "#000000" //前景颜色
         });
     });
 

@@ -211,6 +211,20 @@
         }
     </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        select.form-control{
+            width:132px;
+            display: inline-block;
+        }
+        button{
+            width:90px;
+            height:30px;
+            border-radius: 5px;
+            background-color: #F4AB42;
+            color:#ffffff;
+            border: 1px solid #F4AB42;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -221,10 +235,19 @@
             </div>
             <div class="nav narbar-nav">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
-                    <li><a href="#">公司介绍</a></li>
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">产品商城</a></li>
-                    <li><a href="#">交流社区</a></li>
+                    <li class="active"><a href="#">交流社区</a></li>
                     <li><a href="#">资源下载</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="logout">
@@ -248,12 +271,50 @@
         </div>
     </nav>
     <div id="main">
-        <form>
-            帖子题目：<input type="text" name="title" placeholder="请输入标题">
+        <div style="border-bottom: 1px solid #979797;">
+            <p style="width:122px;height:50px;border-radius: 6px;background-color: #F4AB42;font-size: 20px;color:#ffffff;text-align: center;margin-bottom: 0;padding-top: 10px;">新建帖子</p>
+        </div>
+        <form class="form-inline">
+            <div class="form-group">
+                <select name="subject" class="form-control">
+                    <option>教育理念</option>
+                    <option>幼儿教学</option>
+                </select>
+                <select  name="tieziType" class="form-control">
+                    <option>交流讨论</option>
+                    <option>资源下载</option>
+                </select>
+                <select name="resourceType" class="form-control">
+                    <option>视频</option>
+                    <option>图书</option>
+                    <option>音乐</option>
+                </select>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="text" name="title" placeholder="请输入标题" style="width:300px;height:28px;"><span>还可输入75个字符</span>
+            </div>
+            <script id="contents" name="content" type="text/plain" style="width:600px;height:200px;">
+                这里写你的帖子内容
+            </script>
+            <p>资源地址</p>
+            <div class="form-group">
+                <label>网盘地址</label>
+                <input type="text" name="website" />
+            </div>
+            <div class="form-group">
+                <label>网盘密码</label>
+                <input type="text" name="password" />
+            </div>
+            <div class="form-group">
+                <label>资源售价</label>
+                <input type="number" name="price" placeholder="0" />
+                <span>(0-99)</span>
+            </div>
+            <div class="form-group">
+                <button>发表帖子</button><button>保存草稿</button>
+            </div>
         </form>
-        <script id="contents" name="content" type="text/plain" style="width:600px;height:200px;">
-            这里写你的帖子内容
-        </script>
     </div>
 </div>
 <script src="./js/jquery-3.1.1.js"></script>
@@ -269,14 +330,43 @@
 <script type="text/javascript" src="./plugins/umeditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     $(function(){
-        window.um = UM.getEditor('contents', {
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if(login){
+            $("#login").css("display","block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            user_id: "7",
+            user_accounts: "Bob",
+            user_nickname: "Jack",
+            user_email: "123@qq.com",
+            user_sex: "男",
+            user_tel: "15996362164",
+            user_age: "35",
+            user_photo: "image/1.jpg",
+            user_address: "江苏省南京市",
+            user_points: "0",
+            user_sign:"nihaoaho"
+        };
+
+        window.um = UM.getEditor('contents', {            //编辑器配置
             /* 传入配置参数,可配参数列表看umeditor.config.js */
             toolbar: [
                 'undo redo | bold italic underline | forecolor backcolor | removeformat | insertorderedlist insertunorderedlist | fontsize ',
-                '| justifyleft justifycenter justifyright justifyjustify | image'
+                '| justifyleft justifycenter justifyright justifyjustify | image | link unlink'
             ]
         });
-        UM.getEditor('contents').setWidth(1040);
+        UM.getEditor('contents').setWidth(777);
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                userInfo:userInfo
+            },
+            methods:{
+
+            }
+        });
     });
 </script>
 </body>

@@ -134,6 +134,47 @@
             </div>
             <div class="nav narbar-nav">
                 <ul class="nav navbar-nav">
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">产品商城</a></li>
+                    <li class="active"><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
                     <li class="active"><a href="#">首页</a></li>
                     <li><a href="#">公司介绍</a></li>
                     <li><a href="#">产品商城</a></li>
@@ -252,7 +293,7 @@
     <div>
          <div v-for="item in news" style="border-bottom: 1px solid #000;">
              <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
-             <div class="title" style="font-weight: bold;">{{item.news_title}}</div>
+             <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
              <div>{{item.news_content}}</div>
              <p><span>{{item.news_comments}}评论</span>&nbsp&nbsp<span>{{item.news_readtimes}}阅读</span>&nbsp&nbsp<span>{{item.news_liketimes}}点赞</span></p>
          </div>
@@ -269,7 +310,7 @@
     <div>
         <div v-for="item in collections" style="border-bottom: 1px solid #000;margin-top: 30px;">
             <div class="time" style="float: right;color:grey;">{{item.col_time}}</div>
-            <div class="title" style="font-weight: bold;">{{item.news_title}}</div>
+            <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.col_newsid">{{item.news_title}}</a></div>
         </div>
         <ul class="pagination"  v-show="allpage>1" >
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -285,7 +326,7 @@
         <div v-for="item in info" style="border-bottom: 1px solid #000;">
             <div class="time" style="float: right;color:grey;">{{item.sys_sendtime}}</div>
             <div class="title" style="font-weight: bold;"><p v-show="item.sys_type-0">系统消息</p><p v-show="!(item.sys_type-0)">动态更新</p></div>
-            <p>{{item.sys_content}}</p>
+            <p><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.sys_newsid">{{item.sys_content}}</a></p>
         </div>
         <ul class="pagination" v-show="allpage>1"  >
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -458,7 +499,7 @@
                 pageData = JSON.stringify(pageData);
                 $.ajax({
                     type:"POST",
-                    url:contextPath + "/myapp/conn/readSystemInfoOfTotalPage.php",
+                    url:contextPath + "/myapp/conn/getUserCollectPage.php",
                     data:"check=10086&data="+pageData,
                     success:function(data){
                         that.allpage=data-0;
@@ -542,6 +583,7 @@
                     data:"check=10086&data="+pageData,
                     success:function(data){
                         that.allpage = data-0;
+                        console.log("系统消息总页数",that.allpage);
                     }
                 })
             },

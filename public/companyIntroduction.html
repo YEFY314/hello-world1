@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于我们</title>
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/yefy.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">产品商城</a></li>
+                    <li class="active"><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div id="upPart"><img src="./image/1.jpg" style="width:1040px;height:244px;"></div>
+        <div id="downPartLeft">
+            <p>公司文化</p>
+            <p>1993年，顺丰诞生于广东顺德。自成立以来，顺丰始终专注于服务质量的提升，持续加强基础建设，积极研进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集
+                发和引进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集，市场进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集
+                开发，物流配送，快件收派等速运业务机构及服务网络 在持续强化速运业务的基础上，顺丰坚持以客户需求进具有高科技含量的信息技术与设备以提升作业自动化水平。</p>
+            <p>在国内外建立了庞大的信息采集术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集供应为核心，积极拓展多元化业务，针对电商，食品，医药，汽配，电子等不同类型客户开发出一站式供应链解进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集供应决方案，并提供支付，融资，理财，保价等综合性的金融服务。与此同时，依托强大的物流优势，我们成立进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集供应。</p>
+            <p>顺丰优选，为客户提供品质生活服务，打造顺丰优质生活体验。供应供应供应供应供应供应供应供应应多年来，顺丰持续创新，不断铸造高品质服务体验，为客户成功提供坚实有力的支持</p>
+        </div>
+        <div id="downPartRight">
+            <div>
+                <p>产品推荐</p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="产品图">
+                <p>图书名</p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="产品图">
+                <p>图书名</p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="产品图">
+                <p>图书名</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery-3.1.1.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="application/javascript">
+    $(function() {
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if (login) {
+            $("#login").css("display", "block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            "user_id": "7",
+            "user_accounts": "Bob",
+            "user_nickname": "Jack",
+            "user_email": "123@qq.com",
+            "user_sex": "男",
+            "user_tel": "15996362164",
+            "user_age": "35",
+            "user_photo": "image/1.jpg",
+            "user_address": "江苏省南京市",
+            "user_points": "0",
+            "user_sign": "nihaoaho"
+        };
+    });
+</script>
+</body>
+</html>

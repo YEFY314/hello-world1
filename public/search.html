@@ -134,6 +134,47 @@
             </div>
             <div class="nav narbar-nav">
                 <ul class="nav navbar-nav">
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">产品商城</a></li>
+                    <li class="active"><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
                     <li class="active"><a href="#">首页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
@@ -176,11 +217,9 @@
                 <button v-on:click.prevent="search()" class="btn btn-default" style="height:56px; width:65px;background-color: #F4AB42;color:#ffffff;margin-bottom: 25px;margin-left:10px;">搜索</button>
             </form>
             <div v-for="item in searchResults" style="border-bottom: 1px solid grey;margin-top:10px;">
-                <p sytle="width:640px;font-size:18px;" class="textOver"><b>{{item.news_title}}</b></p>
+                <p sytle="width:640px;font-size:18px;" class="textOver"><b><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></b></p>
                 <p style="color:#BBBBBB;width:640px;height:66px;word-break: normal;" class="textOver">{{item.news_content}}</p>    <!--后期需要改-->
                 <p style="color:#BBBBBB;width:640px;">{{item.user_nickname}}&nbsp&nbsp&nbsp {{item.news_createtime}}</p>
-
-
             </div>
             <ul class="pagination" v-show="allpage>1"  >
                 <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
