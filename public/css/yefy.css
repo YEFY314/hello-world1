@@ -143,7 +143,7 @@ label{
     background-color: #F4AB42;
 }
 #upPart{
-    min-height: 540px;
+    /*min-height: 540px;*/
 }
 #upPart>div{
     display: inline-block;
@@ -226,3 +226,36 @@ label{
 /*#contents p{
     text-indent: 2em;
 }*/
+.bookItem{
+    width: 332px;
+    height: 193px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+.bookItem img{
+    width:150px;
+    height:150px;
+    padding-left: 4px;
+    padding-right: 9px;
+}
+.bookItem div{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 18px;
+}
+.bookItem div:first-child{
+    border-right:1px solid #979797;
+}
+.bookItemRight{
+    padding-left: 24px;
+}
+.bookTitle{
+    font-weight: bold;
+    width: 105px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 2; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+}

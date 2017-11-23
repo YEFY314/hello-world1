@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书详情</title>
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #upPart{
+            background-color: #ffffff;
+            height:347px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li class="active"><a href="#">产品商城</a></li>
+                    <li><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div id="upPart" style="background-color: #ffffff;height:347px;">
+            <p>商品详情</p>
+            <div><img src="./image/1.jpg" alt="图书" style="width:218px;height:212px;"></div>
+            <div>
+                <p>恐龙冲锋队</p>
+                <p>
+                    <span>价格</span>
+                    <span>￥14.07<span style="text-decoration: line-through;">18.00</span></span>
+                    <span>购买地址</span>
+                    <span>
+                        <button>微店</button>
+                        <button>京东</button>
+                        <button>天猫</button>
+                    </span>
+                </p>
+                <p>
+                    <span>ISBN</span>
+                    <span></span>
+                    <span>出版社</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>标识</span>
+                    <span></span>
+                    <span>作者</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>出版日期</span>
+                    <span></span>
+                    <span>页数</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>印刷日期</span>
+                    <span></span>
+                    <span>开本</span>
+                    <span></span>
+                </p>
+                <p>
+                    <span>版次</span>
+                    <span></span>
+                </p>
+            </div>
+            <div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="./js/jquery-3.1.1.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
