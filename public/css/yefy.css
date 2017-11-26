@@ -118,12 +118,16 @@ label{
     margin-top: 50px;
 }
 #group>div{
+    width:465px;
+    height:302px;
+}
+/*#group>div{
     display: inline-block;
-    height: 352px;
-    width:450px;
+    height: 302px;
+    width:465px;
 }
 #group>div>div:first-child{
-    height:255px;
+    height:176px;
     background-color:#E2E6AC;
     position: relative;
 }
@@ -133,14 +137,40 @@ label{
 }
 #group>div>div:nth-child(2)>p{
     margin-left: 30px;
-}
-#group>div>div>div{
+}*/
+.groupTitle>div:first-child{
     height:26px;
     width:93px;
     position:relative;
     left: -10px;
     top:15px;
     background-color: #F4AB42;
+}
+.groupTitle{
+    display: inline-block;
+    vertical-align: top;
+    width: 465px;
+    height: 176px;
+    border-radius: 5px;
+    background-color: #e2e6ac;
+}
+.groupInfo{
+    background-color: #ffffff;
+    height:126px;
+    position: relative;
+}
+.groupInfo>div:first-child{
+    display: inline-block;
+    vertical-align: top;
+    width:117px;
+    margin-left: 42px;
+    margin-top: 31px;
+}
+.groupInfo>div:nth-child(2){
+    display: inline-block;
+    vertical-align: top;
+    width:257px;
+    margin-top: 31px;
 }
 #upPart{
     /*min-height: 540px;*/
