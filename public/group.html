@@ -203,18 +203,18 @@
     <div id="main">
         <div style="height:62px;text-align: center;margin-top: 20px;background-color: #ffffff;"><h3 style="padding-top: 17px;">小组概览</h3></hi></div>
         <div id="group">
-            <div>
+            <div v-for="item in groupInfo" style="display: inline-block;margin:0 25px 42px;">
                 <div class="groupTitle">
                     <div></div>
                 </div>
                 <div class="groupInfo">
                     <div>
-                        <div><img src="./image/1.jpg" alt="头像" style="width:66px;height:66px;border-radius:33px;position: absolute;bottom:112px;left:42px;"></div>
-                        <p>组长：叶孤城</p>
-                        <p>人数：111111</p>
+                        <div><img src="item.user_photo" alt="头像" style="width:66px;height:66px;border-radius:33px;position: absolute;bottom:112px;left:42px;"></div>
+                        <p class="textOverNoHover">组长:{{item.user_nickname}}</p>
+                        <p>帖子数：{{item.cf_news}}</p>
                     </div>
-                    <div><p>此版块用于交流近年国内先进的幼儿教育的政策、理念、方案等。</p></div>
-                    <button class="btn btn-default" style="float:right;border-color: #F4AB42;color:#F4AB42;margin-right: 45px;margin-top: -10px;">进入小组</button>
+                    <div><p>{{item.cf_introduction}}</p></div>
+                    <button v-on:click="goToGroup(item.cf_id)" class="btn btn-default" style="float:right;border-color: #F4AB42;color:#F4AB42;margin-right: 45px;margin-top: -10px;">进入小组</button>
                 </div>
             </div>
         </div>
@@ -245,28 +245,32 @@
             "user_points": "0",
             "user_sign":"nihaoaho"
         };
-        var contextPath = 'http://localhost:3000';
-        var postData = JSON.stringify(["0","1","1","1","1"]);
-        $.ajax({
-            type: "POST",
-            url: contextPath + "/myapp/news/readNewsByOthers.php",
-            data: "check=10086&data="+postData,
-            success: function (data) {
-                var results = JSON.parse(data);
-                console.log(results);
-                console.log("yefy");
-            }
-        });
         var vm = new Vue({
             el: "#app",
             data: {
-                userInfo:userInfo
+                userInfo:userInfo,
+                groupInfo:[]
+            },
+            created: function () {
+                var that = this;
+                var contextPath = 'http://localhost:3000';
+                $.ajax({
+                    type: "POST",
+                    url: contextPath + "/myapp/conn/getClassInfomation.php",
+                    data: "check=10086&data=" + JSON.stringify(["0", "1", "10"]),
+                    success: function (data) {
+                        that.groupInfo = JSON.parse(data);
+                    }
+                });
             },
             methods:{
+                goToGroup:function(groupId){
+                    window.location.href = "./groupInner.html?groupId="+groupId;
+                }
 
             }
         });
-    })
+    });
 </script>
 </body>
 </html>

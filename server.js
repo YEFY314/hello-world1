@@ -18,9 +18,9 @@ app.use('/myapp/news/*',newsProxy);
 app.get('/personInfo.html', function(req,res){
     res.sendFile(__dirname+'/public/personInfo.html');
 });
-app.get('/xiaozhu.html', function(req,res){
-    res.sendFile(__dirname+'/public/xiaozhu.html');
-});
+/*app.get('/group.html', function(req,res){
+    res.sendFile(__dirname+'/public/group.html');
+});*/
 
 
 app.listen(3000,function (){

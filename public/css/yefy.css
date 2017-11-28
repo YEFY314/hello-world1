@@ -104,7 +104,7 @@ label{
     width:100px;
 }
 #infoButtom{
-    margin-left: 235px;
+    margin-left: 265px;
     margin-top: 30px;
 }
 #infoTop>div, #infoButtom>div{
@@ -249,13 +249,15 @@ label{
 .textOver:hover{
     overflow: visible;
 }
+.textOverNoHover{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
 #contents img{
     max-width:740px;
     display: inline-block;
 }
-/*#contents p{
-    text-indent: 2em;
-}*/
 .bookItem{
     width: 332px;
     height: 193px;
@@ -282,6 +284,14 @@ label{
 .bookTitle{
     font-weight: bold;
     width: 105px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    -webkit-line-clamp: 2; /** 显示的行数 **/
+    overflow: hidden;  /** 隐藏超出的内容 **/
+}
+.textOverNoDisplay{
     word-break: break-all;
     text-overflow: ellipsis;
     display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/

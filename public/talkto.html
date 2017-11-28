@@ -5,7 +5,12 @@
     <title>私信</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #main>div{
+            padding: 22px 28px;
 
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -53,29 +58,31 @@
     </nav>
     <div id="main">
         <p><a href="./talklist.html">私信列表</a></p>
-        <p>发给@某某的对话</p>
-        <form>
-            <div class="form-group">
-                <textarea class="form-control" name="sendToOthers" rows="3"></textarea>
-                <button  class="btn btn-default" v-on:click.prevent="sendTo()" style="width: 80px;height: 30px;border-radius: 5px;background-color: #f4ab42;color:#ffffff;float:right;">发送</button>
+        <div style="background-color: #ffffff;padding-bottom: 80px;">
+            <p>发给<span style="color:blue;">{{talkToNickname}}</span>的对话</p>
+            <form style="border-bottom: 1px solid #979797;padding-bottom: 50px;">
+                <div class="form-group">
+                    <textarea class="form-control" name="sendToOthers" rows="3"></textarea>
+                    <button  class="btn btn-default" v-on:click.prevent="sendTo()" style="margin-top:18px;margin-bottom:19px;width: 80px;height: 30px;border-radius: 5px;background-color: #f4ab42;color:#ffffff;float:right;">发送</button>
+                </div>
+            </form>
+            <div v-for="item in talkHistory" style="border-bottom: 1px solid #979797;">
+                <div style="display: inline-block;width:80px;height:80px;vertical-align: top;margin: 23px 28px 32px 20px;">
+                   <!--v-bind:src="item.user_photo"--> <img src="./image/1.jpg" alt="头像" style="width: 80px;height:80px;border: 1px solid #ffffff;border-radius: 40px;">
+                </div>
+                <div style="display: inline-block;width: 670px;vertical-align: top;margin-top: 23px;margin-bottom: 20px;">
+                    <p>{{item.user_nickname}}:{{item.sys_content}}</p>
+                    <p>{{item.sys_sendtime}}</p>
+                </div>
             </div>
-        </form>
-        <div v-for="item in talkHistory">
-            <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
-                <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
-            </div>
-            <div style="display: inline-block;width: 690px;vertical-align: top;">
-                <p><span v-if="item.sys_sender==userInfo.user_id">{{item.user_nickname}}</span><span v-else>{{talkToNickname}}</span>:{{item.sys_content}}</p>
-                <p>{{item.sys_sendtime}}</p>
-            </div>
+            <ul class="pagination" v-show="allpage>1">
+                <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
+                <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                    <a href="#" >{{index}}</a>
+                </li>
+                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
+            </ul>
         </div>
-        <ul class="pagination" v-show="allpage>1">
-            <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
-            <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
-                <a href="#" >{{index}}</a>
-            </li>
-            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
-        </ul>
     </div>
 </div>
 <script src="./js/jquery-3.1.1.js"></script>
@@ -112,8 +119,7 @@
                 allpage:1,
                 talkHistory:[],
                 talkToId:"",
-                talkToNickname:"",
-                talkToPhoto:""
+                talkToNickname:""
             },
             computed:{
                 pages:function(){
@@ -141,10 +147,8 @@
                 var search = window.location.search;
                 if(search != ""){
                     var arr = search.split("&");
-                    this.talkToId = arr[0].split("=")[1];
-//                    console.log(typeof this.talkToId);
-                    this.talkToNickname = arr[1].split("=")[1];
-                    this.talkToPhoto = arr[2].split("=")[1];
+                    this.talkToId = parseInt(arr[0].split("=")[1])+"";
+                    this.talkToNickname = decodeURIComponent(arr[1].split("=")[1]);
                     if(this.talkToId != ""){
                         var that = this;
                         $.ajax({

@@ -362,13 +362,13 @@
     </div>
 </div>
 <script type="text/x-template" id="hotNews">
-    <div style="margin:5px 10px;">
+    <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
             <div v-for="item in news" style="border-bottom: 1px solid #000;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 690px;vertical-align: top;">
+                <div style="display: inline-block;width: 680px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
@@ -388,13 +388,13 @@
     </div>
 </script>
 <script type="text/x-template" id="latestNews">
-    <div>
+    <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
             <div v-for="item in collections" style="border-bottom: 1px solid #000;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 690px;vertical-align: top;">
+                <div style="display: inline-block;width: 680px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
@@ -415,13 +415,13 @@
 </script>
 
 <script type="text/x-template" id="resourcePart">
-    <div>
+    <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
             <div v-for="item in resources" style="border-bottom: 1px solid #000;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 690px;vertical-align: top;">
+                <div style="display: inline-block;width: 680px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
@@ -716,7 +716,6 @@
                 recommend:[]
             },
             created: function () {
-                console.log("2");
                 var that = this;
                 $.ajax({
                     type:"POST",

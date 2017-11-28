@@ -171,9 +171,9 @@
     <div id="main">
         <div id="upPart" >
             <div id="upPartLeft" style="min-height:540px;height:auto;width:777px;padding-bottom: 20px;">
-                <h3 class="textOver" v-html="newsInfo.news_title" style="border-bottom: 1px solid #000000;"></h3>
-                <!--<div style="border: 1px solid #000000;"></div>-->
-                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;<span>喜欢</span><span v-html="newsInfo.news_liketimes"></span>&nbsp; <span>评论 5</span> <span style="float: right;">小组名称</span></div>
+                <h3 class="textOverNoDisplay" v-html="newsInfo.news_title" >无标题</h3>
+                <p>{{newsInfo.user_nickname}}</p>
+                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>收藏</span><span v-html="newsInfo.news_liketimes"></span>&nbsp; <span>评论</span> <span style="float: right;" v-html="newsInfo.cf_module"></span></div>
                 <div id="contents">
 
                 </div>
