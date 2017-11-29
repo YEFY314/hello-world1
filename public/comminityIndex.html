@@ -354,8 +354,9 @@
                 <div style="border-bottom: 1px dashed #979797;">
                     <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >编辑推荐</p>
                 </div>
-                <div>
-                    //推荐帖子
+                <div v-for="item in editorRecommend">
+                    <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
+                    <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
                 </div>
             </div>
         </div>
@@ -713,11 +714,12 @@
             data: {
                 checkStatus:false,
                 userInfo:userInfo,
-                recommend:[]
+                recommend:[],
+                editorRecommend:[]
             },
             created: function () {
                 var that = this;
-                $.ajax({
+                $.ajax({         //今日热帖
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/getTodayNewsByLike.php",
                     data: "",
@@ -726,7 +728,7 @@
                         console.log(JSON.parse(data),"nihao");
                     }
                 });
-                $.ajax({
+                $.ajax({                     //签到状态
                     type:"POST",
                     url: "http://localhost:3000/myapp/conn/userCheckInState.php",
                     data: "check=10086&data="+JSON.stringify([that.userInfo.user_id]),
@@ -735,6 +737,14 @@
                         if(status == 1){
                             that.checkStatus = true;
                         }
+                    }
+                });
+                $.post({
+                    url: "http://localhost:3000/myapp/news/newsEditorReco.php",
+                    data:"check=10086",
+                    success:function(data){
+                        that.editorRecommend = JSON.parse(data);
+                        console.log(that.editorRecommend,'hehe');
                     }
                 });
             },

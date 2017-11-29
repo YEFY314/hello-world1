@@ -169,39 +169,7 @@
             </div>
         </div>
     </nav>
-        <div class="container">
-            <div class="navbar-header">
-                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
-            </div>
-            <div class="nav narbar-nav">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
-                    <li><a href="#">公司介绍</a></li>
-                    <li><a href="#">产品商城</a></li>
-                    <li><a href="#">交流社区</a></li>
-                    <li><a href="#">资源下载</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" id="logout">
-                    <!--<li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>-->
-                    <li><a href="#">微信登陆</a></li>
-                </ul>
-                <ul class="nav navbar-var navbar-right" id="login">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">个人主页</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">私信</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">退出登录</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="main" style="margin-top: 40px;">
+    <div id="main" style="margin-top: 30px;">
         <div id="personInfo">
             <div id="personInfoLeft">
                 <img v-bind:src="userInfo.user_photo" style="width:100px;height:100px;border-radius: 50px;">
@@ -265,7 +233,7 @@
                 </div>
             </div>
         </div>
-        <div id="personFunc" style="margin-top:40px;min-height: 500px;">
+        <div id="personFunc" style="margin-top:30px;min-height: 500px;">
             <div id="personFuncLeft" style="width:200px;display: inline-block;">
                 <ul id="myTab" class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#message" data-toggle="tab"><span class="glyphicon glyphicon-bell"></span>系统消息</a></li>
@@ -325,7 +293,12 @@
     <div>
         <div v-for="item in info" style="border-bottom: 1px solid #000;">
             <div class="time" style="float: right;color:grey;">{{item.sys_sendtime}}</div>
-            <div class="title" style="font-weight: bold;"><p v-show="item.sys_type-0">系统消息</p><p v-show="!(item.sys_type-0)">动态更新</p></div>
+            <div class="title" style="font-weight: bold;">
+                <p v-if="item.sys_type=='0'">评论通知</p>
+                <p v-else-if="item.sys_type=='1'">点赞通知</p>
+                <p v-else-if="item.sys_type=='2'">对话通知</p>
+                <p v-else="item.sys_type=='3'">回复通知</p>
+            </div>
             <p><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.sys_newsid">{{item.sys_content}}</a></p>
         </div>
         <ul class="pagination" v-show="allpage>1"  >
@@ -617,15 +590,6 @@
 
             }
         });
-       /* var contextPath = 'http://localhost:3000';
-        $.ajax({
-            type: "POST",
-            url:  contextPath + "/myapp/conn/getUserCollectInfo.php",
-            data: "check=10086&data=[\"7\"]",
-            success: function(data){
-                console.log(data,"hahah");
-            }
-        });*/
     });
     function preview(file) {
         var prevDiv = document.getElementById('preview');

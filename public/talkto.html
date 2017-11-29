@@ -70,9 +70,10 @@
                 <div style="display: inline-block;width:80px;height:80px;vertical-align: top;margin: 23px 28px 32px 20px;">
                    <!--v-bind:src="item.user_photo"--> <img src="./image/1.jpg" alt="头像" style="width: 80px;height:80px;border: 1px solid #ffffff;border-radius: 40px;">
                 </div>
-                <div style="display: inline-block;width: 670px;vertical-align: top;margin-top: 23px;margin-bottom: 20px;">
+                <div style="display: inline-block;width: 770px;vertical-align: top;margin-top: 23px;margin-bottom: 20px;">
                     <p>{{item.user_nickname}}:{{item.sys_content}}</p>
                     <p>{{item.sys_sendtime}}</p>
+                    <div v-on:click.prevent="deleteTalk(item.sys_id)" style="text-align: right;color:#f4ab42;cursor: pointer;">删除</div>
                 </div>
             </div>
             <ul class="pagination" v-show="allpage>1">
@@ -176,34 +177,6 @@
                 }
             },
             methods:{
-                /*search:function(){
-                    this.keyword = $("input").val().trim();
-                    if(this.keyword == ""){
-                        alert("搜索内容不能为空！");
-                        return;
-                    }
-                    var that  = this;
-                    $.ajax({
-                        type:"post",
-                        url: 'http://localhost:3000/myapp/news/searchNewsTitle.php',
-                        data: "check=10086&data="+JSON.stringify([encodeURIComponent(that.keyword),"1"]),
-                        success: function (data) {
-                            that.searchResults = JSON.parse(data);
-                            for(a in that.searchResults){
-                                that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"");
-                            }
-                            console.log(that.searchResults);
-                        }
-                    });
-                    $.ajax({
-                        type:"post",
-                        url: 'http://localhost:3000/myapp/news/searchNewsTitlePage.php',
-                        data: "check=10086&data="+JSON.stringify([encodeURIComponent(that.keyword)]),
-                        success: function (data) {
-                            that.allpage = data - 0;
-                        }
-                    })
-                },*/
                 goto:function(index){
                     if(index == this.current) return;
                     this.current = index;
@@ -236,7 +209,6 @@
                             success: function (data) {
                                 if(data == "success"){
                                     $("textarea").val("");
-//                                    window.location.reload();
                                     $.ajax({
                                         type: "POST",
                                         url: "http://localhost:3000/myapp/conn/getInfomationWithOthers.php",
@@ -253,23 +225,41 @@
                                             that.allpage = data - 0;
                                             console.log(data,"页数");
                                         }
-                                    })
+                                    });
                                 }
                             }
                         });
                     }
+                },
+                deleteTalk:function(id){
+                    var that = this;
+                    $.post({
+                        url:'http://localhost:3000/myapp/conn/deleteChatListById.php',
+                        data: "check=10086&data="+JSON.stringify([id]),
+                        success:function(data){
+                            if(data=="1"){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/myapp/conn/getInfomationWithOthers.php",
+                                    data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,that.current]),
+                                    success: function (data) {
+                                        that.talkHistory = JSON.parse(data);
+                                    }
+                                });
+                                $.post({
+                                    url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',
+                                    data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId]),
+                                    success:function(data){
+                                        that.allpage = data - 0;
+                                        console.log(data,"页数");
+                                    }
+                                });
+                            }
+                        }
+                    })
                 }
             }
         });
-        /* var contextPath = 'http://localhost:3000';
-         $.ajax({
-         type: "POST",
-         url:  contextPath + "/myapp/conn/getUserCollectInfo.php",
-         data: "check=10086&data=[\"7\"]",
-         success: function(data){
-         console.log(data,"hahah");
-         }
-         });*/
     });
 </script>
 </body>

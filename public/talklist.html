@@ -86,6 +86,7 @@
     <div id="main">
         <p style="font-size: 26px;font-weight: 500;color:#333333;">私信列表</p>
         <div id="talkList">
+            <div v-show="talkList.length<1">无对话数据</div>
             <div v-for="item in talkList">
                 <p>与<span style="color:blue;">@{{item.receiver_name}}</span>的对话</p>
                 <div>
@@ -93,7 +94,7 @@
                 </div>
                 <div>
                     <p class="textOverNoDisplay">{{item.sys_content}}</p>
-                    <p>{{item.sys_sendtime}}<span style="float:right;"><button v-on:click = "goTalkTo(item.sys_receiver,item.receiver_name)" class="btn btn-default" style="background-color: #f4ab42;color:#ffffff;">查看对话</button><button class="btn btn-default" style="background-color: #ffffff;color:#f4ab42;">删除</button></span></p>
+                    <p>{{item.sys_sendtime}}<span style="float:right;"><button v-on:click = "goTalkTo(item.sys_receiver,item.receiver_name)" class="btn btn-default" style="background-color: #f4ab42;color:#ffffff;">查看对话</button><button v-on:click.prevent="deleteTalks(item.sys_userid, item.sys_friendid)" class="btn btn-default" style="background-color: #ffffff;color:#f4ab42;">删除</button></span></p>
                 </div>
             </div>
         </div>
@@ -111,7 +112,7 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            "user_id": "9",
+            "user_id": "3",
             "user_accounts": "Bob",
             "user_nickname": "Jack",
             "user_email": "123@qq.com",
@@ -152,62 +153,32 @@
             methods:{
                 goTalkTo: function (id,nickname) {
                     window.location.href = "./talkto.html?id="+id+"&nickname="+nickname;
-                }
-  /*              goto:function(index){
-                    if(index == this.current) return;
-                    this.current = index;
-                    index = index + "";
-                    //这里可以发送ajax请求
+                },
+                deleteTalks:function(userId, friendId){
+                    console.log("delete");
                     var that = this;
-                    $.ajax({
-                        type:"post",
-                        url: 'http://localhost:3000/myapp/conn/getInfomationWithOthers.php',
-                        data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,index]),
+                    $.post({
+                        url:"http://localhost:3000/myapp/conn/deleteChatListByUserId.php",
+                        data:"check=10086&data="+JSON.stringify([userId,friendId]),
                         success: function (data) {
-                            if(data == "no content"){
-                                return;
-                            }else{
-                                that.talkHistory = JSON.parse(data);
-                                console.log(that.talkHistory);
+                            if(data == "1"){
+                                $.ajax({
+                                    type:"post",
+                                    url: 'http://localhost:3000/myapp/conn/getChatList.php',
+                                    data: "check=10086&data="+JSON.stringify([that.userInfo.user_id]),
+                                    success: function (data) {
+                                        if(data == "no content"){
+                                            window.location.reload();
+                                        }else{
+                                            that.talkList = JSON.parse(data);
+                                            console.log(that.talkList);
+                                        }
+                                    }
+                                });
                             }
                         }
-                    });
-                },
-                sendTo: function () {
-                    if($("textarea").val().trim()==""){
-                        alert("发送内容不能为空！");
-                    }else{
-                        var content = encodeURIComponent($("textarea").val().trim());
-                        var that = this;
-                        $.post({
-                            url:'http://localhost:3000/myapp/conn/sendInfomationToOthers.php',
-                            data:"check=10086&data="+JSON.stringify([that.userInfo.user_id, that.talkToId,content]),
-                            success: function (data) {
-                                if(data == "success"){
-                                    $("textarea").val("");
-//                                    window.location.reload();
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "http://localhost:3000/myapp/conn/getInfomationWithOthers.php",
-                                        data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,"1"]),
-                                        success: function (data) {
-                                            console.log("shuaxing");
-                                            that.talkHistory = JSON.parse(data);
-                                        }
-                                    });
-                                    $.post({
-                                        url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',
-                                        data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId]),
-                                        success:function(data){
-                                            that.allpage = data - 0;
-                                            console.log(data,"页数");
-                                        }
-                                    })
-                                }
-                            }
-                        });
-                    }
-                }*/
+                    })
+                }
             }
         });
     });

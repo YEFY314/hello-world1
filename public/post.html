@@ -170,19 +170,21 @@
     </nav>
     <div id="main">
         <div id="upPart" >
-            <div id="upPartLeft" style="min-height:540px;height:auto;width:777px;padding-bottom: 20px;">
+            <div id="upPartLeft" style="min-height:540px;height:auto;width:777px;padding-bottom: 20px;position:relative;">
                 <h3 class="textOverNoDisplay" v-html="newsInfo.news_title" >无标题</h3>
                 <p>{{newsInfo.user_nickname}}</p>
-                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>收藏</span><span v-html="newsInfo.news_liketimes"></span>&nbsp; <span>评论</span> <span style="float: right;" v-html="newsInfo.cf_module"></span></div>
-                <div id="contents">
-
+                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>收藏</span><span v-html="newsInfo.news_collect"></span>&nbsp; <span>评论</span><span>{{newsInfo.news_comments}}</span> <span style="float: right;" v-html="newsInfo.cf_module"></span></div>
+                <div id="contents" style="margin-top:40px;">
+                    <!--帖子内容-->
                 </div>
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center">
                     <a href="#" rel="popover" id="likeIt" v-on:click.prevent="likeIt()" role="button" tabindex="0" data-container="body" data-toggle="popover" data-placement="top" data-content="每人只能点赞一次，再次点击取消点赞！" data-trigger="hover" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span class="glyphicon glyphicon-thumbs-up"></span>{{newsInfo.news_liketimes}}</a>
                     <a href="#" rel="popover" id="collectIt" v-on:click.prevent="collectIt()" role="button" tabindex="0" data-container="body" data-toggle="popover" data-placement="top" data-content="每人只能点赞一次，再次点击取消点赞！" data-trigger="hover" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;">收藏</a>
                 </div>
-                <div id="qrcode"></div>
+                <!--<div id="qrcode"></div>-->
+                <div class="center" v-on:click.prevent="shareToSinaWB()" style="position: absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:198px;color:#ffffff;cursor: pointer;"><p style="vertical-align: middle;">微博</p></div>
+                <div class="center" v-on:click.prevent="shareToQzone()" style="position:absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:261px;color:#ffffff;cursor:pointer;"><p style="vertical-align: middle;">空间</p></div>
             </div>
             <div id="upPartRight">
                 <form style="margin-left: 20px;margin-top:20px;">
@@ -216,7 +218,7 @@
                                 <p style="text-align: right;"><span>{{answer.comc_createtime}}</span>&nbsp;&nbsp;<button v-on:click="showBoxWithName(answer.user_nickname,answer.user_id)">回复TA</button></p>
                             </div>
                         </div>
-                        <p style="cursor:pointer;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span> 回复</p>
+                        <div><p style="cursor:pointer;display: inline-block;width:50px;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span>回复</p><button v-show="userInfo.user_id==item.infomation.user_id" v-on:click.prevent="deleteComment(item.infomation.com_id)" style="float:right;">删除</button></div>
                         <form method="post" style="display: none;">
                             <textarea rows="2" cols="100" value="" answerWho="" name="comments"></textarea>
                             <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)"  class="btn btn-default" style="margin-bottom: 25px;">确定</button>
@@ -268,7 +270,7 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            user_id: "7",
+            user_id: "9",
             user_accounts: "Bob",
             user_nickname: "Jack",
             user_email: "123@qq.com",
@@ -303,7 +305,12 @@
                 });
             }
         }
-        console.log(window.location.href);
+        var _title="一品书童",_source,_sourceUrl,_showcount,_desc,_summary,_site,
+                _width = 600,
+                _height = 600,
+                _top =(screen.height-_height)/2,
+                _left =(screen.width-_width)/2,
+                _url = window.location
 
         var vm = new Vue({
             el: "#app",
@@ -387,7 +394,6 @@
                                         user_photo:userInfo.user_photo
                                     }
                                 });*/
-
                             }
                         }
                     });
@@ -507,7 +513,49 @@
                             }
                         }
                     })
+                },
+                shareToSinaWB: function () {
+                    var _shareUrl ='http://v.t.sina.com.cn/share/share.php?&appkey=895033136';    //真实的appkey，必选参数
+                    _shareUrl +='&url='+ encodeURIComponent(document.location);     //参数url设置分享的内容链接|默认当前页location，可选参数
+                    _shareUrl +='&title=' + encodeURIComponent(_title||document.title);    //参数title设置分享的标题|默认当前页标题，可选参数
+                    _shareUrl +='&source=' + encodeURIComponent(_source||'');
+                    _shareUrl +='&sourceUrl=' + encodeURIComponent(_sourceUrl||'');
+                    _shareUrl +='&content=' + 'utf-8';   //参数content设置页面编码gb2312|utf-8，可选参数
+                    _shareUrl += '&pic='+ encodeURIComponent('');  //参数pic设置图片链接|默认为空，可选参数
+                    window.open(_shareUrl,'_blank','width='+_width+',height='+_height+',top='+_top+',left='+_left+',toolbar=no,menubar=no,scrollbars=no,resizable=1,location=no,status=0');
+
+                },
+                shareToQzone: function () {
+                    var _shareUrl ='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?';
+                    _shareUrl += 'url=' +encodeURIComponent("http://www.baidu.com?id=9");   //参数url设置分享的内容链接|默认当前页location
+                    _shareUrl +='&showcount=' + _showcount||0;      //参数showcount是否显示分享总数,显示：'1'，不显示：'0'，默认不显示
+                    _shareUrl +='&desc=' + encodeURIComponent('分享的描述');   //参数desc设置分享的描述，可选参数
+                    _shareUrl +='&summary=' + encodeURIComponent('分享摘要');   //参数summary设置分享摘要，可选参数
+                    _shareUrl +='&title=' + encodeURIComponent("一品书童");    //参数title设置分享标题，可选参数
+                    /*_shareUrl +='&site=' + encodeURIComponent(_site||'');   //参数site设置分享来源，可选参数
+                    _shareUrl += '&pics='+ encodeURIComponent(_pic||'');   //参数pics设置分享图片的路径，多张图片以＂|＂隔开，可选参数*/
+                    window.open(_shareUrl,'_blank','width='+_width+',height='+_height+',top='+_top+',left='+_left+',toolbar=no,menubar=no,scrollbars=no,resizable=1,location=no,status=0');
+
+                },
+                deleteComment:function(com_id){
+                    console.log('ajf');
+                    console.log(com_id,this.newsInfo.news_id);
+                    var that = this;
+                    $.post({
+                        url:"http://localhost:3000/myapp/news/deleteCommentsById.php",
+                        data:"check=10086&data="+JSON.stringify([com_id,that.newsInfo.news_id]),
+                        success: function (data) {
+                            if(data=="success"){
+                                console.log("delete success");
+                                that.gotoWhatever(that.current);
+                            }
+
+                        }
+                    })
                 }
+
+
+
             }
         });
         $("#likeIt").popover();
