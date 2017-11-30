@@ -152,6 +152,7 @@ label{
     height: 176px;
     border-radius: 5px;
     background-color: #e2e6ac;
+    position: relative;
 }
 .groupInfo{
     background-color: #ffffff;

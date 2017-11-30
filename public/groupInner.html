@@ -209,6 +209,14 @@
         }
     </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #groupInner{
+            height:252px;
+        }
+        #upPartLeft{
+            height:314px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -257,54 +265,9 @@
     <div id="main">
         <div id="upPart">
             <div id="upPartLeft">
-                <h3 style="padding-left:18px;">小组导览</h3>
-                <div style="border: 1px solid #000000;margin:0 18px;"></div>
-                <div id="xiaozhu">
-                    <div>
-                        <div>
-                            <img src="./image/1.jpg">
-                        </div>
-                        <div>
-                            <h3>教育理念</h3>
-                            <p>小组介绍：</p>
-                            <p style="word-break:break-word;">奈何发反馈奈何发反馈奈何发反馈奈何发反馈</p>
-                            <p style="padding-top: 16px;">关注：1233 | 话题：1234</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="./image/1.jpg">
-                        </div>
-                        <div>
-                            <h3>教育理念</h3>
-                            <p>小组介绍：</p>
-                            <p style="word-break:break-word;">奈何发反馈奈何发反馈奈何发反馈奈何发反馈</p>
-                            <p style="padding-top: 16px;">关注：1233 | 话题：1234</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="./image/1.jpg">
-                        </div>
-                        <div>
-                            <h3>教育理念</h3>
-                            <p>小组介绍：</p>
-                            <p style="word-break:break-word;">奈何发反馈奈何发反馈奈何发反馈奈何发反馈</p>
-                            <p style="padding-top: 16px;">关注：1233 | 话题：1234</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <img src="./image/1.jpg">
-                        </div>
-                        <div>
-                            <h3>教育理念</h3>
-                            <p>小组介绍：</p>
-                            <p style="word-break:break-word;">奈何发反馈奈何发反馈奈何发反馈奈何发反馈</p>
-                            <p style="padding-top: 16px;">关注：1233 | 话题：1234</p>
-                        </div>
-                    </div>
-                    <div style="text-align: center;width: 100%;height:26px;margin: 0 auto;border: none;;"><button class="btn btn-default" style="background-color: #ffffff;color:#F4AB42;width:90px;">查看更多</button></div>
+                <h3 style="padding-left:18px;"><a href="./group.html"><小组导览</a></h3>              <!--abcdef-->
+                <div id="groupInner">
+                    <img v-bind:src="'./image/groupInner'+groupId+'.png'" style="width:777px;height:229px;margin-left: -19px;">
                 </div>
             </div>
             <div id="upPartRight">

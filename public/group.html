@@ -206,10 +206,12 @@
             <div v-for="item in groupInfo" style="display: inline-block;margin:0 25px 42px;">
                 <div class="groupTitle">
                     <div></div>
+                    <img v-bind:src="'./image/group'+item.cf_id+'.png'" style="width:465px;margin-top:-27px;">
+                    <p v-html="item.cf_module" style="position: absolute;top:84px;left:170px;font-size: 30px;color:#333333;"></p>
                 </div>
                 <div class="groupInfo">
                     <div>
-                        <div><img src="item.user_photo" alt="头像" style="width:66px;height:66px;border-radius:33px;position: absolute;bottom:112px;left:42px;"></div>
+                        <div><img src="item.user_photo" alt="头像" style="width:66px;height:66px;border-radius:33px;position: absolute;bottom:112px;left:42px;"></div>     <!--abcdef头像-->
                         <p class="textOverNoHover">组长:{{item.user_nickname}}</p>
                         <p>帖子数：{{item.cf_news}}</p>
                     </div>
