@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发帖</title>
+    <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- umeditor样式文件 -->
+    <link rel="stylesheet" href="./plugins/umeditor/themes/default/css/umeditor.css">
+    <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        select.form-control{
+            width:132px;
+            display: inline-block;
+        }
+        button{
+            width:90px;
+            height:40px;
+            border-radius: 5px;
+            background-color: #F4AB42;
+            color:#ffffff;
+            border: 1px solid #F4AB42;
+        }
+        #upPart{
+            background-color: #FFFFFF;
+            padding: 16px 30px 30px;
+        }
+        form{
+            padding-top: 17px;
+        }
+        .form-group{
+            padding-top:17px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li ><a href="./index.html">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./companyCulture.html">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="./companyIntroduction.html">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="./companyRecruit.html">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./productMall.html">产品商城</a></li>
+                    <li class="active"><a href="./comminityIndex.html">交流社区</a></li>
+                    <li><a href="./resourceIndex.html">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./personInfo.html">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="./talklist.html">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div id="upPart">
+            <div style="border-bottom: 1px solid #979797;display: block;">
+                <p style="width:122px;height:50px;border-radius: 6px;background-color: #F4AB42;font-size: 20px;color:#ffffff;text-align: center;margin-bottom: 0;padding-top: 10px;">新建帖子</p>
+            </div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <select name="subject" class="form-control">
+                        <option value="1">幼教前沿</option>
+                        <option value="2">启蒙经验</option>
+                        <option value="3">性格培养</option>
+                        <option value="4">爸妈交流</option>
+                        <option value="5">童年童趣</option>
+                        <option value="6">东风西渐</option>
+                        <option value="7">神奇绘本</option>
+                        <option value="8">百科乐园</option>
+                    </select>
+                    <select  name="postType" class="form-control">
+                        <option value="normal">交流讨论</option>
+                        <option value="resource">资源下载</option>
+                    </select>
+                    <select name="resourceType" class="form-control" disabled="disabled">
+                        <option>视频</option>
+                        <option>图书</option>
+                        <option>音乐</option>
+                    </select>
+                </div>
+                <br/>
+                <div class="form-group" style="padding-bottom: 17px;">
+                    <input type="text" name="title" placeholder="请输入标题" style="width:300px;height:28px;border-radius: 3px;border:1px solid #979797;margin-right:20px;"><span id="tips">还可输入75个字符</span>
+                </div>
+                <script id="contents" name="content" type="text/plain" style="width:600px;height:200px;">
+                这里写你的帖子内容
+                </script>
+                <p style="margin-top:17px;width:80px;height:30px;border-radius: 3px;background-color: #c1c1c1;color:#ffffff;text-align: center;padding-top:5px;">资源地址</p>
+                <div class="form-group">
+                    <label style="color:#c1c1c1;">网盘地址</label>
+                    <input type="text" name="website" placeholder="无资源可以不填" style="width:300px;height:30px;border-radius: 3px;border: solid 1px #c1c1c1;" />
+                </div>
+                <div class="form-group">
+                    <label style="color:#c1c1c1;">资源售价</label>
+                    <input type="number" name="price" placeholder="0" style="width:50px;height:30px;border:1px solid #c1c1c1;border-radius: 3px;"/>
+                    <span>(0-99)</span>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <button>发表帖子</button><button style="background-color: #FFFFFF;color:#F4AB42;margin-left:25px;">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery-3.1.1.js"></script>
+<script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<!-- 引入 etpl -->
+<script type="text/javascript" src="./plugins/umeditor/third-party/template.min.js"></script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="./plugins/umeditor/umeditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="./plugins/umeditor/umeditor.js"></script>
+<!-- 语言包文件 -->
+<script type="text/javascript" src="./plugins/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if(login){
+            $("#login").css("display","block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            user_id: "7",
+            user_accounts: "Bob",
+            user_nickname: "Jack",
+            user_email: "123@qq.com",
+            user_sex: "男",
+            user_tel: "15996362164",
+            user_age: "35",
+            user_photo: "image/1.jpg",
+            user_address: "江苏省南京市",
+            user_points: "0",
+            user_sign:"nihaoaho"
+        };
+
+        window.um = UM.getEditor('contents', {            //编辑器配置
+            /* 传入配置参数,可配参数列表看umeditor.config.js */
+            toolbar: [
+                'undo redo | bold italic underline | forecolor backcolor | removeformat | insertorderedlist insertunorderedlist | fontsize ',
+                '| justifyleft justifycenter justifyright justifyjustify | image | link unlink'
+            ]
+        });
+        UM.getEditor('contents').setWidth(980);
+        UM.getEditor('contents').setHeight(600);
+//        console.log($("input[name='title']"));
+        $("input[name='title']").on("input",function () {
+            var length = 75 - $("input[name='title']").val().trim().length;
+            console.log(length);
+            $("#tips").text("还可输入"+length+"个字符");
+        });
+        $("select[name='postType']").change(function(){
+            if($(this).children('option:selected').val()=="resource"){
+                $("select[name='resourceType']").attr("disabled",false);
+            }else{
+                $("select[name='resourceType']").attr("disabled",true);
+
+            }
+        });
+    });
+</script>
+</body>
+</html>

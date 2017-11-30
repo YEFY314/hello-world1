@@ -306,3 +306,11 @@ label{
     -webkit-justify-content: center;
     justify-content: center;
 }
+.unionBtn{
+    width:80px;
+    height:30px;
+    border-radius: 5px;
+    background-color: #f4ab42;
+    color:#FFFFFF;
+    border: 1px solid #f4ab42;
+}

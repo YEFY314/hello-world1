@@ -260,6 +260,7 @@
                     data: "check=10086&data=" + JSON.stringify(["0", "1", "10"]),
                     success: function (data) {
                         that.groupInfo = JSON.parse(data);
+                        console.log(that.groupInfo);
                     }
                 });
             },

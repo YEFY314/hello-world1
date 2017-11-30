@@ -210,7 +210,7 @@
                 <div>
                     <div v-for="item in comments" style="border-bottom: 1px solid grey;margin-top:10px;">
                         <p style="float:right;"><span class="glyphicon glyphicon-thumbs-up"></span>{{item.infomation.com_like}}</p>
-                        <p><img src="./image/1.jpg" style="width:50px;height:50px; border-radius: 25px;">&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>
+                        <p><img v-bind:src="item.user_photo" style="width:50px;height:50px; border-radius: 25px;">&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>
                         <p>{{item.infomation.com_content}}</p>
                         <div style="background-color: #BBBBBB;">
                             <div v-for="answer in item.comcom">
@@ -219,7 +219,7 @@
                             </div>
                         </div>
                         <div><p style="cursor:pointer;display: inline-block;width:50px;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span>回复</p><button v-show="userInfo.user_id==item.infomation.user_id" v-on:click.prevent="deleteComment(item.infomation.com_id)" style="float:right;">删除</button></div>
-                        <form method="post" style="display: none;">
+                        <form method="post" style="display: none;" ref="answerBox">
                             <textarea rows="2" cols="100" value="" answerWho="" name="comments"></textarea>
                             <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)"  class="btn btn-default" style="margin-bottom: 25px;">确定</button>
                         </form>
@@ -236,27 +236,6 @@
         </div>
     </div>
 </div>
-<!--<script type="text/x-template" id="newsCommnets">
-    <div>
-        <div v-for="item in comments" style="border-bottom: 1px solid grey;margin-top:10px;">
-            <p style="float:right;"><span class="glyphicon glyphicon-thumbs-up"></span>{{item.infomation.com_like}}</p>
-            <p><img src="./image/1.jpg" style="width:50px;height:50px; border-radius: 25px;">&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>
-            <p>{{item.infomation.com_content}}</p>
-            <p style="cursor:pointer;" v-on:click="showBox($event)"><span class="glyphicon glyphicon-edit"></span> 回复</p>
-            <form method="post" style="display: none;">
-                <textarea rows="8" cols="60" name="comments"></textarea>
-                <button class="btn btn-default" style="margin-bottom: 25px;">确定</button>
-            </form>
-        </div>
-        <ul class="pagination" v-show="allpage>1"  >
-            <li v-show="current != 1" @click="current&#45;&#45; && goto(current)" ><a href="#">上一页</a></li>
-            <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
-                <a href="#" >{{index}}</a>
-            </li>
-            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
-        </ul>
-    </div>
-</script>-->
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="./js/vue.js"></script>
@@ -270,7 +249,7 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            user_id: "9",
+            user_id: "7",
             user_accounts: "Bob",
             user_nickname: "Jack",
             user_email: "123@qq.com",
@@ -380,20 +359,9 @@
                         data: "check=10086&data="+JSON.stringify([that.newsInfo.news_id,that.userInfo.user_id,encodeURIComponent(contents)]),
                         success: function (data) {
                             if(data == "success"){
-                                console.log("success");
-//                                window.location.reload(true);
-                                that.gotoWhatever(that.allpage);
                                 $("#comments").val("");
-                           /*     $("#comments").val("");
-                                that.comments.unshift({
-                                    infomation:{
-                                        com_content: contents,
-                                        com_like:"0",
-                                        com_time:"刚刚",
-                                        user_nickname:userInfo.user_nickname,
-                                        user_photo:userInfo.user_photo
-                                    }
-                                });*/
+                                console.log("success");
+                                that.gotoWhatever(that.allpage);
                             }
                         }
                     });
@@ -434,13 +402,15 @@
                     });
                 },
                 showBox: function (answerWho){
-                    console.log(event.target.nextSibling.nextSibling);
-                    event.target.nextSibling.nextSibling.firstChild.value = "";
-                    event.target.nextSibling.nextSibling.firstChild.answerWho = answerWho;
-                    if(event.target.nextSibling.nextSibling.style.display == "block"){
-                        event.target.nextSibling.nextSibling.style.display = "none";
+
+                    console.log(event.target.parentNode.nextSibling.nextSibling);
+                    var form = event.target.parentNode.nextSibling.nextSibling;
+                    form.firstChild.value = "";
+                    form.firstChild.answerWho = answerWho;
+                    if(form.style.display == "block"){
+                        form.style.display = "none";
                     }else{
-                        event.target.nextSibling.nextSibling.style.display = "block";
+                        form.style.display = "block";
                     }
                 },
                 answerComment: function (comId,comUser) {
