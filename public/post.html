@@ -9,6 +9,25 @@
         a.center:hover{
             text-decoration: none;
         }
+        .modal-body>p>span:nth-child(even){
+            float:right;
+        }
+        .modal-body>p:last-child{
+            text-align: center;
+        }
+        .modal-body>p>button{
+            width: 70px;
+            height: 30px;
+            border-radius: 5px;
+            border: solid 1px #f4ab42;
+            background-color: #f4ab42;
+            color:#FFFFFF;
+        }
+        .modal-body>p>button:first-child{
+            background-color: #FFFFFF;
+            color:#f4ab42;
+            margin-right:19px;
+        }
     </style>
 </head>
 <body>
@@ -64,6 +83,29 @@
                 <div id="contents" style="margin-top:40px;">
                     <!--帖子内容-->
                 </div>
+                <div>
+                    <p style="color: #BBBBBB;">*附件下载</p>
+                    <p><button  type="button" class="btn  btn-primary" data-toggle="modal" data-target="#resourceDownload">网盘下载</button></p>
+                    <p v-show="purchaseState">资源地址：<span v-text="newsInfo.news_resource"></span></p>
+                    <div id="resourceDownload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">消耗鲜花</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p><span>作者</span><span v-html="newsInfo.user_nickname"></span></p>
+                                    <p><span>售价</span><span v-html="newsInfo.news_pay"></span></p>
+                                    <p><span>作者所得</span><span v-html="authorGet"></span></p>
+                                    <p><span>您所拥有鲜花</span><span v-html="userFlowers"></span></p>
+                                    <p ><button data-dismiss="modal">取消</button><button v-on:click.prevent="purchaseResource()">确认</button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center">
                     <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="!likeState" class="glyphicon glyphicon-thumbs-down"></span>{{newsInfo.news_liketimes}}</button>
@@ -80,10 +122,11 @@
                     <button v-on:click.prevent="gosearch()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
                 </form>
                 <p style="border-left: 4px solid #957573 ; border-bottom: 1px dashed #979797;font-size: 20px;margin-left: 20px;margin-top:20px;margin-right: 30px;padding-left: 3px;">小组活跃用户</p>
-                <div style="border: 1px solid gray; border-radius: 5px;width:190px;height:127px;margin-left: 20px;">
-                    <p>每日签到送3朵鲜花</p>
+                <div style="width:190px;margin-left: 20px;">
+                    <div v-for="item in groupActiveUser" style="width:45px;display: inline-block;vertical-align: top;margin:12px 9px 0 9px;">
+                        <img v-bind:src="item.user_photo" alt="头像" style="width:45px;height:45px;border-radius: 22px;">                 <!--abcdef头像路径-->
+                    </div>
                 </div>
-                <button class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:10px;"> 签到</button>
             </div>
         </div>
         <div id="downPart" style="width:777px;background-color: #ffffff;">
@@ -190,9 +233,16 @@
                 allpage:1,
                 comments:[],
                 collectState: false,
-                likeState:false
+                likeState:false,
+                groupActiveUser:[],
+                userFlowers:"0",
+                purchaseState:false
             },
             computed:{
+                authorGet: function () {
+                    var author = parseInt(parseInt(this.newsInfo.news_pay)*0.8)+'';
+                    return author;
+                },
                 pages:function(){
                     var pag = [];
                     if( this.current < this.showItem ){ //如果当前的激活的项 小于要显示的条数
@@ -252,7 +302,31 @@
                         }
                     }
                 });
-
+                $.post({                                          //活跃用户
+                    url:"http://localhost:3000/myapp/news/getActiveUserClass.php",          //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify([that.newsInfo.news_class]),
+                    success: function (data) {
+                        that.groupActiveUser = JSON.parse(data);
+                        console.log(that.groupActiveUser,"user");
+                    }
+                });
+                $.post({                                                               //获取鲜花
+                    url:"http://localhost:3000/myapp/conn/getUserPoints.php",          //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify([that.userInfo.user_id]),
+                    success: function (data) {
+                        that.userFlowers = data;
+                    }
+                });
+                $.post({                                                               //获取资源购买状态
+                    url:"http://localhost:3000/myapp/news/readPurchaseState.php",          //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify([that.userInfo.user_id,that.newsInfo.news_id]),
+                    success: function (data) {
+                        if(data == "1"){
+                            that.purchaseState = true;
+                            console.log(that.purchaseState,"buy");
+                        }
+                    }
+                });
             },
             methods:{
                 saySomething: function () {
@@ -432,6 +506,26 @@
 
                         }
                     })
+                },
+                purchaseResource: function () {
+                    if(login){                             //获取登录状态，未登录则先让他登录
+                        if(parseInt(this.newsInfo.news_pay)>parseInt(this.userFlowers)){
+                            alert("您的鲜花不够！");
+                        }else{
+                            var that = this;
+                            $.post({
+                                url:"http://localhost:3000/myapp/news/purchaseResource.php",
+                                data:"check=10086&data="+JSON.stringify([that.userInfo.user_id,that.newsInfo.news_id,that.newsInfo.user_id,that.newsInfo.news_pay]),
+                                success: function (data) {
+                                    if(data == "2"){
+                                        that.purchaseState= true;
+                                    }
+
+                                }
+                            })
+                        }
+                    }
+
                 }
             }
         });

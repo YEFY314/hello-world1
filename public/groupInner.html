@@ -510,7 +510,7 @@
                     }
                 });
                 $.post({                                          //活跃用户
-                    url:"http://localhost:3000/myapp/news/getActiveUserClass.php",
+                    url:"http://localhost:3000/myapp/news/getActiveUserClass.php",          //abcdef地址修改
                     data:"check=10086&data="+JSON.stringify([that.groupId]),
                     success: function (data) {
                         that.groupActiveUser = JSON.parse(data);
@@ -518,7 +518,7 @@
                     }
                 });
                 $.post({                                          //编辑推荐
-                    url: "http://localhost:3000/myapp/news/newsEditorReco.php",
+                    url: "http://localhost:3000/myapp/news/newsEditorReco.php",       //abcdef地址修改
                     data:"check=10086",
                     success:function(data){
                         that.editorRecommend = JSON.parse(data);
@@ -526,7 +526,7 @@
                     }
                 });
                 $.post({                          //获取小组信息
-                    url:"http://localhost:3000/myapp/conn/getClassInfomation.php",
+                    url:"http://localhost:3000/myapp/conn/getClassInfomation.php",             //abcdef地址修改
                     data:"check=10086&data="+JSON.stringify(["1","1",that.groupId]),
                     success: function (data) {
                         that.groupInfo = JSON.parse(data)[0];
@@ -542,7 +542,7 @@
                     if(keyword ==""){
                         alert("搜索内容为空！");
                     }
-                    window.location.href = "http://localhost:3000/search.html?search="+keyword;
+                    window.location.href = "./search.html?search="+keyword;
                 },
                 goToPosting: function () {
                     window.location.href = "./posting.html";
