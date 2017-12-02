@@ -8,7 +8,6 @@
     <style>
         #main>div{
             padding: 22px 28px;
-
         }
     </style>
 </head>
@@ -57,7 +56,7 @@
         </div>
     </nav>
     <div id="main">
-        <p><a href="./talklist.html">私信列表</a></p>
+        <p style="font-size: 30px;"><a href="./talklist.html"><私信列表 </a></p>
         <div style="background-color: #ffffff;padding-bottom: 80px;">
             <p>发给<span style="color:blue;">{{talkToNickname}}</span>的对话</p>
             <form style="border-bottom: 1px solid #979797;padding-bottom: 50px;">
@@ -68,12 +67,12 @@
             </form>
             <div v-for="item in talkHistory" style="border-bottom: 1px solid #979797;">
                 <div style="display: inline-block;width:80px;height:80px;vertical-align: top;margin: 23px 28px 32px 20px;">
-                   <!--v-bind:src="item.user_photo"--> <img src="./image/1.jpg" alt="头像" style="width: 80px;height:80px;border: 1px solid #ffffff;border-radius: 40px;">
+                   <a v-bind:href="'./personInfoOther.html?id='+item.user_id"><img v-bind:src="item.user_photo" alt="头像" style="width: 80px;height:80px;border: 1px solid #ffffff;border-radius: 40px;"> </a>        <!--abcdef头像地址-->
                 </div>
                 <div style="display: inline-block;width: 770px;vertical-align: top;margin-top: 23px;margin-bottom: 20px;">
                     <p>{{item.user_nickname}}:{{item.sys_content}}</p>
                     <p>{{item.sys_sendtime}}</p>
-                    <div v-on:click.prevent="deleteTalk(item.sys_id)" style="text-align: right;color:#f4ab42;cursor: pointer;">删除</div>
+                    <div><div  style="color:#f4ab42;cursor: pointer;width:50px;float:right;" v-on:click.prevent="deleteTalk(item.sys_id)">删除</div></div>
                 </div>
             </div>
             <ul class="pagination" v-show="allpage>1">
@@ -91,13 +90,13 @@
 <script src="./js/vue.js"></script>
 <script type="application/javascript">
     $(function(){
-        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        var login = false;      //login获取登录状态后标记的变量   需要后端改 abcdef
         login = true;
         if(login){
             $("#login").css("display","block");
             $("#logout").css("display", "none");
         }
-        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改    abcdef
             "user_id": "8",
             "user_accounts": "Bob",
             "user_nickname": "Jack",
@@ -154,9 +153,10 @@
                         var that = this;
                         $.ajax({
                             type:"post",
-                            url: 'http://localhost:3000/myapp/conn/getInfomationWithOthers.php',
+                            url: 'http://localhost:3000/myapp/conn/getInfomationWithOthers.php',            //abcdef地址修改
                             data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,"1"]),
                             success: function (data) {
+                                console.log(data);
                                 if(data == "no content"){
                                     return;
                                 }else{
@@ -166,7 +166,7 @@
                             }
                         });
                         $.post({
-                            url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',
+                            url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',      //abcdef地址修改
                             data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId]),
                             success:function(data){
                                 that.allpage = data - 0;
@@ -185,7 +185,7 @@
                     var that = this;
                     $.ajax({
                         type:"post",
-                        url: 'http://localhost:3000/myapp/conn/getInfomationWithOthers.php',
+                        url: 'http://localhost:3000/myapp/conn/getInfomationWithOthers.php',             //abcdef地址修改
                         data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,index]),
                         success: function (data) {
                             if(data == "no content"){
@@ -209,21 +209,19 @@
                             success: function (data) {
                                 if(data == "success"){
                                     $("textarea").val("");
-                                    $.ajax({
+                                    $.ajax({                            //abcdef发送之后刷新页面，地址修改
                                         type: "POST",
                                         url: "http://localhost:3000/myapp/conn/getInfomationWithOthers.php",
                                         data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,"1"]),
                                         success: function (data) {
-                                            console.log("shuaxing");
                                             that.talkHistory = JSON.parse(data);
                                         }
                                     });
                                     $.post({
-                                        url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',
+                                        url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',        //abcdef发送之后刷新页面，地址修改
                                         data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId]),
                                         success:function(data){
                                             that.allpage = data - 0;
-                                            console.log(data,"页数");
                                         }
                                     });
                                 }
@@ -234,24 +232,27 @@
                 deleteTalk:function(id){
                     var that = this;
                     $.post({
-                        url:'http://localhost:3000/myapp/conn/deleteChatListById.php',
+                        url:'http://localhost:3000/myapp/conn/deleteChatListById.php',          //abcdef，地址修改
                         data: "check=10086&data="+JSON.stringify([id]),
                         success:function(data){
                             if(data=="1"){
                                 $.ajax({
                                     type: "POST",
-                                    url: "http://localhost:3000/myapp/conn/getInfomationWithOthers.php",
+                                    url: "http://localhost:3000/myapp/conn/getInfomationWithOthers.php",             //abcdef，地址修改
                                     data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId,that.current]),
                                     success: function (data) {
-                                        that.talkHistory = JSON.parse(data);
+                                        if(data == "no content"){
+                                            that.talkHistory = [];
+                                        }else{
+                                            that.talkHistory = JSON.parse(data);
+                                        }
                                     }
                                 });
                                 $.post({
-                                    url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',
+                                    url:'http://localhost:3000/myapp/conn/getInfomationWithOthersPage.php',           //abcdef，地址修改
                                     data: "check=10086&data="+JSON.stringify([that.userInfo.user_id,that.talkToId]),
                                     success:function(data){
                                         that.allpage = data - 0;
-                                        console.log(data,"页数");
                                     }
                                 });
                             }

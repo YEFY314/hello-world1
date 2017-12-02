@@ -108,16 +108,19 @@
                 <script id="contents" name="content" type="text/plain" style="width:600px;height:200px;">
                 这里写你的帖子内容
                 </script>
-                <p style="margin-top:17px;width:80px;height:30px;border-radius: 3px;background-color: #c1c1c1;color:#ffffff;text-align: center;padding-top:5px;">资源地址</p>
-                <div class="form-group">
-                    <label style="color:#c1c1c1;">网盘地址</label>
-                    <input type="text" name="website" placeholder="无资源可以不填" style="width:300px;height:30px;border-radius: 3px;border: solid 1px #c1c1c1;" />
+                <div id="choose" style="display: none;">
+                    <p style="margin-top:17px;width:80px;height:30px;border-radius: 3px;background-color: #c1c1c1;color:#ffffff;text-align: center;padding-top:5px;">资源地址</p>
+                    <div class="form-group">
+                        <label style="color:#c1c1c1;">网盘地址</label>
+                        <input type="text" name="website" placeholder="无资源可以不填" style="width:300px;height:30px;border-radius: 3px;border: solid 1px #c1c1c1;" />
+                    </div>
+                    <div class="form-group">
+                        <label style="color:#c1c1c1;">资源售价</label>
+                        <input type="number" name="price" placeholder="0" style="width:50px;height:30px;border:1px solid #c1c1c1;border-radius: 3px;"/>
+                        <span>(0-99)</span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label style="color:#c1c1c1;">资源售价</label>
-                    <input type="number" name="price" placeholder="0" style="width:50px;height:30px;border:1px solid #c1c1c1;border-radius: 3px;"/>
-                    <span>(0-99)</span>
-                </div>
+
                 <br/>
                 <div class="form-group">
                     <button>发表帖子</button><button style="background-color: #FFFFFF;color:#F4AB42;margin-left:25px;">取消</button>
@@ -176,9 +179,10 @@
         $("select[name='postType']").change(function(){
             if($(this).children('option:selected').val()=="resource"){
                 $("select[name='resourceType']").attr("disabled",false);
+                $("#choose").css("display","block");
             }else{
                 $("select[name='resourceType']").attr("disabled",true);
-
+                $("#choose").css("display","none");
             }
         });
     });

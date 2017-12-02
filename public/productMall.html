@@ -9,6 +9,8 @@
         #middlePart{
             height:140px;
             background-color: #ffffff;
+            margin-top: 30px;
+            padding-top: 12px;
         }
         #middlePart>div>p{
             font-size: 26px;
@@ -21,6 +23,17 @@
         }
         #downPart{
             padding:0 0;
+        }
+        .bookType>button{
+            width: 90px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: #f4ab42;
+            color:#ffffff;
+            margin-right: 18px;
+        }
+        #downPart>div:nth-child(3n+1){
+            margin-left: 0;
         }
     </style>
 </head>
@@ -69,37 +82,144 @@
         </div>
     </nav>
     <div id="main">
-        <div><img src="./image/1.jpg" alt="商品首页图" style="width:1040px;height:270px;border-radius: 2px;"></div>
+        <div><img src="./image/productMall.png" alt="商品首页图" style="width:1040px;height:270px;border-radius: 2px;"></div>
         <div id="middlePart">
             <div>
                 <p>商品导览</p>
             </div>
-            <div>
-                <button class="btn btn-default">类别一</button>
-                <button class="btn btn-default">类别二</button>
-                <button class="btn btn-default">类别三</button>
-                <button class="btn btn-default">类别四</button>
-                <button class="btn btn-default">类别五</button>
-                <button class="btn btn-default">类别六</button>
+            <div style="padding-top: 19px;padding-left:30px; " class="bookType">
+                <button v-on:click="getProducts('101')" class="btn btn-default">类别一</button>
+                <button v-on:click="getProducts('102')" class="btn btn-default">类别二</button>
+                <button v-on:click="getProducts('103')" class="btn btn-default">类别三</button>
+                <button v-on:click="getProducts('104')" class="btn btn-default">类别四</button>
+                <button v-on:click="getProducts('105')" class="btn btn-default">类别五</button>
+                <button v-on:click="getProducts('106')" class="btn btn-default">类别六</button>
             </div>
         </div>
         <div id="downPart">
-            <div class="bookItem">
+            <div class="bookItem" v-for="item in productsInfo">
                 <div class="bookItemLeft">
-                    <img src="./image/1.jpg" alt="图书">
+                    <img v-bind:src="item.goods.go_cover" alt="图书">        <!--abcdef图片地址-->
                 </div>
                 <div class="bookItemRight">
-                    <p class="bookTitle">恐龙冲锋这里可以填十三个字哈哈哈哈</p>
-                    <p style="margin-top: -5px;">作者：叶孤城</p>
+                    <p v-html="item.goods.go_name" class="bookTitle">无书名</p>
+                    <p style="margin-top: -5px;">作者：<span v-html="item.goods.go_author">暂无</span></p>
                     <p style="margin-top: -5px;">类别：少儿读物</p>
-                    <p style="margin-top: -5px;">￥<span>14.05</span><span style="text-decoration: line-through;float: right;">18.00</span></p>
-                    <p style="margin-top: -5px;">购买：<button  class="btn btn-default">微店</button></p>
+                    <p style="margin-top: -5px;">￥<span v-html="item.goods.go_price"></span></p>     <!--<span style="text-decoration: line-through;float: right;">18.00</span>-->
+                    <p style="margin-top: -5px;">购买：<button v-on:goToBuy(item.url.url_url) class="btn btn-default" style="background-color:#f4ab42;color:#ffffff;margin-left: 10px;">微店</button></p>
                 </div>
             </div>
+            <ul class="pagination" v-show="allpage>1">
+                <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
+                <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                    <a href="#" >{{index}}</a>
+                </li>
+                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
+            </ul>
         </div>
     </div>
 </div>
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./js/vue.js" type="application/javascript"></script>
+<script type="application/javascript">
+    $(function() {
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if (login) {
+            $("#login").css("display", "block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            user_id: "7",
+            user_accounts: "Bob",
+            user_nickname: "Jack",
+            user_email: "123@qq.com",
+            user_sex: "男",
+            user_tel: "15996362164",
+            user_age: "35",
+            user_photo: "image/1.jpg",
+            user_address: "江苏省南京市",
+            user_points: "0",
+            user_sign: "nihaoaho"
+        };
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                userInfo:userInfo,
+                productsInfo:[],
+                type:'101',
+                current:1,
+                showItem:20,
+                allpage:1
+            },
+            computed:{
+                pages:function(){
+                    var pag = [];
+                    if( this.current < this.showItem ){ //如果当前的激活的项 小于要显示的条数
+                        //总页数和要显示的条数那个大就显示多少条
+                        var i = Math.min(this.showItem,this.allpage);
+                        while(i){
+                            pag.unshift(i--);
+                        }
+                    }else{ //当前页数大于显示页数了
+                        var middle = this.current - Math.floor(this.showItem / 2 ),//从哪里开始
+                                i = this.showItem;
+                        if( middle >  (this.allpage - this.showItem)  ){
+                            middle = (this.allpage - this.showItem) + 1
+                        }
+                        while(i--){
+                            pag.push( middle++ );
+                        }
+                    }
+                    return pag;
+                }
+            },
+            created: function () {
+                var that = this;
+                $.post({
+                    url:"http://localhost:3000/myapp/shops/readBookListByClass.php",            //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify(["101","1"]),
+                    success: function (data) {
+                        that.productsInfo = JSON.parse(data);
+                        console.log(that.productsInfo);
+                    }
+                });
+            },
+            methods:{
+                goto:function(index){
+                    if(index == this.current) return;
+                    this.current = index;
+                    index = index + "";
+                    //这里可以发送ajax请求
+                    var that = this;
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:3000/myapp/shops/readBookListByClass.php",         //abcdef地址修改
+                        data: "check=10086&data="+JSON.stringify([that.type,index]),
+                        success: function (data) {
+                            that.comments = JSON.parse(data);
+                        }
+                    });
+                },
+                getProducts: function (type) {
+                    var that = this;
+                    this.type = type;
+                    $.post({
+                        url:"http://localhost:3000/myapp/shops/readBookListByClass.php",            //abcdef地址修改
+                        data:"check=10086&data="+JSON.stringify([type,"1"]),
+                        success: function (data) {
+                            that.productsInfo = JSON.parse(data);
+                            console.log(that.productsInfo);
+                        }
+                    });
+                },
+                goToBuy: function (url) {
+                    window.location.href = url;
+                }
+            }
+        })
+    });
+</script>
 </body>
 </html>

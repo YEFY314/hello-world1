@@ -235,8 +235,6 @@
                     <li><a href="#">资源下载</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" id="logout">
-                    <!--<li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>-->
                     <li><a href="#">微信登陆</a></li>
                 </ul>
                 <ul class="nav navbar-var navbar-right" id="login">
@@ -365,15 +363,15 @@
 <script type="text/x-template" id="hotNews">
     <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
-            <div v-for="item in news" style="border-bottom: 1px solid #000;">
+            <div v-for="item in news" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
-                    <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
+                    <a v-bind:href="'./personInfoOther.html?id='+item.news_user"><img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;"></a>
                 </div>
                 <div style="display: inline-block;width: 680px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
-                        <p style="display: inline-block;"><span>作者：{{item.user_nickname}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;"><span style="display: inline-block;width:150px;" class="textOverNoHover">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="display: inline-block;width:200px;" class="textOverNoHover">最新回帖：{{item.news_lastcomment}}</span></p>
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
@@ -391,7 +389,7 @@
 <script type="text/x-template" id="latestNews">
     <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
-            <div v-for="item in collections" style="border-bottom: 1px solid #000;">
+            <div v-for="item in collections" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
@@ -399,7 +397,7 @@
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
-                        <p style="display: inline-block;"><span>作者：{{item.user_nickname}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;"><span style="display: inline-block;width:150px;" class="textOverNoHover">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="display: inline-block;width:200px;" class="textOverNoHover">最新回帖：{{item.news_lastcomment}}</span></p>
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
@@ -418,7 +416,7 @@
 <script type="text/x-template" id="resourcePart">
     <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
-            <div v-for="item in resources" style="border-bottom: 1px solid #000;">
+            <div v-for="item in resources" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
@@ -426,7 +424,7 @@
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
-                        <p style="display: inline-block;"><span>作者：{{item.user_nickname}}</span>&nbsp&nbsp<span>最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;"><span style="display: inline-block;width:150px;" class="textOverNoHover">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="display: inline-block;width:200px;" class="textOverNoHover">最新回帖：{{item.news_lastcomment}}</span></p>
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
@@ -510,7 +508,7 @@
 //                        for(a in that.news){
 //                            that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
 //                        }
-                        console.log(that.news);
+                        console.log(that.news,"hotnews");
                     }
                 });
                 var postData1 = JSON.stringify(["2","1",userInfo.user_id,"2"]);   //评论最多

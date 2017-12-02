@@ -18,9 +18,11 @@
         }
         #bookInfo>div>p:nth-child(even){
             width:200px;
+            color:#797979;
         }
         #downPart{
             background-color: #FFFFFF;
+            padding:10px 40px;
         }
         #downPart>div>p:first-child{
             font-size: 20px;
@@ -33,6 +35,21 @@
         #downPart>div>p:last-child{
             margin-top:40px;
         }
+        #downPart img{
+            width:380px;
+            height:500px;
+            margin-left:60px;
+        }
+        button{
+            width: 40px;
+            height: 26px;
+            border-radius: 5px;
+            background-color: #f4ab42;
+            color:#FFFFFF;
+            border:1px solid #f4ab42;
+            font-size: 13px;
+        }
+
     </style>
 </head>
 <body>
@@ -86,55 +103,66 @@
             </div>
             <div style="margin-left:63px;margin-right:77px;border:1px solid #979797;"><img src="./image/1.jpg" alt="图书" style="width:218px;height:212px;"></div>
             <div id="bookInfo">
-                <div>恐龙冲锋队</div>
+                <div v-html="bookInfo.goods.go_name" style="font-size: 18px;color:#333333;">书名</div>
                 <div>
-                    <p>价格</p>
-                    <p>￥14.07<span style="text-decoration: line-through;">18.00</span></p>
+                    <p style="background-color: #d8d8d8;height:25px;padding-top: 3px;margin-right:-5px;">价格</p>
+                    <p style="background-color: #d8d8d8;font-size:18px;color: #dc4b00;height:25px;">￥<span v-html="bookInfo.goods.go_price"></span></p>       <!--<span style="text-decoration: line-through;">18.00</span>-->
                     <p>购买地址</p>
                     <p>
-                        <button>微店</button>
-                        <button>京东</button>
-                        <button>天猫</button>
+                        <button v-on:click="goToBuy('3')">微店</button>
+                        <button v-on:click="goToBuy('2')">京东</button>
+                        <button v-on:click="goToBuy('1')">天猫</button>
                     </p>
                 </div>
                 <div>
                     <p>ISBN</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_isbn"></p>
                     <p>出版社</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_public"></p>
                 </div>
                 <div>
                     <p>标识</p>
-                    <p></p>
-                    <p>作者</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_marked"></p>
+                    <p>主编</p>
+                    <p v-html="bookInfo.goods.go_author"></p>
                 </div>
                 <div>
                     <p>出版日期</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_publictime"></p>
                     <p>页数</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_page"></p>
                 </div>
                 <div>
                     <p>印刷日期</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_printtime"></p>
                     <p>开本</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_booksize"></p>
                 </div>
                 <div>
                     <p>版次</p>
-                    <p></p>
+                    <p v-html="bookInfo.goods.go_times"></p>
                 </div>
             </div>
         </div>
         <div id="downPart">
             <div>
-                <p>内容摘要</p>
-                <p>本书写的是一匹充满智慧的狼，用一生的时间来完成自己的梦想。丈夫 没了，还有儿子，儿子没了，还有女儿。为了那梦寐以求的狼王宝座，它浪费了大量青春，它葬送了美好爱情，它放弃了宝贵生命。命运之神啊，为何 总是与它擦肩而过？它走了，只留下无限遗憾和**的梦</p>
+                <p>实物详拍</p>
+                <div style="padding:32px 0; ">
+                    <img src="./image/1.jpg" alt="实物图">
+                    <img src="./image/1.jpg" alt="实物图">
+                </div>
             </div>
             <div>
-                <p>精彩导读</p>
-                <p>沈石溪，原名沈一鸣，1952年生于上海，祖籍浙江慈溪。1969年赴西双版纳插队，曾在云南边疆生活多年。黪创作以动物小说为主，已出版作品五百多万字，被誉为“中国动物小说大王”。
+                <p>内容简介</p>
+                <p v-html="bookInfo.goods.go_content">本书写的是一匹充满智慧的狼，用一生的时间来完成自己的梦想。丈夫 没了，还有儿子，儿子没了，还有女儿。为了那梦寐以求的狼王宝座，它浪费了大量青春，它葬送了美好爱情，它放弃了宝贵生命。命运之神啊，为何 总是与它擦肩而过？它走了，只留下无限遗憾和**的梦</p>
+            </div>
+            <div>
+                <p>目录</p>
+                <p v-html="bookInfo.goods.go_index" >本书写的是一匹充满智慧的狼，用一生的时间来完成自己的梦想。丈夫 没了，还有儿子，儿子没了，还有女儿。为了那梦寐以求的狼王宝座，它浪费了大量青春，它葬送了美好爱情，它放弃了宝贵生命。命运之神啊，为何 总是与它擦肩而过？它走了，只留下无限遗憾和**的梦</p>
+            </div>
+            <div>
+                <p>编辑推荐</p>
+                <p v-html="bookInfo.goods.go_commend">沈石溪，原名沈一鸣，1952年生于上海，祖籍浙江慈溪。1969年赴西双版纳插队，曾在云南边疆生活多年。黪创作以动物小说为主，已出版作品五百多万字，被誉为“中国动物小说大王”。
                     曾获得中国作家协会全国**儿童文学奖、中国图书奖、冰心儿童文学新作奖大奖、陈伯吹儿童文学奖、台湾杨唤儿童文学奖等多种奖项。
                     其小说别具一格。人选中小学教材的篇目有《斑羚飞渡》《*后一头战象》《猎狐》《给大象拔刺》《保姆蟒》《残疾豹》《太阳鸟和眼镜王蛇》《会做生意的狐狸》《第七条猎狗》《脸色苍白的伙伴》《暮色》等。</p>
             </div>
@@ -143,5 +171,66 @@
 </div>
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./js/vue.js" type="application/javascript"></script>
+<script type="application/javascript">
+    $(function() {
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if (login) {
+            $("#login").css("display", "block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            user_id: "7",
+            user_accounts: "Bob",
+            user_nickname: "Jack",
+            user_email: "123@qq.com",
+            user_sex: "男",
+            user_tel: "15996362164",
+            user_age: "35",
+            user_photo: "image/1.jpg",
+            user_address: "江苏省南京市",
+            user_points: "0",
+            user_sign: "nihaoaho"
+        };
+        var bookInfo = {};    //存储图书信息
+        var bookId = "";      //储存从URL里面获取的bookId
+        var search = window.location.search;
+        if(search != ""){
+            var arr = search.split("=");
+            bookId = parseInt(arr[1])+"";
+            if(bookId != ""){
+                console.log(bookId);
+                $.ajax({
+                    type:"post",
+                    async:false,
+                    url: 'http://localhost:3000/myapp/shops/readGoodsDetails.php',     //abcdef地址修改，获取图书信息
+                    data: "check=10086&data="+JSON.stringify([bookId]),
+                    success: function (data) {
+                        bookInfo = JSON.parse(data)[0];
+                        console.log(bookInfo);
+                    }
+                });
+            }
+        }
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                userInfo:userInfo,
+                bookId:bookId,
+                bookInfo:bookInfo
+            },
+            methods:{
+                goToBuy: function (type) {
+                    for(var i= 0;i<this.bookInfo.url.length;i++){
+                        if(type == this.bookInfo.url[i].url_con){
+                            window.location.href = this.bookInfo.url[i].url_url;
+                        }
+                    }
+                }
+            }
+        })
+    });
+</script>
 </body>
 </html>

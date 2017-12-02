@@ -4,217 +4,17 @@
     <meta charset="UTF-8">
     <title>小组内部</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<style>
-        body{
-            background-color: #ededed;
-        }
-        .container{
-            width: 1040px;
-        }
-        nav.navbar{
-            font-size: 16px;
-        }
-        ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
-        }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1040px;
-            /*background-color: #1b6d85;*/
-        }
-        #personInfo,#personFunc{
-            background-color: #ffffff;
-        }
-        #personInfo>div,#personFunc>div{
-            display: inline-block;
-            vertical-align: top;
-        }
-        #personInfo>div{
-            padding: 40px;
-        }
-        #personInfoLeft{
-            text-align: center;
-            width:250px;
-        }
-        #personInfoRight{
-            position: relative;
-        }
-        #personFunc>div{
-            margin-top: 10px;
-        }
-        .leftAd,.rightAd{
-            display: inline-block;
-            height:330px;
-        }
-        .leftAd{
-            /* padding-top: 10px;
-             padding-left: 10px;*/
-            float: right;
-        }
-        .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
-        }
-        .carousel-inner{
-            height:330px;
-            width:680px;
-        }
-        #personInfoRight>div,#personInfoMiddle>div{
-            width:274px;
-        }
-        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
-            font-weight:bold;
-            width:100px;
-        }
-        #personInfoMiddle>div p, #personInfoRight>div p{
-            display: inline-block;
-        }
-        #personInfoMiddle>div,#personInfoRight>div{
-            padding-top: 15px;
-        }
-        #login{
-            display: none;
-        }
-        #preview, .img, #preview img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-        }
-        #preview {
-            border: 1px solid #3c763d;
-            border-radius: 50px;
-        }
-        .pagination{
-            float: right;
-        }
-        #file{
-            display: none;
-        }
-        #filelLabel{
-            display: inline-block;
-            border:1px solid #3c763d;
-            border-radius: 3px;
-            cursor: pointer;
-            padding:3px;
-            margin-left: 15px;
-            margin-top: 10px;
-            width:68px;
-        }
-        label{
-            width:100px;
-        }
-        #infoButtom{
-            margin-left: 235px;
-            margin-top: 30px;
-        }
-        #infoTop>div, #infoButtom>div{
-            height:50px;
-        }
-        #infoButtom input, #infoTop input{
-            border-radius: 5px;
-            border: 1px solid #000000;
-        }
-        #group{
-            margin-top: 50px;
-        }
-        #group>div{
-            display: inline-block;
-            height: 352px;
-            width:450px;
-        }
-        #group>div>div:first-child{
-            height:255px;
-            background-color:#E2E6AC;
-            position: relative;
-        }
-        #group>div>div:nth-child(2){
-            background-color: #f8f8f8;
-            height:100px;
-        }
-        #group>div>div:nth-child(2)>p{
-            margin-left: 30px;
-        }
-        #group>div>div>div{
-            height:26px;
-            width:93px;
-            position:relative;
-            left: -10px;
-            top:15px;
-            background-color: #F4AB42;
-        }
-        #upPart{
-            height: 509px;
-        }
-        #upPart>div{
-            display: inline-block;
-            background-color: #ffffff;
-            vertical-align: top;
-        }
-        #upPartLeft{
-            width:777px;
-            height:540px;
-            margin-right: 19px;
-        }
-        #xiaozhu>div{
-            display: inline-block;
-            width:350px;
-            height:200px;
-            margin: 10px 18px;
-            border-radius: 5px;
-            border:1px solid gray;
-        }
-        #xiaozhu>div>div:nth-child(2){
-            display: inline-block;
-            height:200px;
-            width:190px;
-            vertical-align: top;
-            margin-left: 4px;
-        }
-        #xiaozhu>div>div:first-child{
-            display: inline-block;
-            width:150px;
-            height:150px;
-            vertical-align: top;
-            margin-top: 20px;
-        }
-        #xiaozhu>div img{
-            width: 150px;
-            height:150px;
-        }
-        #upPartRight{
-            height:540px;
-            width:240px;
-        }
-        #downPart{
-            margin-top: 55px;
-        }
-        #downPartLeft{
-            display: inline-block;
-            background-color: #ffffff;
-            width:777px;
-            margin-right: 19px;
-        }
-        #downPartRight{
-            width:240px;
-            display: inline-block;
-            vertical-align: top;
-            background-color: #ffffff;
-        }
-    </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
     <style>
         #groupInner{
             height:252px;
+            position: relative;
         }
         #upPartLeft{
             height:314px;
+        }
+        #downPartLeft{
+            margin-top: -225px;
         }
     </style>
 </head>
@@ -268,6 +68,10 @@
                 <h3 style="padding-left:18px;"><a href="./group.html"><小组导览</a></h3>              <!--abcdef-->
                 <div id="groupInner">
                     <img v-bind:src="'./image/groupInner'+groupId+'.png'" style="width:777px;height:229px;margin-left: -19px;">
+                    <p v-html="groupInfo.cf_module" style="position: absolute;top:47px;left:224px;font-size: 30px;"></p>
+                    <p style="position: absolute;top:106px;left:226px;">组长：<span v-html="groupInfo.user_nickname" style="width:260px;display: inline-block;"></span> 话题数：<span v-html="groupInfo.cf_news"></span></p>
+                    <p style="position: absolute;top:150px;left:226px;">小组介绍：</p>
+                    <p v-html="groupInfo.cf_introduction" style="position: absolute;top:180px;left:226px;"></p>
                 </div>
             </div>
             <div id="upPartRight">
@@ -278,8 +82,8 @@
                 <p style="border-left: 4px solid #957573 ; border-bottom: 1px dashed #979797;font-size: 20px;margin-left: 20px;margin-top:20px;margin-right: 30px;padding-left: 3px;">小组活跃用户</p>
                 <div style="width:190px;margin-left: 20px;">
                     <div v-for="item in groupActiveUser" style="width:45px;display: inline-block;vertical-align: top;margin:12px 9px 0 9px;">
-                        <img src="./image/1.jpg" alt="头像" style="width:45px;height:45px;border-radius: 22px;">
-                        <p style="width:45px;" class="textOverNoHover">{{item.user_nickname}}</p>
+                        <img src="./image/1.jpg" alt="头像" style="width:45px;height:45px;border-radius: 22px;">                 <!--abcdef头像路径-->
+                        <!--<p style="width:45px;" class="textOverNoHover">{{item.user_nickname}}</p>-->
                     </div>
                 </div>
                 <!--<button v-on:click.prevent="checkIn()" v-bind:disabled="checkStatus" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:10px;"> 签到</button>-->
@@ -292,7 +96,7 @@
                         <li class="active"><a href="#hot" data-toggle="tab">热帖</a></li>
                         <li><a href="#latest" data-toggle="tab">最新</a></li>
                         <li><a href="#resource" data-toggle="tab">资源</a></li>
-                        <li style="float: right;"><button class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:8px;">发帖</button></li>
+                        <li style="float: right;"><button v-on:click="goToPosting()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:8px;">发帖</button></li>
                     </ul>
                 </div>
                 <div>
@@ -680,6 +484,7 @@
                 recommend:[],
                 editorRecommend:[],
                 groupId:groupId,
+                groupInfo:{},
                 groupActiveUser:[]
             },
             created: function () {
@@ -712,7 +517,7 @@
                         console.log(that.groupActiveUser,"user");
                     }
                 });
-                $.post({
+                $.post({                                          //编辑推荐
                     url: "http://localhost:3000/myapp/news/newsEditorReco.php",
                     data:"check=10086",
                     success:function(data){
@@ -720,6 +525,15 @@
                         console.log(that.editorRecommend,'hehe');
                     }
                 });
+                $.post({                          //获取小组信息
+                    url:"http://localhost:3000/myapp/conn/getClassInfomation.php",
+                    data:"check=10086&data="+JSON.stringify(["1","1",that.groupId]),
+                    success: function (data) {
+                        that.groupInfo = JSON.parse(data)[0];
+                        console.log(that.groupInfo);
+
+                    }
+                })
             },
             methods:{
                 gosearch: function () {
@@ -729,6 +543,10 @@
                         alert("搜索内容为空！");
                     }
                     window.location.href = "http://localhost:3000/search.html?search="+keyword;
+                },
+                goToPosting: function () {
+                    window.location.href = "./posting.html";
+
                 }
             }
         });

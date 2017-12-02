@@ -4,125 +4,12 @@
     <meta charset="UTF-8">
     <title>帖子详情</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-   <!-- <style>
-        body{
-            background-color: #ededed;
-        }
-        .container{
-            width: 1000px;
-        }
-        nav.navbar{
-            font-size: 16px;
-        }
-        ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
-        }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1000px;
-            /*background-color: #1b6d85;*/
-        }
-        #personInfo,#personFunc{
-            background-color: #ffffff;
-        }
-        #personInfo>div,#personFunc>div{
-            display: inline-block;
-            vertical-align: top;
-        }
-        #personInfo>div{
-            padding: 40px;
-        }
-        #personInfoLeft{
-            text-align: center;
-            width:250px;
-        }
-        #personInfoRight{
-            position: relative;
-        }
-        #personFunc>div{
-            margin-top: 10px;
-        }
-        .leftAd,.rightAd{
-            display: inline-block;
-            height:330px;
-        }
-        .leftAd{
-            /* padding-top: 10px;
-             padding-left: 10px;*/
-            float: right;
-        }
-        .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
-        }
-        .carousel-inner{
-            height:330px;
-            width:680px;
-        }
-        #personInfoRight>div,#personInfoMiddle>div{
-            width:274px;
-        }
-        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
-            font-weight:bold;
-            width:100px;
-        }
-        #personInfoMiddle>div p, #personInfoRight>div p{
-            display: inline-block;
-        }
-        #personInfoMiddle>div,#personInfoRight>div{
-            padding-top: 15px;
-        }
-        #login{
-            display: none;
-        }
-        #preview, .img, #preview img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-        }
-        #preview {
-            border: 1px solid #3c763d;
-            border-radius: 50px;
-        }
-        .pagination{
-            float: right;
-        }
-        #file{
-            display: none;
-        }
-        #filelLabel{
-            display: inline-block;
-            border:1px solid #3c763d;
-            border-radius: 3px;
-            cursor: pointer;
-            padding:3px;
-            margin-left: 15px;
-            margin-top: 10px;
-            width:68px;
-        }
-        label{
-            width:100px;
-        }
-        #infoButtom{
-            margin-left: 235px;
-            margin-top: 30px;
-        }
-        #infoTop>div, #infoButtom>div{
-            height:50px;
-        }
-        #infoButtom input, #infoTop input{
-            border-radius: 5px;
-            border: 1px solid #000000;
-        }
-    </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        a.center:hover{
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -179,12 +66,13 @@
                 </div>
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center">
-                    <a href="#" rel="popover" id="likeIt" v-on:click.prevent="likeIt()" role="button" tabindex="0" data-container="body" data-toggle="popover" data-placement="top" data-content="每人只能点赞一次，再次点击取消点赞！" data-trigger="hover" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span class="glyphicon glyphicon-thumbs-up"></span>{{newsInfo.news_liketimes}}</a>
-                    <a href="#" rel="popover" id="collectIt" v-on:click.prevent="collectIt()" role="button" tabindex="0" data-container="body" data-toggle="popover" data-placement="top" data-content="每人只能点赞一次，再次点击取消点赞！" data-trigger="hover" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;">收藏</a>
+                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="!likeState" class="glyphicon glyphicon-thumbs-down"></span>{{newsInfo.news_liketimes}}</button>
                 </div>
                 <!--<div id="qrcode"></div>-->
                 <div class="center" v-on:click.prevent="shareToSinaWB()" style="position: absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:198px;color:#ffffff;cursor: pointer;"><p style="vertical-align: middle;">微博</p></div>
                 <div class="center" v-on:click.prevent="shareToQzone()" style="position:absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:261px;color:#ffffff;cursor:pointer;"><p style="vertical-align: middle;">空间</p></div>
+                <div class="center" v-on:click.prevent="collectIt()" style="position:absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:324px;color:#ffffff;cursor:pointer;"><p v-if="collectState" style="vertical-align: middle;">取消收藏</p><p v-else="!collectState" style="vertical-align: middle;">收藏</p></div>
+                <a href="#downPart" class="center"  style="display:block;position:absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:387px;color:#ffffff;cursor:pointer;"><p style="vertical-align: middle;text-align: center;margin-top: 15px;">评论</p></a>
             </div>
             <div id="upPartRight">
                 <form style="margin-left: 20px;margin-top:20px;">
@@ -289,7 +177,7 @@
                 _height = 600,
                 _top =(screen.height-_height)/2,
                 _left =(screen.width-_width)/2,
-                _url = window.location
+                _url = window.location;
 
         var vm = new Vue({
             el: "#app",
@@ -300,7 +188,9 @@
                 current:1,
                 showItem:20,
                 allpage:1,
-                comments:[]
+                comments:[],
+                collectState: false,
+                likeState:false
             },
             computed:{
                 pages:function(){
@@ -325,12 +215,11 @@
                 }
             },
             created: function () {
-                var contextPath = 'http://localhost:3000';
                 var data = JSON.stringify([newsInfo.news_id, "1"]);
                 var that = this;
                 $.ajax({
                     type: "POST",
-                    url: contextPath + "/myapp/news/newsCommentsRead.php",
+                    url: "http://localhost:3000/myapp/news/newsCommentsRead.php",           //abcdef地址修改
                     data: "check=10086&data=" + data,
                     success: function (data) {
                         that.comments = JSON.parse(data);
@@ -339,12 +228,31 @@
                 });
                 $.ajax({
                     type:"POST",
-                    url:contextPath+"/myapp/news/newsCommentsReadPage.php",
+                    url:"http://localhost:3000/myapp/news/newsCommentsReadPage.php",               //abcdef地址修改
                     data: "check=10086&data="+  JSON.stringify([newsInfo.news_id]),
                     success:function(data){
                         that.allpage = data-0;
                     }
-                })
+                });
+                $.post({                                                                                 //获取收藏状态
+                    url:"http://localhost:3000/myapp/news/getNewsCollectState.php",               //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify([that.userInfo.user_id,that.newsInfo.news_id]),
+                    success: function (data) {
+                        if(data == "1"){
+                            that.collectState = true;
+                        }
+                    }
+                });
+                $.post({                                                                             //获取点赞状态
+                    url:"http://localhost:3000/myapp/news/getNewFavorState.php",               //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify([that.userInfo.user_id,that.newsInfo.news_id]),
+                    success: function (data) {
+                        if(data == "1"){
+                            that.liketState = true;
+                        }
+                    }
+                });
+
             },
             methods:{
                 saySomething: function () {
@@ -390,11 +298,10 @@
                     var data = [newsInfo.news_id,index];
                     data = JSON.stringify(data);
                     //这里可以发送ajax请求
-                    var contextPath = 'http://localhost:3000';                 //post地址 需要后端改
                     var that = this;
                     $.ajax({
                         type: "POST",
-                        url: contextPath + "/myapp/news/newsCommentsRead.php",
+                        url: "http://localhost:3000/myapp/news/newsCommentsRead.php",                 //abcdef post地址 需要后端改
                         data: "check=10086&data="+data,
                         success: function (data) {
                             that.comments = JSON.parse(data);
@@ -421,10 +328,9 @@
                     var that = this;
                     $.ajax({
                         type:"post",
-                        url: 'http://localhost:3000/myapp/news/createCommentsCom.php',
+                        url: 'http://localhost:3000/myapp/news/createCommentsCom.php',                                     //abcdef地址修改
                         data: "check=10086&data="+JSON.stringify([contents,comId,that.userInfo.user_id,that.newsInfo.news_user,that.newsInfo.news_id,comUser,event.target.previousSibling.previousSibling.answerWho]),
                         success: function (data) {
-                            console.log(data,"123");
                           if(data == "1"){
                               that.gotoWhatever(that.current);
                           }
@@ -439,7 +345,7 @@
                     if(keyword ==""){
                         alert("搜索内容为空！");
                     }
-                    window.location.href = "http://localhost:3000/search.html?search="+keyword;
+                    window.location.href = "./search.html?search="+keyword;
                 },
                 showBoxWithName:function(nickname,answerWho){
                     console.log(event.target.parentNode.parentNode.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.firstChild);
@@ -455,18 +361,17 @@
                     var that = this;
                     $.ajax({
                         type:"POST",
-                        url:"http://localhost:3000/myapp/news/changeFavorState.php",
-                        data:"check=10086&data="+JSON.stringify([that.newsInfo.news_id,"0",that.userInfo.user_id]),
+                        url:"http://localhost:3000/myapp/news/changeFavorStateNews.php",                   //abcdef地址修改
+                        data:"check=10086&data="+JSON.stringify([that.newsInfo.news_id,that.userInfo.user_id,that.newsInfo.user_id]),
                         success:function(data){
                             if(data=="success"){
-                                $.ajax({
-                                    type:"post",
-                                    url: 'http://localhost:3000/myapp/news/readNewsById.php',
-                                    data: "check=10086&data="+JSON.stringify([that.newsInfo.news_id]),
-                                    success: function (data) {
-                                        that.newsInfo = JSON.parse(data)[0];
-                                    }
-                                });
+                                that.likeState = !that.likeState;
+                                if(that.likeState){
+                                    that.newsInfo.news_liketimes = parseInt(that.newsInfo.news_liketimes)-1+"";
+                                }else{
+                                    that.newsInfo.news_liketimes = parseInt(that.newsInfo.news_liketimes)+1+"";
+
+                                }
                             }
                         }
                     })
@@ -475,11 +380,16 @@
                     var that = this;
                     $.ajax({
                         type:"POST",
-                        url:"http://localhost:3000/myapp/news/changeCollectState.php",
+                        url:"http://localhost:3000/myapp/news/changeCollectState.php",                     //abcdef地址修改
                         data:"check=10086&data="+JSON.stringify([that.newsInfo.news_id,that.userInfo.user_id]),
                         success:function(data){
-                            if(data=="success"){
-                              alert('collect success!');
+                            if(data=="1"){
+                                that.collectState = !that.collectState;
+                                if(that.collectState){
+                                    alert("收藏成功！");
+                                }else{
+                                    alert("取消成功！");
+                                }
                             }
                         }
                     })
@@ -523,12 +433,8 @@
                         }
                     })
                 }
-
-
-
             }
         });
-        $("#likeIt").popover();
         $("#qrcode").qrcode({
             text: "http://www.baidu.com", //设置二维码内容
             render : "canvas",//设置渲染方式

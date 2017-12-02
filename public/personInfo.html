@@ -5,125 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>个人中心</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<style>
-        body{
-            background-color: #ededed;
-        }
-        .container{
-            width: 1000px;
-        }
-        nav.navbar{
-            font-size: 16px;
-        }
-        ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
-        }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1000px;
-            /*background-color: #1b6d85;*/
-        }
-        #personInfo,#personFunc{
-            background-color: #ffffff;
-        }
-        #personInfo>div,#personFunc>div{
-            display: inline-block;
-            vertical-align: top;
-        }
-        #personInfo>div{
-            padding: 40px;
-        }
-        #personInfoLeft{
-            text-align: center;
-            width:250px;
-        }
-        #personInfoRight{
-            position: relative;
-        }
-        #personFunc>div{
-            margin-top: 10px;
-        }
-        .leftAd,.rightAd{
-            display: inline-block;
-            height:330px;
-        }
-        .leftAd{
-            /* padding-top: 10px;
-             padding-left: 10px;*/
-            float: right;
-        }
-        .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
-        }
-        .carousel-inner{
-            height:330px;
-            width:680px;
-        }
-        #personInfoRight>div,#personInfoMiddle>div{
-            width:274px;
-        }
-        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
-            font-weight:bold;
-            width:100px;
-        }
-        #personInfoMiddle>div p, #personInfoRight>div p{
-            display: inline-block;
-        }
-        #personInfoMiddle>div,#personInfoRight>div{
-            padding-top: 15px;
-        }
-        #login{
-            display: none;
-        }
-        #preview, .img, #preview img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-        }
-        #preview {
-            border: 1px solid #3c763d;
-            border-radius: 50px;
-        }
-        .pagination{
-            float: right;
-        }
-        #file{
-            display: none;
-        }
-        #filelLabel{
-            display: inline-block;
-            border:1px solid #3c763d;
-            border-radius: 3px;
-            cursor: pointer;
-            padding:3px;
-            margin-left: 15px;
-            margin-top: 10px;
-            width:68px;
-        }
-        label{
-            width:100px;
-        }
-        #infoButtom{
-            margin-left: 235px;
-            margin-top: 30px;
-        }
-        #infoTop>div, #infoButtom>div{
-            height:50px;
-        }
-        #infoButtom input, #infoTop input{
-            border-radius: 5px;
-            border: 1px solid #000000;
-        }
-    </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        .title>a{
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -259,11 +146,11 @@
 </div>
 <script type="text/x-template" id="myNews">
     <div>
-         <div v-for="item in news" style="border-bottom: 1px solid #000;">
+         <div v-for="item in news" style="border-bottom: 1px solid #000;padding-top:20px;padding-bottom: 14px;">
              <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
              <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
-             <div>{{item.news_content}}</div>
-             <p><span>{{item.news_comments}}评论</span>&nbsp&nbsp<span>{{item.news_readtimes}}阅读</span>&nbsp&nbsp<span>{{item.news_liketimes}}点赞</span></p>
+             <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay"></div>
+             <p style="color:#797979;font-size: 12px;padding-top:18px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>
          </div>
         <ul class="pagination" v-show="allpage>1" >
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -276,9 +163,11 @@
 </script>
 <script type="text/x-template" id="myCollections">
     <div>
-        <div v-for="item in collections" style="border-bottom: 1px solid #000;margin-top: 30px;">
+        <div v-for="item in collections" style="border-bottom: 1px solid #000;padding-top:20px;padding-bottom: 14px;">
             <div class="time" style="float: right;color:grey;">{{item.col_time}}</div>
-            <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.col_newsid">{{item.news_title}}</a></div>
+            <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
+            <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay">无内容</div>
+            <!--<p style="color:#797979;font-size: 12px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>-->
         </div>
         <ul class="pagination"  v-show="allpage>1" >
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -299,11 +188,12 @@
                 <p v-else-if="item.sys_type=='2'">对话通知</p>
                 <p v-else="item.sys_type=='3'">回复通知</p>
             </div>
-            <p v-if="item.sys_type=='0'">您的帖子《{{item.news_title}}》收到来自用户@{{item.user_nickname}}的评论&nbsp; <a v-bind:href="'http://localhost:3000/post.html?id='+item.sys_newsid">快去看看></a></p>
-            <p v-else-if="item.sys_type=='3'">用户@{{item.user_nickname}}在帖子《{{item.news_title}}》中回复您：{{item.sys_content}}&nbsp; <a v-bind:href="'http://localhost:3000/post.html?id='+item.sys_newsid">快去看看></a></p>
-            <p v-else-if="item.sys_type=='1'"></p>
+            <p v-if="item.sys_type=='0'" class="textOverNoDisplay;" >您的帖子<a v-bind:href="'http://localhost:3000/post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到来自用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的评论&nbsp;</p>
+            <p v-else-if="item.sys_type=='3'" class="textOverNoDisplay;">用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>在帖子<a v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>中回复您：<span>{{item.sys_content}}</span>&nbsp; </p>
+            <p v-else-if="item.sys_type=='1'" class="textOverNoDisplay;"></p>
+            <p v-else="item.sys_type=='2'" class="textOverNoDisplay;"></p>
         </div>
-        <ul class="pagination" v-show="allpage>1"  >
+        <ul class="pagination" v-show="allpage>1">
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
             <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
                 <a href="#" >{{index}}</a>
@@ -379,11 +269,10 @@
                     data: "check=10086&data="+postData,
                     success: function (data) {
                         that.news = JSON.parse(data);
-                        for(a in that.news){
-                            console.log(typeof that.news[a].news_content);
-                            that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
+                        for(var a in that.news){
+                            that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                         }
-                        console.log(that.news);
+                        console.log(that.news,"mynews");
                     }
                 });
                 var postData1 = JSON.stringify(["1","1",userInfo.user_id]);
@@ -392,9 +281,7 @@
                     url: contextPath + "/myapp/news/readNewsTotalPageByOthers.php",
                     data: "check=10086&data="+postData1,
                     success: function (data) {
-//                        console.log(typeof data,"yefy");
                         that.allpage = data-0;
-//                        console.log(that.allpage);
                     }
                 });
             },
@@ -413,9 +300,8 @@
                         data: "check=10086&data="+data,
                         success: function (data) {
                             that.news = JSON.parse(data);
-                            for(a in that.news){
-                                console.log(typeof that.news[a].news_content);
-                                that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
+                            for(var a in that.news){
+                                that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                             }
                         }
                     });
@@ -467,6 +353,10 @@
                     data: "check=10086&data="+data,
                     success: function (data) {
                         that.collections = JSON.parse(data);
+                        for(a in that.collections){
+                            that.collections[a].news_content = that.collections[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
+                            console.log(that.collections[a].news_content);
+                        }
                         console.log(that.collections);
                     }
                 });
@@ -497,6 +387,10 @@
                         data: "check=10086&data="+data,
                         success: function (data) {
                             that.collections = JSON.parse(data);
+                            for(var a in that.collections){
+                                that.collections[a].news_content = that.collections[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
+                                console.log(that.collections[a].news_content);
+                            }
                         }
                     });
                 }

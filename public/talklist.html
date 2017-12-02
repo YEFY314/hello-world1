@@ -88,9 +88,9 @@
         <div id="talkList">
             <div v-show="talkList.length<1">无对话数据</div>
             <div v-for="item in talkList">
-                <p>与<span style="color:blue;">@{{item.receiver_name}}</span>的对话</p>
+                <p>与<a v-bind:href="'./personInfoOther.html?id='+item.user_id" style="color:blue;">@{{item.user_nickname}}</a>的对话</p>
                 <div>
-                    <img src="./image/1.jpg" alt="头像" style="width:80px;height:80px;border-radius: 40px;">           <!--头像路径，需要后端改-->
+                    <a v-bind:href="'./personInfoOther.html?id='+item.user_id"><img src="./image/1.jpg" alt="头像" style="width:80px;height:80px;border-radius: 40px;"></a>           <!--头像路径，需要后端改-->
                 </div>
                 <div>
                     <p class="textOverNoDisplay">{{item.sys_content}}</p>
@@ -112,7 +112,7 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            "user_id": "3",
+            "user_id": "8",
             "user_accounts": "Bob",
             "user_nickname": "Jack",
             "user_email": "123@qq.com",
@@ -138,7 +138,7 @@
                 var that = this;
                 $.ajax({
                     type:"post",
-                    url: 'http://localhost:3000/myapp/conn/getChatList.php',
+                    url: 'http://localhost:3000/myapp/conn/getChatList.php',              //abcdef
                     data: "check=10086&data="+JSON.stringify([that.userInfo.user_id]),
                     success: function (data) {
                         if(data == "no content"){

@@ -263,6 +263,9 @@ label{
     height: 193px;
     border-radius: 3px;
     background-color: #ffffff;
+    display:inline-block;
+    margin-left: 22px;
+    margin-top: 22px;
 }
 .bookItem img{
     width:150px;
