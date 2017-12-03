@@ -78,12 +78,12 @@
         <div id="upPart">
             <div id="upPartLeft" style="min-height:540px;height:auto;width:777px;padding-bottom: 20px;position:relative;">
                 <h3 class="textOverNoDisplay" v-html="newsInfo.news_title" >无标题</h3>
-                <p>{{newsInfo.user_nickname}}</p>
-                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>收藏</span><span v-html="newsInfo.news_collect"></span>&nbsp; <span>评论</span><span>{{newsInfo.news_comments}}</span> <span style="float: right;" v-html="newsInfo.cf_module"></span></div>
+                <p><a v-bind:href="'./personInfoOther.html?id='+newsInfo.user_id">{{newsInfo.user_nickname}}</a></p>
+                <div><span v-html="newsInfo.news_createtime">2017-10-30 16:35</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>收藏</span><span v-html="newsInfo.news_collect"></span>&nbsp; <span>评论</span><span>{{newsInfo.news_comments}}</span> <a v-bind:href="'./groupInner.html?id='+newsInfo.news_class"><span style="float: right;" v-html="newsInfo.cf_module"></span></a></div>
                 <div id="contents" style="margin-top:40px;">
                     <!--帖子内容-->
                 </div>
-                <div>
+                <div v-show="newsInfo.news_resource">
                     <p style="color: #BBBBBB;">*附件下载</p>
                     <p><button  type="button" class="btn  btn-primary" data-toggle="modal" data-target="#resourceDownload">网盘下载</button></p>
                     <p v-show="purchaseState">资源地址：<span v-text="newsInfo.news_resource"></span></p>
@@ -99,7 +99,7 @@
                                     <p><span>售价</span><span v-html="newsInfo.news_pay"></span></p>
                                     <p><span>作者所得</span><span v-html="authorGet"></span></p>
                                     <p><span>您所拥有鲜花</span><span v-html="userFlowers"></span></p>
-                                    <p ><button data-dismiss="modal">取消</button><button v-on:click.prevent="purchaseResource()">确认</button></p>
+                                    <p ><button data-dismiss="modal">取消</button><button type="button" v-on:click.prevent="purchaseResource()">确认</button></p>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
 
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center">
-                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="!likeState" class="glyphicon glyphicon-thumbs-down"></span>{{newsInfo.news_liketimes}}</button>
+                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:90px;height:40px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="!likeState">已点赞</span>{{newsInfo.news_liketimes}}</button>
                 </div>
                 <!--<div id="qrcode"></div>-->
                 <div class="center" v-on:click.prevent="shareToSinaWB()" style="position: absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:198px;color:#ffffff;cursor: pointer;"><p style="vertical-align: middle;">微博</p></div>
@@ -140,16 +140,16 @@
                 <h3>热门评论</h3>
                 <div>
                     <div v-for="item in comments" style="border-bottom: 1px solid grey;margin-top:10px;">
-                        <p style="float:right;"><span class="glyphicon glyphicon-thumbs-up"></span>{{item.infomation.com_like}}</p>
-                        <p><img v-bind:src="item.user_photo" style="width:50px;height:50px; border-radius: 25px;">&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>
+                        <p v-on:click.prevent="likeComment(item.infomation.com_id,item.infomation.user_id)" style="float:right;cursor: pointer;"><span class="glyphicon glyphicon-thumbs-up"></span>{{item.infomation.com_like}}</p>
+                        <p><a v-bind:href="'./personInfoOther.html?id='+item.infomation.user_id"><img v-bind:src="item.user_photo" style="width:50px;height:50px; border-radius: 25px;"></a>&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>    <!--abcdef头像地址-->
                         <p>{{item.infomation.com_content}}</p>
-                        <div style="background-color: #BBBBBB;">
+                        <div style="background-color: #ededed;">
                             <div v-for="answer in item.comcom">
-                                <p><b>{{answer.user_nickname}}:</b>&nbsp;&nbsp;{{answer.comc_content}}</p>
-                                <p style="text-align: right;"><span>{{answer.comc_createtime}}</span>&nbsp;&nbsp;<button v-on:click="showBoxWithName(answer.user_nickname,answer.user_id)">回复TA</button></p>
+                                <p><b><a v-bind:href="'./personInfoOther.html?id='+answer.user_id">{{answer.user_nickname}}</a>:</b>&nbsp;&nbsp;{{answer.comc_content}}</p>
+                                <p style="text-align: right;"><span>{{answer.comc_createtime}}</span>&nbsp;&nbsp;<button class="btn btn-default" style="background-color: #ededed;border: none;" v-on:click="showBoxWithName(answer.user_nickname,answer.user_id)">回复TA</button><span style="display: inline-block;width:50px;"><button v-on:click.prevent="deleteCommentcom(answer.comc_id,answer.user_id)" v-show="answer.user_id == userInfo.user_id" class="=btn btn-default" style="background-color: #ededed;border: none;">删除</button></span></p>
                             </div>
                         </div>
-                        <div><p style="cursor:pointer;display: inline-block;width:50px;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span>回复</p><button v-show="userInfo.user_id==item.infomation.user_id" v-on:click.prevent="deleteComment(item.infomation.com_id)" style="float:right;">删除</button></div>
+                        <div><p style="cursor:pointer;display: inline-block;width:50px;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span>回复</p><button v-show="userInfo.user_id==item.infomation.user_id" v-on:click.prevent="deleteComment(item.infomation.com_id)" style="float:right;border: none;position: relative;top:-2px;" class="btn btn-default">删除</button></div>
                         <form method="post" style="display: none;" ref="answerBox">
                             <textarea rows="2" cols="100" value="" answerWho="" name="comments"></textarea>
                             <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)"  class="btn btn-default" style="margin-bottom: 25px;">确定</button>
@@ -273,7 +273,7 @@
                     data: "check=10086&data=" + data,
                     success: function (data) {
                         that.comments = JSON.parse(data);
-                        console.log(that.comments, "hahha");
+                        console.log(that.comments, "comments");
                     }
                 });
                 $.ajax({
@@ -307,7 +307,6 @@
                     data:"check=10086&data="+JSON.stringify([that.newsInfo.news_class]),
                     success: function (data) {
                         that.groupActiveUser = JSON.parse(data);
-                        console.log(that.groupActiveUser,"user");
                     }
                 });
                 $.post({                                                               //获取鲜花
@@ -410,8 +409,6 @@
                           }
                         }
                     });
-
-
                 },
                 gosearch: function () {
                     var keyword = $("#search").val().trim();
@@ -500,10 +497,8 @@
                         data:"check=10086&data="+JSON.stringify([com_id,that.newsInfo.news_id]),
                         success: function (data) {
                             if(data=="success"){
-                                console.log("delete success");
                                 that.gotoWhatever(that.current);
                             }
-
                         }
                     })
                 },
@@ -520,12 +515,34 @@
                                     if(data == "2"){
                                         that.purchaseState= true;
                                     }
-
                                 }
                             })
                         }
                     }
-
+                },
+                deleteCommentcom: function (comc_id,user_id) {                                   //删除回复
+                    var that = this;
+                    $.post({
+                        url:"http://localhost:3000/myapp/news/deleteCommentCom.php",        //abcdef地址修改
+                        data:"check=10086&data="+JSON.stringify([comc_id,user_id]),
+                        success: function (data) {
+                            if(data == "1"){
+                                that.gotoWhatever(that.current);
+                            }
+                        }
+                    })
+                },
+                likeComment: function (com_id,comowner_id) {
+                    var that = this;
+                    $.post({
+                        url:"http://localhost:3000/myapp/news/changeFavorStateComment.php",
+                        data:"check=10086&data="+JSON.stringify([com_id,that.userInfo.user_id,comowner_id]),
+                        success: function (data) {
+                            if(data == "success"){
+                                that.gotoWhatever(that.current);
+                            }
+                        }
+                    })
                 }
             }
         });

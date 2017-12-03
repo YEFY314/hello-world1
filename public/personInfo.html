@@ -165,7 +165,7 @@
     <div>
         <div v-for="item in collections" style="border-bottom: 1px solid #000;padding-top:20px;padding-bottom: 14px;">
             <div class="time" style="float: right;color:grey;">{{item.col_time}}</div>
-            <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
+            <div class="title" style="font-weight: bold;"><a v-bind:href="'./post.html?id='+item.col_newsid">{{item.news_title}}</a></div>
             <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay">无内容</div>
             <!--<p style="color:#797979;font-size: 12px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>-->
         </div>
@@ -214,7 +214,7 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            "user_id": "7",
+            "user_id": "8",
             "user_accounts": "Bob",
             "user_nickname": "Jack",
             "user_email": "123@qq.com",
@@ -355,7 +355,6 @@
                         that.collections = JSON.parse(data);
                         for(a in that.collections){
                             that.collections[a].news_content = that.collections[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
-                            console.log(that.collections[a].news_content);
                         }
                         console.log(that.collections);
                     }

@@ -255,10 +255,9 @@
             },
             created: function () {
                 var that = this;
-                var contextPath = 'http://localhost:3000';
                 $.ajax({
                     type: "POST",
-                    url: contextPath + "/myapp/conn/getClassInfomation.php",
+                    url: "http://localhost:3000/myapp/conn/getClassInfomation.php",
                     data: "check=10086&data=" + JSON.stringify(["0", "1", "10"]),
                     success: function (data) {
                         that.groupInfo = JSON.parse(data);
@@ -270,7 +269,6 @@
                 goToGroup:function(groupId){
                     window.location.href = "./groupInner.html?groupId="+groupId;
                 }
-
             }
         });
     });

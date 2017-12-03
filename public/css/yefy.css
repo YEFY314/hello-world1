@@ -258,6 +258,9 @@ label{
     max-width:740px;
     display: inline-block;
 }
+#contents>*{
+    max-width: 740px;
+}
 .bookItem{
     width: 332px;
     height: 193px;
@@ -317,4 +320,21 @@ label{
     background-color: #f4ab42;
     color:#FFFFFF;
     border: 1px solid #f4ab42;
+}
+.alert {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 200px;
+    margin-left: -100px;
+    z-index: 99999;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }
