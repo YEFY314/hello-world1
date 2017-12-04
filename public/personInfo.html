@@ -185,13 +185,13 @@
             <div class="title" style="font-weight: bold;">
                 <p v-if="item.sys_type=='0'">评论通知</p>
                 <p v-else-if="item.sys_type=='1'">点赞通知</p>
-                <p v-else-if="item.sys_type=='2'">对话通知</p>
+                <p v-else-if="item.sys_type=='2'">点赞通知</p>
                 <p v-else="item.sys_type=='3'">回复通知</p>
             </div>
             <p v-if="item.sys_type=='0'" class="textOverNoDisplay;" >您的帖子<a v-bind:href="'http://localhost:3000/post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到来自用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的评论&nbsp;</p>
             <p v-else-if="item.sys_type=='3'" class="textOverNoDisplay;">用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>在帖子<a v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>中回复您：<span>{{item.sys_content}}</span>&nbsp; </p>
             <p v-else-if="item.sys_type=='1'" class="textOverNoDisplay;"></p>
-            <p v-else="item.sys_type=='2'" class="textOverNoDisplay;"></p>
+            <p v-else="item.sys_type=='2'" class="textOverNoDisplay;">你的帖子<a v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到来自用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的点赞</p>
         </div>
         <ul class="pagination" v-show="allpage>1">
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>

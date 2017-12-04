@@ -108,7 +108,7 @@
 
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center">
-                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:90px;height:40px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="!likeState">已点赞</span>{{newsInfo.news_liketimes}}</button>
+                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:90px;height:40px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="!likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="likeState">已点赞</span>{{newsInfo.news_liketimes}}</button>
                 </div>
                 <!--<div id="qrcode"></div>-->
                 <div class="center" v-on:click.prevent="shareToSinaWB()" style="position: absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:198px;color:#ffffff;cursor: pointer;"><p style="vertical-align: middle;">微博</p></div>
@@ -203,13 +203,12 @@
                 $.ajax({
                     type:"post",
                     async:false,
-                    url: 'http://localhost:3000/myapp/news/readNewsById.php',
+                    url: 'http://localhost:3000/myapp/news/readNewsById.php',         //abcdef地址修改
                     data: "check=10086&data="+JSON.stringify([id]),
                     success: function (data) {
                         console.log("read success!");
                         newsInfo = JSON.parse(data)[0];
                         console.log(newsInfo);
-//                        newsInfo.news_content = newsInfo.news_content.replace(/<.*?>/ig,"");
                         document.getElementById("contents").innerHTML += newsInfo.news_content;
                     }
                 });
@@ -236,7 +235,8 @@
                 likeState:false,
                 groupActiveUser:[],
                 userFlowers:"0",
-                purchaseState:false
+                purchaseState:false,
+                isAuthor:false
             },
             computed:{
                 authorGet: function () {
@@ -297,8 +297,9 @@
                     url:"http://localhost:3000/myapp/news/getNewFavorState.php",               //abcdef地址修改
                     data:"check=10086&data="+JSON.stringify([that.userInfo.user_id,that.newsInfo.news_id]),
                     success: function (data) {
+                        console.log(data,"yefy");
                         if(data == "1"){
-                            that.liketState = true;
+                            that.likeState = true;
                         }
                     }
                 });
@@ -326,6 +327,10 @@
                         }
                     }
                 });
+                if(this.newsInfo.user_id == this.userInfo.user_id){
+                    this.isAuthor = true;
+                    this.purchaseState = true;
+                }
             },
             methods:{
                 saySomething: function () {
@@ -438,10 +443,9 @@
                             if(data=="success"){
                                 that.likeState = !that.likeState;
                                 if(that.likeState){
-                                    that.newsInfo.news_liketimes = parseInt(that.newsInfo.news_liketimes)-1+"";
-                                }else{
                                     that.newsInfo.news_liketimes = parseInt(that.newsInfo.news_liketimes)+1+"";
-
+                                }else{
+                                    that.newsInfo.news_liketimes = parseInt(that.newsInfo.news_liketimes)-1+"";
                                 }
                             }
                         }
