@@ -97,7 +97,7 @@
             </div>
         </div>
         <div id="downPart">
-            <div class="bookItem" v-for="item in productsInfo">
+            <div class="bookItem" v-for="item in productsInfo" style="cursor: pointer;" v-on:click.prevent="goToDetail(item.goods.go_id)">
                 <div class="bookItemLeft">
                     <img v-bind:src="item.goods.go_cover" alt="图书">        <!--abcdef图片地址-->
                 </div>
@@ -216,6 +216,9 @@
                 },
                 goToBuy: function (url) {
                     window.location.href = url;
+                },
+                goToDetail: function (id) {
+                    window.location.href = "./bookDetails.html?bookId="+id;
                 }
             }
         })
