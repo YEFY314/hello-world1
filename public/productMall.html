@@ -35,6 +35,9 @@
         #downPart>div:nth-child(3n+1){
             margin-left: 0;
         }
+        .bookTitle{
+           height:42px;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +102,7 @@
         <div id="downPart">
             <div class="bookItem" v-for="item in productsInfo" style="cursor: pointer;" v-on:click.prevent="goToDetail(item.goods.go_id)">
                 <div class="bookItemLeft">
-                    <img v-bind:src="item.goods.go_cover" alt="图书">        <!--abcdef图片地址-->
+                    <img src="./image/1.jpg" alt="图书">        <!--abcdef图片地址-->
                 </div>
                 <div class="bookItemRight">
                     <p v-html="item.goods.go_name" class="bookTitle">无书名</p>
