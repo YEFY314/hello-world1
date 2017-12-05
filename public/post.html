@@ -83,7 +83,7 @@
                 <div id="contents" style="margin-top:40px;">
                     <!--帖子内容-->
                 </div>
-                <div v-show="newsInfo.news_resource">
+                <div v-show="newsInfo.news_resource!='null'">
                     <p style="color: #BBBBBB;">*附件下载</p>
                     <p><button  type="button" class="btn  btn-primary" data-toggle="modal" data-target="#resourceDownload">网盘下载</button></p>
                     <p v-show="purchaseState">资源地址：<span v-text="newsInfo.news_resource"></span></p>
@@ -141,7 +141,7 @@
                 <div>
                     <div v-for="item in comments" style="border-bottom: 1px solid grey;margin-top:10px;">
                         <p v-on:click.prevent="likeComment(item.infomation.com_id,item.infomation.user_id)" style="float:right;cursor: pointer;"><span class="glyphicon glyphicon-thumbs-up"></span>{{item.infomation.com_like}}</p>
-                        <p><a v-bind:href="'./personInfoOther.html?id='+item.infomation.user_id"><img v-bind:src="item.user_photo" style="width:50px;height:50px; border-radius: 25px;"></a>&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>    <!--abcdef头像地址-->
+                        <p><a v-bind:href="'./personInfoOther.html?id='+item.infomation.user_id"><img v-bind:src="item.infomation.user_photo" style="width:50px;height:50px; border-radius: 25px;"></a>&nbsp&nbsp<span>{{item.infomation.user_nickname}}</span></p>    <!--abcdef头像地址-->
                         <p>{{item.infomation.com_content}}</p>
                         <div style="background-color: #ededed;">
                             <div v-for="answer in item.comcom">

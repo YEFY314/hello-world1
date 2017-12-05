@@ -417,7 +417,7 @@
             $("#logout").css("display", "none");
         }
         var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
-            "user_id": "7",
+            "user_id": "2",
             "user_accounts": "Bob",
             "user_nickname": "Jack",
             "user_email": "123@qq.com",
@@ -464,20 +464,17 @@
             created:function(){
                 var contextPath = 'http://localhost:3000';                      //post地址，需要后端改
                 var that = this;
-                var postData = JSON.stringify(["2","1",userInfo.user_id,"1","2"]);  //评论最多
+                var postData = JSON.stringify(["2","1",userInfo.user_id,"1","0"]);  //阅读最多
                 $.ajax({
                     type: "POST",
                     url: contextPath + "/myapp/news/readNewsByOthers.php",
                     data: "check=10086&data="+postData,
                     success: function (data) {
                         that.news = JSON.parse(data);
-//                        for(a in that.news){
-//                            that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
-//                        }
                         console.log(that.news,"hotnews");
                     }
                 });
-                var postData1 = JSON.stringify(["2","1",userInfo.user_id,"2"]);   //评论最多
+                var postData1 = JSON.stringify(["2","1",userInfo.user_id,"0"]);   //阅读最多
                 $.ajax({
                     type: "POST",
                     url: contextPath + "/myapp/news/readNewsTotalPageByOthers.php",
@@ -493,7 +490,7 @@
                 goto:function(index){
                     if(index == this.current) return;
                     this.current = index;
-                    var data = ["2","1",userInfo.user_id,index,"2"];          //评论最多
+                    var data = ["2","1",userInfo.user_id,index,"0"];          //阅读最多
                     data = JSON.stringify(data);
                     //这里可以发送ajax请求
                     var contextPath = 'http://localhost:3000';                 //post地址 需要后端改

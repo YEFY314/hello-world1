@@ -40,6 +40,7 @@
         }
         .bookItem{
             margin-bottom: 22px;
+            vertical-align: top;
         }
     </style>
 </head>
@@ -112,7 +113,7 @@
                     <p style="margin-top: -5px;">作者：<span v-html="item.goods.go_author">暂无</span></p>
                     <p style="margin-top: -5px;">类别：少儿读物</p>
                     <p style="margin-top: -5px;">￥<span v-html="item.goods.go_price"></span></p>     <!--<span style="text-decoration: line-through;float: right;">18.00</span>-->
-                    <p style="margin-top: -5px;">购买：<button v-on:goToBuy(item.url.url_url) class="btn btn-default" style="background-color:#f4ab42;color:#ffffff;margin-left: 10px;">微店</button></p>
+                    <p style="margin-top: -5px;">购买：<button v-on:click.stop = "goToBuy(item.url.url_url)" class="btn btn-default" style="background-color:#f4ab42;color:#ffffff;margin-left: 10px;">微店</button></p>
                 </div>
             </div>
             <ul class="pagination" v-show="allpage>1">

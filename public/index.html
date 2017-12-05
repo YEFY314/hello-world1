@@ -4,191 +4,526 @@
     <meta charset="UTF-8">
     <title>一品书童</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<style>
-        .container{
-            width: 1000px;
-        }
-        nav.navbar{
-            font-size: 16px;
-        }
-        ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
-        }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1000px;
-            background-color: #1b6d85;
-        }
-        .leftAd,.rightAd{
+    <link href="./css/yefy.css" rel="stylesheet">
+    <link rel="stylesheet" href="./plugins/liMarquee/css/liMarquee.css">
+    <style>
+        .rightAd,.leftAd{
             display: inline-block;
-            height:330px;
+            vertical-align: top;
+            height:450px;
         }
         .leftAd{
-           /* padding-top: 10px;
-            padding-left: 10px;*/
-            float: right;
+            margin-right: 6px;
         }
         .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
+            width:680px;
+            height:450px;
         }
-      .carousel-inner{
-            height:330px;
+        .rightAd>div{
+            height:220px;
+            width:350px;
+        }
+        .rightAd>div:first-child{
+            margin-bottom: 10px;
+        }
+        .rightAd>div>img{
+            height:220px;
+            width:350px;
+        }
+        .carousel-inner{
+            height:450px;
             width:680px;
         }
-    </style>-->
-    <link href="./css/yefy.css" rel="stylesheet">
+        #recommend>div{
+            display: inline-block;
+            vertical-align: top;
+            height:510px;
+            background-color: #FFFFFF;
+        }
+        #recommend .leftRecommend{
+            width:680px;
+            margin-right: 6px;
+        }
+        .leftRecommend>div>div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #recommend .rightRecommend{
+            width:350px;
+        }
+        .indexTitle{
+            font-size: 25px;
+            color:#333333;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        #main>div{
+            margin-bottom: 20px;
+        }
+        #videoRecommend>div,#bookRecommend>div,#musicRecommend>div{
+            width:157px;
+            height:255px;
+            display: inline-block;
+            vertical-align: top;
+            margin-left:25px;
+            margin-top:20px;
+        }
+        #videoRecommend>div>img,#bookRecommend>div>img,#musicRecommend>div>img{
+            width:157px;
+            height:198px;
+        }
+        #videoRecommend>div>p:first-child,#bookRecommend>div>p:first-child,#musicRecommend>div>p:first-child{
+            font-size: 15px;
+            color:#F4AB42;
+            text-align: center;
+        }
+        #videoRecommend>div>p>span,#bookRecommend>div>p>span,#musicRecommend>div>p>span{
+            display: inline-block;
+            vertical-align: top;
+            color:#999999;
+            font-size: 11px;
+        }
+        button.btn.btn-default{
+            background-color: #ffffff;
+            color:#F4AB42;
+            width:90px;
+        }
+        #main>div>p,#musicRecommend>p,#bookRecommend>p,#videoRecommend>p{
+            text-align: center;
+            margin-top: 20px;
 
+        }
+        #groupOverlook,#resource,#onLineMall{
+            background-color: #FFFFFF;
+            padding-bottom:15px;
+        }
+        #hot>div,#latest>div{
+            height:45px;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+<div id="app">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
+            </div>
+            <div class="nav narbar-nav">
+                <ul class="nav navbar-nav">
+                    <li ><a href="#">首页</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司文化</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">公司介绍</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">人才招聘</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">产品商城</a></li>
+                    <li class="active"><a href="#">交流社区</a></li>
+                    <li><a href="#">资源下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" id="logout">
+                    <!--<li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>-->
+                    <li><a href="#">微信登陆</a></li>
+                </ul>
+                <ul class="nav navbar-var navbar-right" id="login">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人主页</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">私信</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="nav narbar-nav">
-            <ul class="nav navbar-nav">
-                <li ><a href="#">首页</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">公司文化</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">公司介绍</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">人才招聘</a></li>
+    </nav>
+    <div id="main">
+        <div id="ad">
+            <div class="leftAd">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="./image/indexCarousel1.png" alt="图一">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="./image/indexCarousel1.png" alt="图二" >
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="./image/indexCarousel1.png" alt="图三" >
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="rightAd">
+                <div>
+                    <img src="./image/indexCompanyCulture.png">
+                </div>
+                <div>
+                    <img src="./image/indexProductRecommend.png">
+                </div>
+            </div>
+        </div>
+        <div id="recommend">
+            <div class="leftRecommend">
+                <p class="indexTitle">每日推荐</p>
+                <div style="width:680px;height:416px;">
+                    <div><img src="./image/indexRecommendEveryday.png" style="width:277px;height:416px;margin-left: 20px;" alt=""></div>
+                    <div style="width:322px;margin-left: 40px;">
+                        <div style="border-bottom: 1px solid #979797;">
+                            <ul id="myTab" class="nav nav-pills">
+                                <li class="active"><a href="#hot" data-toggle="tab">热帖</a></li>
+                                <li><a href="#latest" data-toggle="tab">最新</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade in active" id="hot">
+                                    <div v-for="item in hotNews">
+                                        <p class="textOverNoHover"><a v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
+                                        <p style="text-align: right"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" style="display: inline-block;width:40px;text-align: left;"></span></p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="latest">
+                                    <div v-for="item in latestNews">
+                                        <p class="textOverNoHover"><a v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
+                                        <p style="text-align: right"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" style="display: inline-block;width:40px;text-align: left;"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightRecommend">
+                <p class="indexTitle">签到动态</p>
+                <div class="dowebok">
+                    <ul>
+                        <li>
+                            <a href="http://www.dowebok.com/187.html">Smoothslides – 可平移的jQuery幻灯片插件</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/77.html">jQuery全屏滚动插件fullPage.js</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/131.html">WOW.js – 让页面滚动更有趣</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/139.html">让IE7 IE8支持CSS3 background-size属性</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/117.html">shCircleLoader – jQuery Loading效果插件</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/185.html">jQuery cForm – jQuery表单美化插件</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/177.html">Quttons – Quantum Paper风格按钮</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/173.html">Ideal Image Slider – 简单的纯JS幻灯片</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/156.html">evenZoom – jQuery放大镜插件</a>
+                        </li>
+                        <li>
+                            <a href="http://www.dowebok.com/155.html">DAD – jQuery拖拽/拖放插件</a>
+                        </li>
                     </ul>
-                </li>
-                <li><a href="#">产品商城</a></li>
-                <li class="active"><a href="#">交流社区</a></li>
-                <li><a href="#">资源下载</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" id="logout">
-                <!--<li><a href="#">登录</a></li>
-                <li><a href="#">注册</a></li>-->
-                <li><a href="#">微信登陆</a></li>
-            </ul>
-            <ul class="nav navbar-var navbar-right" id="login">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">个人主页</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">私信</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">退出登录</a></li>
+                </div>
+                <!--<div>
+                    <ul class="dome1">
+                        <li v-for="item in checkData" class="news-item">
+                            <table cellpadding="4">
+                                <tr>
+                                    <td><img src="./image/1.jpg" width="50" height="50" class="img-circle" /></td>
+                                    <td v-text="item.sign_said"></td>
+                                </tr>
+                            </table>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div id="main">
-    <div id="ad">
-        <div class="rightAd">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="./image/1.jpg" alt="图一" style="width:680px;height:330px;">
-                        <div class="carousel-caption">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="./image/1.jpg" alt="图二" style="width:680px;height:330px;">
-                        <div class="carousel-caption">
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img src="./image/1.jpg" alt="图二" style="width:680px;height:330px;">
-                        <div class="carousel-caption">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                </div>-->
             </div>
         </div>
-        <div class="leftAd">
+        <div id="groupOverlook">
+            <div><p class="indexTitle">小组导览</p></div>
             <div>
-                <img src="./image/1.jpg">
+                <div style="display: inline-block;">
+                    <div><img src="" alt=""></div>
+                    <div>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <p><button class="btn btn-default">查看更多</button></p>
+        </div>
+        <div id="resource">
+            <div><p class="indexTitle">资源下载</p></div>
+            <div>
+                <ul  class="nav nav-pills">
+                    <li class="active"><a href="#videoRecommend" data-toggle="tab">视频</a></li>
+                    <li><a href="#bookRecommend" data-toggle="tab">图书</a></li>
+                    <li><a href="#bookRecommend" data-toggle="tab">音乐</a></li>
+                </ul>
             </div>
             <div>
-                <img src="./image/1.jpg">
-            </div>
-        </div>
-    </div>
-    <div id="recommend">
-        <div class="leftRecommend" style="width:680px;display: inline-block;">
-            <div><p>每日推荐</p></div>
-            <div style="width:680px;height:300px;background-color: #0f0f0f;"></div>
-        </div>
-        <div class="rightRecommend" style="width:300px;display: inline-block;">
-            <div><p>最新动态</p></div>
-            <div style="width:300px;height:300px;background-color: #0f0f0f;float:right;"></div>
-        </div>
-    </div>
-    <div id="communicate">
-        <div><p>交流区域</p></div>
-        <div>
-            <div style="display: inline-block;">
-                <p>教育理念</p>
-                <div style="background-color: #2aabd2;width:300px;height:300px;">
-
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="videoRecommend">
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <p><button class="btn btn-default">查看更多</button></p>
+                    </div>
+                    <div class="tab-pane fade" id="bookRecommend">
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <p><button class="btn btn-default">查看更多</button></p>
+                    </div>
+                    <div class="tab-pane fade" id="musicRecommend">
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <div>
+                            <img src="./image/1.jpg" alt="封面">
+                            <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <p><button class="btn btn-default">查看更多</button></p>
+                    </div>
                 </div>
             </div>
-            <div style="display: inline-block;">
-                <p>启蒙经验</p>
-                <div style="background-color: #2aabd2;width:300px;height:300px;">
-
-                </div>
-            </div>
-            <div style="display: inline-block;">
-                <p>童年童趣</p>
-                <div style="background-color: #2aabd2;width:300px;height:300px;">
-
-                </div>
-            </div>
         </div>
-    </div>
-    <div id="resource">
-        <p>资源下载</p>
-        <div>
-            <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">图书</a></li>
-                <li role="presentation"><a href="#">音频</a></li>
-                <li role="presentation"><a href="#">视频</a></li>
-            </ul>
+        <div id="onLineMall">
+            <div><p class="indexTitle">在线书城</p></div>
+            <div>
+
+            </div>
+            <p><button class="btn btn-default">查看更多</button></p>
         </div>
+
     </div>
-    
 </div>
+
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="./plugins/liMarquee/js/jquery.liMarquee.js"></script>
+<script src="./js/vue.js"></script>
 <script type="application/javascript">
-
+    $(function() {
+        var login = false;      //login获取登录状态后标记的变量   需要后端改
+        login = true;
+        if (login) {
+            $("#login").css("display", "block");
+            $("#logout").css("display", "none");
+        }
+        var userInfo = {            //userInfo是存储用户信息的变量    需要后端改
+            "user_id": "7",
+            "user_accounts": "Bob",
+            "user_nickname": "Jack",
+            "user_email": "123@qq.com",
+            "user_sex": "男",
+            "user_tel": "15996362164",
+            "user_age": "35",
+            "user_photo": "image/1.jpg",
+            "user_address": "江苏省南京市",
+            "user_points": "0",
+            "user_sign": "nihaoaho"
+        };
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                login:login,
+                userInfo:userInfo,
+                hotNews:[],
+                latestNews:[],
+                recommendVideo:[],
+                recommendBook:[],
+                recommendMusic:[],
+                checkData:[]
+            },
+            created: function () {
+                var that = this;
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/myapp/news/readNewsByOthers.php",              //abcdef地址修改
+                    data: "check=10086&data="+JSON.stringify(["2","1","7","1","0"]),  //阅读最多,热帖
+                    success: function (data) {
+                        that.hotNews = JSON.parse(data);
+                        that.hotNews.length = 8;
+                        for(var i = 0,l=that.hotNews.length;i<l;i++){
+                            that.hotNews[i].count = i+1+"";
+                        }
+                        console.log(that.hotNews,"hotnews");
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url:  "http://localhost:3000/myapp/news/readNewsByOthers.php",              //abcdef地址修改
+                    data: "check=10086&data="+JSON.stringify(["2","1","7","1","3"]),              //时间排序
+                    success: function (data) {
+                        that.latestNews = JSON.parse(data);
+                        that.latestNews.length = 8;
+                        for(var i = 0,l=that.latestNews.length;i<l;i++){
+                            that.latestNews[i].count = i+1+"";
+                        }
+                        console.log(that.latestNews,"latesnews");
+                    }
+                });
+                $.ajax({
+                    type:"POST",
+                    url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef推荐电影资源
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"])+"grade=1",
+                    success: function (data) {
+                        console.log(data);                                                       //目前没资源
+                        if(data == "no content"){
+                            return false;
+                        }
+                        that.recommendVideo = JSON.parse(data);
+                        console.log(that.recommendVideo,"recommendVideo");
+                    }
+                });
+                $.ajax({
+                    type:"POST",
+                    url: "http://localhost:3000/myapp/news/readResourceByOthers.php",                //abcdef推荐图书资源
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","2"])+"grade=1",
+                    success: function (data) {
+                        console.log(data);                                                       //目前没资源
+                        if(data == "no content"){
+                            return false;
+                        }
+                        that.recommendBook = JSON.parse(data);
+                        console.log(that.recommendBook,"recommendBook");
+                    }
+                });
+                $.ajax({
+                    type:"POST",
+                    url: "http://localhost:3000/myapp/news/readResourceByOthers.php",         //abcdef推荐音频资源
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"])+"grade=1",
+                    success: function (data) {
+                        console.log(data);                                                       //目前没资源
+                        if(data == "no content"){
+                            return false;
+                        }
+                        that.recommendMusic = JSON.parse(data);
+                        console.log(that.recommendMusic,"recommendMusic");
+                    }
+                });
+                $.post({
+                    url:"http://localhost:3000/myapp/conn/userCheckInList.php",
+                    data:"",
+                    success: function (data) {
+                        if(data == "no content"){
+                            return false;
+                        }
+                        that.checkData = JSON.parse(data);
+                        console.log(that.checkData,"checkData");
+                    }
+                })
+            },
+            mounted: function () {
+                $('.dowebok').liMarquee({
+                    direction: 'up'
+                });
+                console.log($('.dowebok'));
+            }
+        });
+    });
 </script>
 </body>
 </html>

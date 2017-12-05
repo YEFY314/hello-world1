@@ -40,24 +40,20 @@ ul.nav.navbar-right>li{
 #personFunc>div{
     margin-top: 10px;
 }
-.leftAd,.rightAd{
+/*.leftAd,.rightAd{
     display: inline-block;
     height:330px;
 }
 .leftAd{
-    /* padding-top: 10px;
-     padding-left: 10px;*/
+    !* padding-top: 10px;
+     padding-left: 10px;*!
     float: right;
 }
 .leftAd img{
     width:300px;
     height:150px;
     margin-bottom: 30px;
-}
-.carousel-inner{
-    height:330px;
-    width:680px;
-}
+}*/
 #personInfoRight>div,#personInfoMiddle>div{
     width:274px;
 }
@@ -269,6 +265,7 @@ label{
     display:inline-block;
     margin-left: 22px;
     margin-top: 22px;
+    vertical-align: top;
 }
 .bookItem img{
     width:150px;
