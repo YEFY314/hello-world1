@@ -2,213 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>交流社区</title>
+    <title>推荐资源</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<style>
-        body{
-            background-color: #ededed;
-        }
-        .container{
-            width: 1040px;
-        }
-        nav.navbar{
-            font-size: 16px;
-        }
-        ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
-        }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1040px;
-            /*background-color: #1b6d85;*/
-        }
-        #personInfo,#personFunc{
-            background-color: #ffffff;
-        }
-        #personInfo>div,#personFunc>div{
-            display: inline-block;
-            vertical-align: top;
-        }
-        #personInfo>div{
-            padding: 40px;
-        }
-        #personInfoLeft{
-            text-align: center;
-            width:250px;
-        }
-        #personInfoRight{
-            position: relative;
-        }
-        #personFunc>div{
-            margin-top: 10px;
-        }
-        .leftAd,.rightAd{
-            display: inline-block;
-            height:330px;
-        }
-        .leftAd{
-            /* padding-top: 10px;
-             padding-left: 10px;*/
-            float: right;
-        }
-        .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
-        }
-        .carousel-inner{
-            height:330px;
-            width:680px;
-        }
-        #personInfoRight>div,#personInfoMiddle>div{
-            width:274px;
-        }
-        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
-            font-weight:bold;
-            width:100px;
-        }
-        #personInfoMiddle>div p, #personInfoRight>div p{
-            display: inline-block;
-        }
-        #personInfoMiddle>div,#personInfoRight>div{
-            padding-top: 15px;
-        }
-        #login{
-            display: none;
-        }
-        #preview, .img, #preview img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-        }
-        #preview {
-            border: 1px solid #3c763d;
-            border-radius: 50px;
-        }
-        .pagination{
-            float: right;
-        }
-        #file{
-            display: none;
-        }
-        #filelLabel{
-            display: inline-block;
-            border:1px solid #3c763d;
-            border-radius: 3px;
-            cursor: pointer;
-            padding:3px;
-            margin-left: 15px;
-            margin-top: 10px;
-            width:68px;
-        }
-        label{
-            width:100px;
-        }
-        #infoButtom{
-            margin-left: 235px;
-            margin-top: 30px;
-        }
-        #infoTop>div, #infoButtom>div{
-            height:50px;
-        }
-        #infoButtom input, #infoTop input{
-            border-radius: 5px;
-            border: 1px solid #000000;
-        }
-        #group{
-            margin-top: 50px;
-        }
-        #group>div{
-            display: inline-block;
-            height: 352px;
-            width:450px;
-        }
-        #group>div>div:first-child{
-            height:255px;
-            background-color:#E2E6AC;
-            position: relative;
-        }
-        #group>div>div:nth-child(2){
-            background-color: #f8f8f8;
-            height:100px;
-        }
-        #group>div>div:nth-child(2)>p{
-            margin-left: 30px;
-        }
-        #group>div>div>div{
-            height:26px;
-            width:93px;
-            position:relative;
-            left: -10px;
-            top:15px;
-            background-color: #F4AB42;
-        }
-        #upPart{
-            height: 509px;
-        }
-        #upPart>div{
-            display: inline-block;
-            background-color: #ffffff;
-            vertical-align: top;
-        }
-        #upPartLeft{
-            width:777px;
-            height:540px;
-            margin-right: 19px;
-        }
-        #xiaozhu>div{
-            display: inline-block;
-            width:350px;
-            height:200px;
-            margin: 10px 18px;
-            border-radius: 5px;
-            border:1px solid gray;
-        }
-        #xiaozhu>div>div:nth-child(2){
-            display: inline-block;
-            height:200px;
-            width:190px;
-            vertical-align: top;
-            margin-left: 4px;
-        }
-        #xiaozhu>div>div:first-child{
-            display: inline-block;
-            width:150px;
-            height:150px;
-            vertical-align: top;
-            margin-top: 20px;
-        }
-        #xiaozhu>div img{
-            width: 150px;
-            height:150px;
-        }
-        #upPartRight{
-            height:540px;
-            width:240px;
-        }
-        #downPart{
-            margin-top: 55px;
-        }
-        #downPartLeft{
-            display: inline-block;
-            background-color: #ffffff;
-            width:777px;
-            margin-right: 19px;
-        }
-        #downPartRight{
-            width:240px;
-            display: inline-block;
-            vertical-align: top;
-            background-color: #ffffff;
-        }
-    </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #upPartLeft{
+            height:auto;
+            background-color: #ffffff;
+        }
+        .upPart>div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #videoRecommend>p,#bookRecommend>p,#musicRecommend>p{
+            text-align: center;
+            margin:10px;
+            padding:10px;
+        } #videoRecommend>div,#bookRecommend>div,#musicRecommend>div{
+              width:157px;
+              height:255px;
+              display: inline-block;
+              vertical-align: top;
+              margin-left:17px;
+              margin-top:20px;
+          }
+        #videoRecommend>div>img,#bookRecommend>div>img,#musicRecommend>div>img{
+            width:157px;
+            height:198px;
+        }
+        #videoRecommend>div>p:first-child,#bookRecommend>div>p:first-child,#musicRecommend>div>p:first-child{
+            font-size: 15px;
+            color:#F4AB42;
+            text-align: center;
+        }
+        #videoRecommend>div>p>span,#bookRecommend>div>p>span,#musicRecommend>div>p>span{
+            display: inline-block;
+            vertical-align: top;
+            color:#999999;
+            font-size: 11px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -253,39 +86,63 @@
         </div>
     </nav>
     <div id="main">
-        <div id="upPart">
+        <div class="upPart">
             <div id="upPartLeft">
-                <h3 style="border-bottom: 1px solid #979797;"><sapn class="glyphicon glyphicon-menu-left"></sapn>小组导览</h3>
-                <div id="xiaozhu">
-                    <div v-for="item in groupInfo" style="cursor: pointer;" v-on:click.prevent="goToGroup(item.cf_id)">
-                        <div>
-                            <img src="./image/1.jpg">
+                <h3><sapn class="glyphicon glyphicon-menu-left"></sapn>资源下载</h3>
+                <div>
+                    <ul id="myTab" class="nav nav-pills">
+                        <li class="active"><a href="#videoPart" data-toggle="tab">视频</a></li>
+                        <li><a href="#bookPart" data-toggle="tab">图书</a></li>
+                        <li><a href="#musicPart" data-toggle="tab">音频</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade in active" id="videoPart">
+                            <videos></videos>
                         </div>
-                        <div>
-                            <h3 v-text="item.cf_module">小组名称</h3>
-                            <p>小组介绍：</p>
-                            <p v-text="item.cf_introduction" style="word-break:break-word;">小组介绍</p>
-                            <p > 话题：<span v-text="item.cf_news">0</span></p>
+                        <div class="tab-pane fade" id="bookPart">
+                            <book></book>
+                        </div>
+                        <div class="tab-pane fade" id="musicPart">
+                            <music></music>
                         </div>
                     </div>
-                    <div style="text-align: center;width: 100%;height:26px;margin: 0 auto;border: none;;"><a href="./group.html"><button class="btn btn-default" style="background-color: #ffffff;color:#F4AB42;width:90px;">查看更多</button></a></div> <!--abcdef跳转地址-->
                 </div>
             </div>
-            <div id="upPartRight">
-                <form style="margin-left: 20px;margin-top:20px;">
-                    <input style="width: 110px;height:28px;border:1px solid #979797;border-radius: 5px;" type="text" name="search" id="search"/>
-                    <button v-on:click.prevent="gosearch()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
-                </form>
-                <p style="border-left: 4px solid #957573 ; border-bottom: 1px dashed #979797;font-size: 20px;margin-left: 20px;margin-top:20px;margin-right: 30px;padding-left: 3px;">签到</p>
-                <form style="border:none; border-radius: 5px;width:190px;height:127px;margin-left: 20px;">
-                    <textarea name="checkInText" rows="6" placeholder="签到每日送3朵鲜花！" class="form-control"></textarea>
-                </form>
-                <button v-on:click.prevent="checkIn()" v-bind:disabled="checkStatus" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:10px;"> 签到</button>
+            <div style="width:240px;">
+                <div style="background-color:#ffffff;margin-bottom: 20px; padding-top: 20px;height:540px;">
+                    <form style="margin-left: 20px;">
+                        <input style="width: 110px;height:28px;border:1px solid #979797;border-radius: 5px;" type="text" name="search" id="search"/>
+                        <button v-on:click.prevent="gosearch()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
+                    </form>
+                    <p style="border-left: 4px solid #957573 ; border-bottom: 1px dashed #979797;font-size: 20px;margin-left: 20px;margin-top:20px;margin-right: 30px;padding-left: 3px;">签到</p>
+                    <form style="border:none; border-radius: 5px;width:190px;height:127px;margin-left: 20px;">
+                        <textarea name="checkInText" rows="6" placeholder="签到每日送3朵鲜花！" class="form-control"></textarea>
+                    </form>
+                    <button v-on:click.prevent="checkIn()" v-bind:disabled="checkStatus" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:10px;"> 签到</button>
+                </div>
+                <div id="downPartRight" style="padding-left:20px;padding-right:20px;">
+                    <div style="border-bottom: 1px dashed #979797;">
+                        <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >每日排行</p>
+                    </div>
+                    <div v-for="item in recommend">
+                        <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
+                        <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
+                    </div>
+                    <div style="border-bottom: 1px dashed #979797;">
+                        <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >编辑推荐</p>
+                    </div>
+                    <div v-for="item in editorRecommend">
+                        <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
+                        <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="downPart" style="padding:0px 0px;">
+     <!--   <div id="downPart" style="padding:0px 0px;">
             <div id="downPartLeft">
-                <div>
+                &lt;!&ndash;<div>
                     <ul id="myTab" class="nav nav-pills">
                         <li class="active"><a href="#hot" data-toggle="tab">热帖</a></li>
                         <li><a href="#latest" data-toggle="tab">最新</a></li>
@@ -305,7 +162,7 @@
                             <resource></resource>
                         </div>
                     </div>
-                </div>
+                </div>&ndash;&gt;
             </div>
             <div id="downPartRight" style="padding-left:20px;padding-right:20px;">
                 <div style="border-bottom: 1px dashed #979797;">
@@ -323,17 +180,42 @@
                     <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
-<script type="text/x-template" id="hotNews">
+<script type="text/x-template" id="video">
     <div style="margin:5px 15px;">
-        <div style="padding-bottom: 50px;">
-            <div v-for="item in news" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
+        <div style="padding-bottom: 50px;" id="videoRecommend">
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <!--<div v-for="item in news" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <a v-bind:href="'./personInfoOther.html?id='+item.news_user"><img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;"></a>
                 </div>
-                <div style="display: inline-block;width: 680px;vertical-align: top;">
+                <div style="display: inline-block;width: 645px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
@@ -341,7 +223,7 @@
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
         <ul class="pagination" v-show="allpage>1">
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -352,14 +234,39 @@
         </ul>
     </div>
 </script>
-<script type="text/x-template" id="latestNews">
+<script type="text/x-template" id="book">
     <div style="margin:5px 15px;">
-        <div style="padding-bottom: 50px;">
-            <div v-for="item in collections" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
+        <div style="padding-bottom: 50px;" id="bookRecommend">
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <!--<div v-for="item in collections" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 680px;vertical-align: top;">
+                <div style="display: inline-block;width: 645px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
@@ -367,7 +274,7 @@
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
         <ul class="pagination" v-show="allpage>1" >
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -379,14 +286,64 @@
     </div>
 </script>
 
-<script type="text/x-template" id="resourcePart">
+<script type="text/x-template" id="music">
     <div style="margin:5px 15px;">
-        <div style="padding-bottom: 50px;">
-            <div v-for="item in resources" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
+        <div style="padding-bottom: 50px;" id="musicRecommend">
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <div>
+                <img src="./image/1.jpg" alt="封面">
+                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
+                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+            </div>
+            <!--<div v-for="item in resources" style="border-bottom: 1px solid #000;padding:11px 0 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 680px;vertical-align: top;">
+                <div style="display: inline-block;width: 645px;vertical-align: top;">
                     <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
                     <div class="title textOver" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id"><span v-show="item.news_isgreat>0">【精华】</span>{{item.news_title}}</a></div>
                     <div>
@@ -394,7 +351,7 @@
                         <p style="display: inline-block;float:right;"><span class="glyphicon glyphicon-eye-open"></span>&nbsp<span>{{item.news_readtimes}}</span>&nbsp&nbsp<span class="glyphicon glyphicon-list-alt"></span>&nbsp<span>{{item.news_comments}}</span></p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
         <ul class="pagination" v-show="allpage>1" >
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -429,8 +386,8 @@
             "user_points": "0",
             "user_sign":"nihaoaho"
         };
-        Vue.component("hotnews",{              //我的帖子组件
-            template:"#hotNews",
+        Vue.component("videos",{              //我的帖子组件
+            template:"#video",
             data:function(){
                 return{
                     current:1,
@@ -480,9 +437,7 @@
                     url: contextPath + "/myapp/news/readNewsTotalPageByOthers.php",
                     data: "check=10086&data="+postData1,
                     success: function (data) {
-//                        console.log(typeof data,"yefy");
                         that.allpage = data-0;
-//                        console.log(that.allpage);
                     }
                 });
             },
@@ -511,8 +466,8 @@
             }
         });                                         //我的帖子组件
 
-        Vue.component("latestnews",{           //我的收藏组件
-            template:"#latestNews",
+        Vue.component("book",{           //我的收藏组件
+            template:"#book",
             data:function(){
                 return{
                     current:1,
@@ -591,9 +546,9 @@
             }
         });                    //我的收藏组件
 
-        Vue.component("resource",{
+        Vue.component("music",{
             props:['userInfo'],
-            template:"#resourcePart",
+            template:"#music",
             data:function(){
                 return{
                     current:1,

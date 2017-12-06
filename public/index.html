@@ -101,6 +101,45 @@
         #hot>div,#latest>div{
             height:45px;
         }
+        .marquee_top{
+            transition: top 0.5s linear;
+            position: relative;
+        }
+        .marquee_list{
+            overflow: hidden;
+        }
+        .nav-pills>li.active>a,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus{
+            color: #333333;
+            font-size: 20px;
+            background-color: #ffffff;
+            border-bottom: 4px solid #957573;
+            border-radius: 0;
+        }
+        .nav-pills>li>a,.nav-pills>li>a:hover,.nav-pills>li>a:focus{
+            color: #6b6b6b;
+            font-size: 18px;
+            background-color: #ffffff;
+            /*border-right: 1px solid #797979;*/
+            /*border-radius: 0;*/
+        }
+        .group{
+            display: inline-block;
+            width:310px;
+            height:170px;
+            margin-left: 30px;
+            vertical-align: top;
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);
+            border:1px solid #b7b0b0;
+            border-radius:5px;
+        }
+        .checkInItem{
+            height:82px;
+            margin-left:10px;
+            margin-right: 10px;
+            border-bottom: 1px solid #979797;
+            padding-top: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -212,13 +251,13 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade in active" id="hot">
                                     <div v-for="item in hotNews">
-                                        <p class="textOverNoHover"><a v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
+                                        <p class="textOverNoHover" ><span class="glyphicon glyphicon-triangle-right"></span><a style="color:#333333;" v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
                                         <p style="text-align: right"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" style="display: inline-block;width:40px;text-align: left;"></span></p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="latest">
                                     <div v-for="item in latestNews">
-                                        <p class="textOverNoHover"><a v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
+                                        <p class="textOverNoHover"><span class="glyphicon glyphicon-triangle-right"></span><a style="color:#333333;" v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
                                         <p style="text-align: right"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" style="display: inline-block;width:40px;text-align: left;"></span></p>
                                     </div>
                                 </div>
@@ -227,73 +266,42 @@
                     </div>
                 </div>
             </div>
-            <div class="rightRecommend">
+            <div class="rightRecommend" >
                 <p class="indexTitle">签到动态</p>
-                <div class="dowebok">
-                    <ul>
-                        <li>
-                            <a href="http://www.dowebok.com/187.html">Smoothslides – 可平移的jQuery幻灯片插件</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/77.html">jQuery全屏滚动插件fullPage.js</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/131.html">WOW.js – 让页面滚动更有趣</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/139.html">让IE7 IE8支持CSS3 background-size属性</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/117.html">shCircleLoader – jQuery Loading效果插件</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/185.html">jQuery cForm – jQuery表单美化插件</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/177.html">Quttons – Quantum Paper风格按钮</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/173.html">Ideal Image Slider – 简单的纯JS幻灯片</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/156.html">evenZoom – jQuery放大镜插件</a>
-                        </li>
-                        <li>
-                            <a href="http://www.dowebok.com/155.html">DAD – jQuery拖拽/拖放插件</a>
-                        </li>
-                    </ul>
+                <div v-if="checkData.length>0" style="position: relative;overflow: hidden;">
+                    <div class="marquee_list" :style="{ top: -num*82 + 'px',height:(5+num)*82+'px'}" :class="{'marquee_top':num}">
+                        <!-- 当显示最后一条的时候（num=0转换布尔类型为false）去掉过渡效果-->
+                        <div v-for="item in checkData" class="checkInItem" v-on:click.stop = "goToOther(item.user_id)" >
+                                <div style="display: inline-block;vertical-align: middle;width:50px;margin-right: 10px;"><img v-bind:src="item.user_photo" width="50" height="50" class="img-circle" alt="头像"></div>      <!--abcdef-->
+                                <div style="display: inline-block;vertical-align: middle;width:220px;"><p v-text="item.sign_said" class="textOverNoDisplay"></p></div>
+                                <p v-text="item.sign_date" style="text-align: right;color:#797979;"></p>
+                        </div>
+                    </div>
                 </div>
-                <!--<div>
-                    <ul class="dome1">
-                        <li v-for="item in checkData" class="news-item">
-                            <table cellpadding="4">
-                                <tr>
-                                    <td><img src="./image/1.jpg" width="50" height="50" class="img-circle" /></td>
-                                    <td v-text="item.sign_said"></td>
-                                </tr>
-                            </table>
-                        </li>
-                    </ul>
-                </div>-->
+                <div v-else style="text-align: center;vertical-align: middle;">
+                    <p>
+                        还没有人签到，快去抢第一吧^0^.
+                    </p>
+                </div>
             </div>
         </div>
         <div id="groupOverlook">
-            <div><p class="indexTitle">小组导览</p></div>
+            <div><p class="indexTitle" style="padding-top:10px;">小组导览</p></div>
             <div>
-                <div style="display: inline-block;">
-                    <div><img src="" alt=""></div>
-                    <div>
-                        <p></p>
-                        <p></p>
-                        <p></p>
+                <div v-for="item in groupInfo" class="group" v-on:click.stop="goToGroup(item.cf_id)">
+                    <div style="display: inline-block;vertical-align: top;"><img v-bind:src="'./image/indexgroup'+item.cf_id+'.png'" width="169" height="169" alt=""></div>
+                    <div style="display: inline-block;vertical-align: top;width:134px;padding-left:5px;">
+                        <p v-text="item.cf_module" style="font-size: 15px;font-weight:bold;padding-top:10px;"></p>
+                        <p style="font-size: 12px;">小组介绍：</br><span v-text="item.cf_introduction"></span></p>
+                        <p style="font-size: 12px;color:#797979;">话题数：<span v-text="item.cf_news"></span></p>
                     </div>
                 </div>
             </div>
-            <p><button class="btn btn-default">查看更多</button></p>
+            <p><a href="./group.html"><button class="btn btn-default">查看更多</button></a></p>
         </div>
         <div id="resource">
             <div><p class="indexTitle">资源下载</p></div>
-            <div>
+            <div style="border-bottom: 1px solid #979797;margin-left:20px;margin-right: 20px;">
                 <ul  class="nav nav-pills">
                     <li class="active"><a href="#videoRecommend" data-toggle="tab">视频</a></li>
                     <li><a href="#bookRecommend" data-toggle="tab">图书</a></li>
@@ -328,7 +336,7 @@
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                         </div>
-                        <p><button class="btn btn-default">查看更多</button></p>
+                        <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
                     </div>
                     <div class="tab-pane fade" id="bookRecommend">
                         <div>
@@ -356,7 +364,7 @@
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                         </div>
-                        <p><button class="btn btn-default">查看更多</button></p>
+                        <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
                     </div>
                     <div class="tab-pane fade" id="musicRecommend">
                         <div>
@@ -384,17 +392,18 @@
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                         </div>
-                        <p><button class="btn btn-default">查看更多</button></p>
+                        <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="onLineMall">
             <div><p class="indexTitle">在线书城</p></div>
-            <div>
-
+            <div v-for="item in bookInfo" style="display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
+                <div style="border-right:1px solid #979797;padding-right:5px;"><img src="./image/1.jpg" width="150" height="150" alt=""></div>
+                <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
             </div>
-            <p><button class="btn btn-default">查看更多</button></p>
+            <p><a href="./productMall.html"><button class="btn btn-default">查看更多</button></a></p>
         </div>
 
     </div>
@@ -435,7 +444,10 @@
                 recommendVideo:[],
                 recommendBook:[],
                 recommendMusic:[],
-                checkData:[]
+                checkData:[],
+                num:0,
+                groupInfo:[],
+                bookInfo:[]
             },
             created: function () {
                 var that = this;
@@ -512,15 +524,51 @@
                             return false;
                         }
                         that.checkData = JSON.parse(data);
-                        console.log(that.checkData,"checkData");
+                        console.log(that.checkData);
+                        if(that.checkData.length>5){
+                            that.showMarquee(that.num,that.checkData);
+                        }
                     }
-                })
-            },
-            mounted: function () {
-                $('.dowebok').liMarquee({
-                    direction: 'up'
                 });
-                console.log($('.dowebok'));
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:3000/myapp/conn/getClassInfomation.php",        //abcdef
+                    data: "check=10086&data=" + JSON.stringify(["0", "1", "10"]),
+                    success: function (data) {
+                        that.groupInfo = JSON.parse(data);
+                        that.groupInfo.length = 3;
+                        console.log(that.groupInfo);
+                    }
+                });
+                $.post({
+                    url:"http://localhost:3000/myapp/shops/readBookListByClass.php",            //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify(["101","1"]),
+                    success: function (data) {
+                        that.bookInfo = JSON.parse(data);
+                        console.log(that.bookInfo,"bookInfo");
+                    }
+                });
+            },
+            methods:{
+                showMarquee:function (num,arr) {
+                    var max = arr.length;
+                    var that = this;
+                    setInterval(function(){
+                        arr.push(arr[num]);
+                        num++;
+                        if(num>=max ){
+                            num=0;
+                            arr.length = max;
+                        }
+                        that.num=num;
+                    }, 2000);
+                },
+                goToGroup:function(groupId){
+                    window.location.href = "./groupInner.html?groupId="+groupId;
+                },
+                goToOther: function (user_id) {
+                    window.location.href = "./personInfoOther.html?id="+user_id;
+                }
             }
         });
     });
