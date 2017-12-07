@@ -1,5 +1,7 @@
 body{
     background-color: #ededed;
+    font-size: 15px;
+    font-family: "Microsoft YaHei";
 }
 .container{
     width: 1040px;
@@ -60,9 +62,11 @@ ul.nav.navbar-right>li{
 #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
     font-weight:bold;
     width:100px;
+
 }
 #personInfoMiddle>div p, #personInfoRight>div p{
     display: inline-block;
+    font-size: 15px;
 }
 #personInfoMiddle>div,#personInfoRight>div{
     padding-top: 15px;
@@ -179,7 +183,7 @@ label{
 #upPartLeft{
     width:777px;
     height:540px;
-    margin-right: 19px;
+    /*margin-right: 19px;*/
 }
 #xiaozhu>div{
     display: inline-block;
@@ -210,6 +214,8 @@ label{
 #upPartRight{
     height:540px;
     width:240px;
+    position: relative;
+    left:19px;
 }
 #upPartLeft{
     padding-left: 18px;
@@ -224,13 +230,15 @@ label{
     display: inline-block;
     background-color: #ffffff;
     width:777px;
-    margin-right: 19px;
+    /*margin-right: 19px;*/
 }
 #downPartRight{
     width:240px;
     display: inline-block;
     vertical-align: top;
     background-color: #ffffff;
+    position: relative;
+    left:19px;
 }
 #searchPart{
     background-color: #FFFFFF;
@@ -318,6 +326,14 @@ label{
     color:#FFFFFF;
     border: 1px solid #f4ab42;
 }
+.unionBtn2{
+    width:80px;
+    height:30px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color:#f4ab42;
+    border: 1px solid #f4ab42;
+}
 .alert {
     display: none;
     position: fixed;
@@ -334,4 +350,11 @@ label{
     color: #3c763d;
     background-color: #dff0d8;
     border-color: #d6e9c6;
+}
+.text1{
+    font-size: 12px;
+    color:#797979;
+}
+.text2{
+    font-size: 12px;
 }

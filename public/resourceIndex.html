@@ -16,13 +16,15 @@
         }
         #leftPart{
             width:777px;
-            margin-right:19px;
+            /*margin-right:19px;*/
         }
         #leftPart>div{
             background-color: #FFFFFF;
         }
         #rightPart{
             width:240px;
+            position: relative;
+            left:19px;
         }
         #rightPart>div{
             background-color: #FFFFFF;
@@ -60,15 +62,15 @@
             margin-left:25px;
             margin-top:20px;
         }
-        #videoRecommend>div>img,#bookRecommend>div>img,#musicRecommend>div>img{
+        #videoRecommend>div img,#bookRecommend>div img,#musicRecommend>div img{
             width:157px;
             height:198px;
         }
-        #videoRecommend>div>p:first-child,#bookRecommend>div>p:first-child,#musicRecommend>div>p:first-child{
+    /*    #videoRecommend>div>p:first-child,#bookRecommend>div>p:first-child,#musicRecommend>div>p:first-child{
             font-size: 15px;
             color:#F4AB42;
             text-align: center;
-        }
+        }*/
         #videoRecommend>div>p>span,#bookRecommend>div>p>span,#musicRecommend>div>p>span{
             display: inline-block;
             vertical-align: top;
@@ -154,50 +156,20 @@
                 <div>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade in active" id="videoRecommend">
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
-                            <div>
-                                <img src="./image/1.jpg" alt="封面">
-                                <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                            <div v-for="item in recommendVideo">
+                                <a v-bind:href="'./post.html?id='+item.news_id"><img v-bind:src="item.news_cover" alt="封面"></a>
+                                <p class="textOverNoDisplay" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
+                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                             </div>
                             <p><button class="btn btn-default">查看更多</button></p>
                         </div>
                         <div class="tab-pane fade" id="bookRecommend">
-                            <div>
+                            <div v-for="item in recommendBook">
+                                <a v-bind:href="'./post.html?id='+item.news_id"><img src="./image/1.jpg" alt="封面"></a>
+                                <p class="textOverNoDisplay" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
+                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                            </div>
+                          <!--  <div>
                                 <img src="./image/1.jpg" alt="封面">
                                 <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                                 <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
@@ -236,7 +208,7 @@
                                 <img src="./image/1.jpg" alt="封面">
                                 <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                                 <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                            </div>
+                            </div>-->
                             <p><button class="btn btn-default">查看更多</button></p>
                         </div>
                         <div class="tab-pane fade" id="musicRecommend">
@@ -288,21 +260,21 @@
             <div id="videoResource">
                 <p>视频资源</p>
                 <div v-for="item in videoSources">
-                    <p><span>【视频】</span><span>【{{item.cf_module}}】</span><a v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
+                    <p><span style="color:#f4ab42;">【视频】</span><span style="color:#f4ab42;">【{{item.cf_module}}】</span><a class="textOverNoHover" style="display: inline-block;width:190px;color:#333333;vertical-align: top;" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
                 </div>
                 <p><button class="btn btn-default">查看更多</button></p>
             </div>
             <div id="bookResource">
                 <p>图书资源</p>
                 <div v-for="item in bookSources">
-                    <p><span>【图书】</span><span>【{{item.cf_module}}】</span><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
+                    <p><span style="color:#8694a0;">【图书】</span><span style="color:#f4ab42;">【{{item.cf_module}}】</span><a class="textOverNoHover" style="display: inline-block;width:190px;color:#333333;vertical-align: top;" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
                 </div>
                 <p><button class="btn btn-default">查看更多</button></p>
             </div>
             <div id="musicResource">
                 <p>音频资源</p>
                 <div v-for="item in musicSources">
-                    <p><span>【音频】</span><span>【{{item.cf_module}}】</span><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
+                    <p><span style="color:#8f82bc;">【音频】</span><span style="color:#f4ab42;">【{{item.cf_module}}】</span><a class="textOverNoHover" style="display: inline-block;width:190px;color:#333333;vertical-align: top;" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
                 </div>
                 <p><button class="btn btn-default">查看更多</button></p>
             </div>
@@ -651,7 +623,7 @@
                 $.ajax({
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef推荐电影资源
-                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"])+"grade=1",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"])+"&grade=1",
                     success: function (data) {
                         console.log(data);                                                       //目前没资源
                         if(data == "no content"){
@@ -676,9 +648,9 @@
                 $.ajax({
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",                //abcdef推荐图书资源
-                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","2"])+"grade=1",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","2"])+"&grade=1",
                     success: function (data) {
-                        console.log(data);                                                       //目前没资源
+                                                                             //目前没资源
                         if(data == "no content"){
                             return false;
                         }
@@ -701,7 +673,7 @@
                 $.ajax({
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",         //abcdef推荐音频资源
-                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"])+"grade=1",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"])+"&grade=1",
                     success: function (data) {
                         console.log(data);                                                       //目前没资源
                         if(data == "no content"){
