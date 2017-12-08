@@ -12,8 +12,9 @@
             vertical-align: top;
             height:450px;
         }
-        .leftAd{
-            margin-right: 6px;
+        .rightAd{
+            position: relative;
+            left:5px;
         }
         .leftAd img{
             width:680px;
@@ -42,7 +43,6 @@
         }
         #recommend .leftRecommend{
             width:680px;
-            margin-right: 6px;
         }
         .leftRecommend>div>div{
             display: inline-block;
@@ -50,6 +50,8 @@
         }
         #recommend .rightRecommend{
             width:350px;
+            position: relative;
+            left:5px;
         }
         .indexTitle{
             font-size: 25px;
@@ -131,6 +133,7 @@
             box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);
             border:1px solid #b7b0b0;
             border-radius:5px;
+            cursor: pointer;
         }
         .checkInItem{
             height:82px;
@@ -139,6 +142,16 @@
             border-bottom: 1px solid #979797;
             padding-top: 10px;
             cursor: pointer;
+        }
+        #myTabContent{
+            margin-top: 19px;
+        }
+        #myTabContent>div>div{
+            height:42px;
+        }
+        #myTabContent>div>div>p:last-child{
+            position: relative;
+            top:-10px;
         }
     </style>
 </head>
@@ -251,14 +264,14 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade in active" id="hot">
                                     <div v-for="item in hotNews">
-                                        <p class="textOverNoHover" ><span class="glyphicon glyphicon-triangle-right"></span><a style="color:#333333;" v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
-                                        <p style="text-align: right"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" style="display: inline-block;width:40px;text-align: left;"></span></p>
+                                        <p class="textOverNoHover" ><span class="glyphicon glyphicon-triangle-right"></span>&nbsp;&nbsp;<a style="color:#333333;" v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
+                                        <p style="text-align: right;"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" class="text1" style="display: inline-block;width:40px;text-align: left;color:#333333;"></span></p>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="latest">
                                     <div v-for="item in latestNews">
                                         <p class="textOverNoHover"><span class="glyphicon glyphicon-triangle-right"></span><a style="color:#333333;" v-bind:href="'./post.html?id='+item.news_id"><span v-text="item.count"></span>.&nbsp;<span v-text="item.news_title"></span></a></p>
-                                        <p style="text-align: right"><img src="./image/eyesIcon.png" style="width:20px;height:12px;" alt=""><span v-text="item.news_readtimes" style="display: inline-block;width:40px;text-align: left;"></span></p>
+                                        <p style="text-align: right"><span v-text="item.news_createtime" class="text1" style="display: inline-block;text-align: left;color:#333333;"></span></p>
                                     </div>
                                 </div>
                             </div>

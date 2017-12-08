@@ -181,7 +181,7 @@
             <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay">无内容</div>
             <!--<p style="color:#797979;font-size: 12px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>-->
         </div>
-        <ul class="pagination"  v-show="allpage>1" >
+        <ul class="pagination"  v-show="allpage>1">
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
             <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
                 <a href="#" >{{index}}</a>
