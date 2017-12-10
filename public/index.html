@@ -11,6 +11,10 @@
             display: inline-block;
             vertical-align: top;
             height:450px;
+            border-radius: 5px;
+        }
+        .rightAd:hover,.leftAd:hover{
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
         }
         .rightAd{
             position: relative;
@@ -43,6 +47,10 @@
         }
         #recommend .leftRecommend{
             width:680px;
+            border-radius: 5px;
+        }
+        .leftRecommend:hover{
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
         }
         .leftRecommend>div>div{
             display: inline-block;
@@ -52,6 +60,10 @@
             width:350px;
             position: relative;
             left:5px;
+            border-radius: 5px;
+        }
+        .rightRecommend:hover{
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
         }
         .indexTitle{
             font-size: 25px;
@@ -62,6 +74,10 @@
         }
         #main>div{
             margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        #main>div:hover{
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
         }
         #videoRecommend>div,#bookRecommend>div,#musicRecommend>div{
             width:157px;
@@ -212,18 +228,18 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <img src="./image/indexCarousel1.png" alt="图一">
-                            <div class="carousel-caption">
+                            <a v-bind:href="'./post.html?id='+photoFirst[0].news_id"><img v-bind:src="photoFirst[0].news_cover" alt="图一"></a>
+                            <div class="carousel-caption" style="font-size: 20px;" v-text="photoFirst[0].news_title">
                             </div>
                         </div>
                         <div class="item">
-                            <img src="./image/indexCarousel1.png" alt="图二" >
-                            <div class="carousel-caption">
+                            <a v-bind:href="'./post.html?id='+photoFirst[1].news_id"><img v-bind:src="photoFirst[1].news_cover" alt="图一"></a>
+                            <div class="carousel-caption" style="font-size: 20px;" v-text="photoFirst[1].news_title">
                             </div>
                         </div>
                         <div class="item">
-                            <img src="./image/indexCarousel1.png" alt="图三" >
-                            <div class="carousel-caption">
+                            <a v-bind:href="'./post.html?id='+photoFirst[2].news_id"><img v-bind:src="photoFirst[2].news_cover" alt="图一"></a>
+                            <div class="carousel-caption" style="font-size: 20px;bottom:38px;" v-text="photoFirst[2].news_title">
                             </div>
                         </div>
                     </div>
@@ -324,7 +340,12 @@
             <div>
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="videoRecommend">
-                        <div>
+                        <div v-for="item in recommendVideo">
+                            <a v-bind:href="'./post.html?id='+item.news_id"><img src="./image/1.jpg" alt="封面"></a>
+                            <p class="textOverNoDisplay" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                      <!--  <div>
                             <img src="./image/1.jpg" alt="封面">
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
@@ -348,11 +369,16 @@
                             <img src="./image/1.jpg" alt="封面">
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                        </div>
+                        </div>-->
                         <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
                     </div>
                     <div class="tab-pane fade" id="bookRecommend">
-                        <div>
+                        <div v-for="item in recommendBook">
+                            <a v-bind:href="'./post.html?id='+item.news_id"><img src="./image/1.jpg" alt="封面"></a>
+                            <p class="textOverNoDisplay" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                      <!--  <div>
                             <img src="./image/1.jpg" alt="封面">
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
@@ -376,11 +402,16 @@
                             <img src="./image/1.jpg" alt="封面">
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                        </div>
+                        </div>-->
                         <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
                     </div>
                     <div class="tab-pane fade" id="musicRecommend">
-                        <div>
+                        <div v-for="item in recommendBook">
+                            <a v-bind:href="'./post.html?id='+item.news_id"><img src="./image/1.jpg" alt="封面"></a>
+                            <p class="textOverNoDisplay" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
+                            <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                        </div>
+                        <!--<div>
                             <img src="./image/1.jpg" alt="封面">
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
@@ -404,7 +435,7 @@
                             <img src="./image/1.jpg" alt="封面">
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
-                        </div>
+                        </div>-->
                         <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
                     </div>
                 </div>
@@ -414,6 +445,7 @@
             <div><p class="indexTitle">在线书城</p></div>
             <div v-for="item in bookInfo" style="display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
                 <div style="border-right:1px solid #979797;padding-right:5px;"><img src="./image/1.jpg" width="150" height="150" alt=""></div>
+                <p class="textOverNoHover" v-text="item.goods.go_name">啊八块</p>
                 <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
             </div>
             <p><a href="./productMall.html"><button class="btn btn-default">查看更多</button></a></p>
@@ -460,7 +492,8 @@
                 checkData:[],
                 num:0,
                 groupInfo:[],
-                bookInfo:[]
+                bookInfo:[],
+                photoFirst:[]
             },
             created: function () {
                 var that = this;
@@ -559,6 +592,15 @@
                     success: function (data) {
                         that.bookInfo = JSON.parse(data);
                         console.log(that.bookInfo,"bookInfo");
+                    }
+                });
+                $.post({
+                    url:"/myapp/news/getResourceWithCoverAndTitle.php",            //abcdef地址修改
+                    data: "check=10086&data=" + JSON.stringify([0, 3]),
+                    success: function (data) {
+                        that.photoFirst = JSON.parse(data);
+                        console.log(that.photoFirst,"photoFirst");
+                        console.log(that.photoFirst[0].news_cover,"photoFirst");
                     }
                 });
             },

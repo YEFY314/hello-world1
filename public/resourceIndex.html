@@ -163,8 +163,16 @@
             <div id="cover">
                 <h3 style="padding-left:18px;">精彩导览</h3>
                 <div style="margin-left: 13px;padding-bottom: 15px;">
-                    <div style="width:533px;height:316px;display: inline-block;vertical-align: top;margin-right:13px;"><img src="./image/resource1.png" alt="" style="width:533px;height:316px;"></div>
-                    <div style="width:191px;height:316px;display: inline-block;vertical-align: top;"><img src="./image/resource2.png" alt="" style="width:190px;height:150px;margin-bottom:16px; "><img src="./image/resource2.png" alt="" style="width:190px;height:150px;"></div>
+                    <div style="width:533px;height:316px;display: inline-block;vertical-align: top;margin-right:13px;">
+                        <a v-bind:href="'./post.html?id='+photoResource[0].news_id"><img style="width:533px;height:316px;" v-bind:src="photoResource[0].news_cover" alt="图一"></a>
+                        <!--<img src="./image/resource1.png" alt="" style="width:533px;height:316px;">-->
+                    </div>
+                    <div style="width:191px;height:316px;display: inline-block;vertical-align: top;">
+                        <!--<img src="./image/resource2.png" alt="" style="width:190px;height:150px;margin-bottom:16px; ">-->
+                        <!--<img src="./image/resource2.png" alt="" style="width:190px;height:150px;">-->
+                        <a v-bind:href="'./post.html?id='+photo2Resource[0].news_id"><img style="width:190px;height:150px;margin-bottom:16px; " v-bind:src="photo2Resource[0].news_cover" alt="图一"></a>
+                        <a v-bind:href="'./post.html?id='+photo2Resource[1].news_id"><img style="width:190px;height:150px;" v-bind:src="photo2Resource[1].news_cover" alt="图一"></a>
+                    </div>
                 </div>
             </div>
             <div id="resourcePart">
@@ -626,7 +634,9 @@
                 recommendBook:[],
                 recommendMusic:[],
                 updates:[],
-                downloads:[]
+                downloads:[],
+                photoResource:[],
+                photo2Resource:[]
             },
             created: function (){
                 var that = this;
@@ -647,7 +657,7 @@
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef推荐电影资源
                     data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"])+"&grade=1",
                     success: function (data) {
-                        console.log(data);                                                       //目前没资源
+//                        console.log(data);                                                       //目前没资源
                         if(data == "no content"){
                             return false;
                         }
@@ -697,7 +707,7 @@
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",         //abcdef推荐音频资源
                     data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"])+"&grade=1",
                     success: function (data) {
-                        console.log(data);                                                       //目前没资源
+//                        console.log(data);                                                       //目前没资源
                         if(data == "no content"){
                             return false;
                         }
@@ -739,6 +749,28 @@
                         var status = data - 0;
                         if(status == 1){
                             that.checkStatus = true;
+                        }
+                    }
+                });
+                $.ajax({
+                    type:"POST",
+                    url: "/myapp/news/getResourceWithCoverAndTitle.php",
+                    data: "check=10086&data="+JSON.stringify([1,1]),
+                    success: function (data) {
+                        if(data!="-2"||data!="-3"){
+                            that.photoResource=JSON.parse(data);
+                            console.log(that.photoResource, "photoResource");
+                        }
+                    }
+                });
+                $.ajax({
+                    type:"POST",
+                    url: "/myapp/news/getResourceWithCoverByReadtimes.php",
+                    data: "check=10086&data="+JSON.stringify([2]),
+                    success: function (data) {
+                        if(data!="-2"||data!="-3"){
+                            that.photo2Resource=JSON.parse(data);
+                            console.log(that.photo2Resource, "photo2Resource");
                         }
                     }
                 });
