@@ -5,7 +5,6 @@
     <title>一品书童</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/yefy.css" rel="stylesheet">
-    <link rel="stylesheet" href="./plugins/liMarquee/css/liMarquee.css">
     <style>
         .rightAd,.leftAd{
             display: inline-block;
@@ -445,7 +444,7 @@
             <div><p class="indexTitle">在线书城</p></div>
             <div v-for="item in bookInfo" style="display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
                 <div style="border-right:1px solid #979797;padding-right:5px;"><img src="./image/1.jpg" width="150" height="150" alt=""></div>
-                <p class="textOverNoHover" v-text="item.goods.go_name">啊八块</p>
+                <p class="textOverNoHover" style="text-align: center;" v-text="item.goods.go_name">啊八块</p>
                 <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
             </div>
             <p><a href="./productMall.html"><button class="btn btn-default">查看更多</button></a></p>
@@ -456,7 +455,6 @@
 
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="./plugins/liMarquee/js/jquery.liMarquee.js"></script>
 <script src="./js/vue.js"></script>
 <script type="application/javascript">
     $(function() {

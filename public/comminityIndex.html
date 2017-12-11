@@ -255,7 +255,7 @@
     <div id="main">
         <div id="upPart">
             <div id="upPartLeft">
-                <h3 style="border-bottom: 1px solid #979797;"><sapn class="glyphicon glyphicon-menu-left"></sapn>小组导览</h3>
+                <h3 style="border-bottom: 1px solid #979797;"><span style="border-bottom: 4px solid #979797;position: relative;top:-5px;">小组导览</span></h3>
                 <div id="xiaozhu">
                     <div v-for="item in groupInfo" style="cursor: pointer;" v-on:click.prevent="goToGroup(item.cf_id)">
                         <div>
@@ -264,8 +264,8 @@
                         <div>
                             <h3 v-text="item.cf_module">小组名称</h3>
                             <p>小组介绍：</p>
-                            <p v-text="item.cf_introduction" style="word-break:break-word;">小组介绍</p>
-                            <p > 话题：<span v-text="item.cf_news">0</span></p>
+                            <p v-text="item.cf_introduction" style="word-break:break-word;font-size: 14px;">小组介绍</p>
+                            <p style="font-size: 12px;" > 话题：<span v-text="item.cf_news">0</span></p>
                         </div>
                     </div>
                     <div style="text-align: center;width: 100%;height:26px;margin: 0 auto;border: none;;"><a href="./group.html"><button class="btn btn-default" style="background-color: #ffffff;color:#F4AB42;width:90px;">查看更多</button></a></div> <!--abcdef跳转地址-->

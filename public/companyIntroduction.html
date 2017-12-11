@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>关于我们</title>
+    <title>公司简介</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #downPartRight img{
+            width:190px;
+            height:190px;
+        }
+        #downPartRight>div:first-child{
+            border-bottom: 1px dashed #979797;
+            padding-top: 20px;
+        }
+        #downPartRight>div:first-child>p{
+            font-size: 20px;
+            padding-left: 5px;
+            border-left: 4px solid #957573;
+            height:26px;
+        }
+        #downPartRight,#downPartLeft{
+            margin-top:27px;
+            border-radius: 5px;
+            height: 824px;
+        }
+        #downPartLeft>p{
+            margin:15px 40px 20px 20px;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -51,36 +75,30 @@
         </div>
     </nav>
     <div id="main">
-        <div id="upPart"><img src="./image/1.jpg" style="width:1040px;height:244px;"></div>
+        <div id="upPart"><img src="./image/companyIntroduction.png" style="width:1040px;height:244px;"></div>
         <div id="downPartLeft">
-            <p>公司文化</p>
-            <p>1993年，顺丰诞生于广东顺德。自成立以来，顺丰始终专注于服务质量的提升，持续加强基础建设，积极研进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集
-                发和引进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集，市场进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集
-                开发，物流配送，快件收派等速运业务机构及服务网络 在持续强化速运业务的基础上，顺丰坚持以客户需求进具有高科技含量的信息技术与设备以提升作业自动化水平。</p>
-            <p>在国内外建立了庞大的信息采集术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集供应为核心，积极拓展多元化业务，针对电商，食品，医药，汽配，电子等不同类型客户开发出一站式供应链解进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集供应决方案，并提供支付，融资，理财，保价等综合性的金融服务。与此同时，依托强大的物流优势，我们成立进具有高科技含量的信息技术与设备以提升作业自动化水平，在国内外建立了庞大的信息采集供应。</p>
-            <p>顺丰优选，为客户提供品质生活服务，打造顺丰优质生活体验。供应供应供应供应供应供应供应供应应多年来，顺丰持续创新，不断铸造高品质服务体验，为客户成功提供坚实有力的支持</p>
+            <p style="font-size: 26px;padding-bottom: 7px;border-bottom: 1px solid #979797;">公司简介</p>
+            <p>北京一品书僮文化传媒有限公司，是国内一家专注于幼儿小学教育、培训的文化教育传播机构。自创立之初，本司就满怀自信与激情，为把公司建设成为一流的人文化、专业化的传播集团而努力拼搏。目前，公司管理系统健全规范，研发队伍专业齐整，自主研发出版的《奇趣小书僮》幼教丛书甫一问世，就受到国内知名幼儿园和众多家长的欢迎与追捧。</p>
+            <p>在此基础上，公司制定了未来十年战略规划，一是提升品牌认知度，实现产业升级。强化一品书僮的品牌优势，强化拳头产品，强化核心竞争力。二是提升营销队伍建设，推动营销技能升级，实现有效信息即时交换，客户需求无缝对接，更好地服务于幼儿园和家长。</p>
+
         </div>
         <div id="downPartRight">
             <div>
                 <p>产品推荐</p>
             </div>
-            <div>
-                <img src="./image/1.jpg" alt="产品图">
-                <p>图书名</p>
-            </div>
-            <div>
-                <img src="./image/1.jpg" alt="产品图">
-                <p>图书名</p>
-            </div>
-            <div>
-                <img src="./image/1.jpg" alt="产品图">
-                <p>图书名</p>
+            <div v-for="item in bookInfo" style="width:220px;border-bottom: solid 1px #979797;margin:0 auto;" >
+                <div style="margin: 0 auto;width:190px;padding-top: 15px;">
+                    <a v-bind:href="'./bookDetails.html?bookId='+item.go_id"><img v-bind:src="item.go_cover" alt="产品图"></a>
+                    <p v-text="item.go_name"  class="textOverNoHover" style="width:190px;text-align: center;padding-top:8px;padding-bottom: 8px;color:#f4ab42; ">无书名</p>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 <script src="./js/jquery-3.1.1.js"></script>
 <script src="./bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/vue.js" type="application/javascript"></script>
 <script type="application/javascript">
     $(function() {
         var login = false;      //login获取登录状态后标记的变量   需要后端改
@@ -102,6 +120,29 @@
             "user_points": "0",
             "user_sign": "nihaoaho"
         };
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                userInfo:userInfo,
+                login:login,
+                bookInfo:[]
+            },
+            created: function () {
+                var that = this;
+                $.post({
+                    url:"http://localhost:3000/myapp/shops/readBookForRecommend.php",            //abcdef地址修改获取推荐书籍
+                    data:"check=10086",
+                    success: function (data) {
+                        if(data == "no content"){
+                            return false;
+                        }
+                        that.bookInfo = JSON.parse(data);
+                        that.bookInfo.length = 3;
+                        console.log(that.bookInfo,"bookInfoyefy");
+                    }
+                });
+            }
+        })
     });
 </script>
 </body>

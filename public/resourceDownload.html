@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>资源下载</title>
+    <title>用户资源</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/yefy.css" rel="stylesheet">
     <style>
@@ -17,6 +17,20 @@
         #downPartLeft{
             position:relative;
             top:-225px;
+        }
+        .nav-pills>li.active>a,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus{
+            color: #333333;
+            font-size: 20px;
+            background-color: #ffffff;
+            border-bottom: 4px solid #957573;
+            border-radius: 0;
+        }
+        .nav-pills>li>a,.nav-pills>li>a:hover,.nav-pills>li>a:focus{
+            color: #6b6b6b;
+            font-size: 18px;
+            background-color: #ffffff;
+            /*border-right: 1px solid #797979;*/
+            /*border-radius: 0;*/
         }
     </style>
 </head>
@@ -270,48 +284,39 @@
                 }
             },
             created:function(){
-                var contextPath = 'http://localhost:3000';                      //post地址，需要后端改
                 var that = this;
-                console.log(groupId,"haha");
-                var postData = JSON.stringify(["0",groupId,userInfo.user_id,"1","0"]);  //阅读最多
                 $.ajax({
                     type: "POST",
-                    url: contextPath + "/myapp/news/readNewsByOthers.php",
-                    data: "check=10086&data="+postData,
+                    url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef用户电影资源
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"]),
                     success: function (data) {
                         that.news = JSON.parse(data);
                         console.log(that.news,"yefy");
                     }
                 });
-                var postData1 = JSON.stringify(["0",groupId,userInfo.user_id,"0"]);   //阅读最多
                 $.ajax({
                     type: "POST",
-                    url: contextPath + "/myapp/news/readNewsTotalPageByOthers.php",
-                    data: "check=10086&data="+postData1,
+                    url: "http://localhost:3000/myapp/news/readResourcePageByOthers.php",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1"]),
                     success: function (data) {
                         that.allpage = data-0;
                     }
                 });
+
             },
             methods:{
                 goto:function(index){
                     if(index == this.current) return;
                     this.current = index;
-                    var data = ["0",groupId,userInfo.user_id,index,"0"];          //阅读最多
-                    data = JSON.stringify(data);
+                    index = index+'';
                     //这里可以发送ajax请求
-                    var contextPath = 'http://localhost:3000';                 //post地址 需要后端改
                     var that = this;
                     $.ajax({
                         type: "POST",
-                        url: contextPath + "/myapp/news/readNewsByOthers.php",
-                        data: "check=10086&data="+data,
+                        url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef用户电影资源
+                        data: "check=10086&data="+JSON.stringify(["3","1","2",index,"3","1"]),
                         success: function (data) {
                             that.news = JSON.parse(data);
-                            for(a in that.news){
-                                console.log(typeof that.news[a].news_content);
-                                that.news[a].news_content = that.news[a].news_content.replace(/<.*?>/ig,"");
-                            }
                         }
                     });
                 }
@@ -351,25 +356,20 @@
                 }
             },
             created:function(){
-                var contextPath = 'http://localhost:3000';                         //post地址    需要后端改
                 var that = this;
-                var data = ["0",groupId,userInfo.user_id,"1","3"];       //最近发帖
-                data = JSON.stringify(data);
                 $.ajax({
                     type: "POST",
-                    url: contextPath + "/myapp/news/readNewsByOthers.php",
-                    data: "check=10086&data="+data,
+                    url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef用户图书资源
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","2"]),
                     success: function (data) {
                         that.collections = JSON.parse(data);
                         console.log(that.collections);
                     }
                 });
-                var pageData = ["0",groupId,userInfo.user_id,"3"];
-                pageData = JSON.stringify(pageData);
                 $.ajax({
                     type:"POST",
-                    url:contextPath + "/myapp/news/readNewsByOthers.php",
-                    data:"check=10086&data="+pageData,
+                    url: "http://localhost:3000/myapp/news/readResourcePageByOthers.php",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","2"]),
                     success:function(data){
                         that.allpage=data-0;
                     }
@@ -381,15 +381,12 @@
                     if(index == this.current) return;
                     this.current = index;
                     index = index+'';
-                    var data = ["0",groupId,userInfo.user_id,index,"3"];
-                    data = JSON.stringify(data);
                     //这里可以发送ajax请求
-                    var contextPath = 'http://localhost:3000';                         //post地址   需要后端改
                     var that = this;
                     $.ajax({
                         type: "POST",
-                        url: contextPath + "/myapp/news/readNewsByOthers.php",
-                        data: "check=10086&data="+data,
+                        url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef用户电影资源
+                        data: "check=10086&data="+JSON.stringify(["3","1","2",index,"3","2"]),
                         success: function (data) {
                             that.collections = JSON.parse(data);
                         }
@@ -432,25 +429,20 @@
                 }
             },
             created:function(){
-                var contextPath = 'http://localhost:3000';                                    // post地址   需要后端改
                 var that = this;
-                var data = ["3",groupId,"2","1","0","4"];
-                data = JSON.stringify(data);
                 $.ajax({
                     type: "POST",
-                    url: contextPath + "/myapp/news/readResourceByOthers.php",
-                    data: "check=10086&data="+data,
+                    url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef用户音频资源
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"]),
                     success: function (data) {
                         that.resources = JSON.parse(data);
                         console.log(that.resources);
                     }
                 });
-                var pageData = ["3","1","2","4"];
-                pageData = JSON.stringify(pageData);
                 $.ajax({
                     type:"POST",
-                    url:contextPath+"/myapp/news/readResourcePageByOthers.php",
-                    data:"check=10086&data="+pageData,
+                    url: "http://localhost:3000/myapp/news/readResourcePageByOthers.php",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","3"]),
                     success:function(data){
                         that.allpage = data-0;
                     }
@@ -461,15 +453,11 @@
                     if(index == this.current) return;
                     this.current = index;
                     index = index+'';
-                    var data = ["3",groupId,"2",index,"0","4"];
-                    data = JSON.stringify(data);
-                    //这里可以发送ajax请求
-                    var contextPath = 'http://localhost:3000';              // post地址   需要后端改
                     var that = this;
                     $.ajax({
                         type: "POST",
-                        url: contextPath + "/myapp/news/readResourceByOthers.php",
-                        data: "check=10086&data="+data,
+                        url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef用户音频资源
+                        data: "check=10086&data="+JSON.stringify(["3","1","2",index,"3","3"]),
                         success: function (data) {
                             that.resources = JSON.parse(data);
                         }
