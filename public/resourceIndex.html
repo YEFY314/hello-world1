@@ -188,8 +188,8 @@
                         <div class="tab-pane fade in active" id="videoRecommend">
                             <div v-for="item in recommendVideo">
                                 <a v-bind:href="'./post.html?id='+item.news_id"><img v-bind:src="item.news_cover" alt="封面"></a>
-                                <p class="textOverNoDisplay" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
-                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
+                                <p class="textOver" style="font-size: 15px;color:#F4AB42;text-align: center;height:40px;display: flex;align-items: center;justify-content: center;" v-text="item.news_title">啊八块</p>
+                                <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【{{item.cf_module}}】</span></p>
                             </div>
                             <p><button class="btn btn-default">查看更多</button></p>
                         </div>
