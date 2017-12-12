@@ -296,7 +296,7 @@
                 </div>
             </div>
             <div class="rightRecommend" >
-                <p class="indexTitle">签到动态</p>
+                <p class="indexTitle"><span style="display: inline-block;width:25px;height:26px;background-color: #957573;position:relative;top:3px;margin-right:10px;"></span>签到动态</p>
                 <div v-if="checkData.length>0" style="position: relative;overflow: hidden;">
                     <div class="marquee_list" :style="{ top: -num*82 + 'px',height:(5+num)*82+'px'}" :class="{'marquee_top':num}">
                         <!-- 当显示最后一条的时候（num=0转换布尔类型为false）去掉过渡效果-->
@@ -315,7 +315,7 @@
             </div>
         </div>
         <div id="groupOverlook">
-            <div><p class="indexTitle" style="padding-top:10px;">小组导览</p></div>
+            <div><p class="indexTitle" style="padding-top:10px;"><span style="display: inline-block;width:25px;height:26px;background-color: #957573;position:relative;top:3px;margin-right:10px;"></span>小组导览</p></div>
             <div>
                 <div v-for="item in groupInfo" class="group" v-on:click.stop="goToGroup(item.cf_id)">
                     <div style="display: inline-block;vertical-align: top;"><img v-bind:src="'./image/indexgroup'+item.cf_id+'.png'" width="169" height="169" alt=""></div>
@@ -329,7 +329,7 @@
             <p><a href="./group.html"><button class="btn btn-default">查看更多</button></a></p>
         </div>
         <div id="resource">
-            <div><p class="indexTitle">资源下载</p></div>
+            <div><p class="indexTitle" style="padding-top: 10px;"><span style="display: inline-block;width:25px;height:26px;background-color: #957573;position:relative;top:3px;margin-right:10px;"></span>资源下载</p></div>
             <div style="border-bottom: 1px solid #979797;margin-left:20px;margin-right: 20px;">
                 <ul  class="nav nav-pills">
                     <li class="active"><a href="#videoRecommend" data-toggle="tab">视频</a></li>
@@ -442,7 +442,7 @@
             </div>
         </div>
         <div id="onLineMall">
-            <div><p class="indexTitle">在线书城</p></div>
+            <div><p class="indexTitle" style="padding-top: 10px;"><span style="display: inline-block;width:25px;height:26px;background-color: #957573;position:relative;top:3px;margin-right:10px;"></span>在线书城</p></div>
             <div v-for="item in bookInfo" style="display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
                 <div style="border-right:1px solid #979797;padding-right:5px;"><img src="./image/1.jpg" width="150" height="150" alt=""></div>
                 <p class="textOverNoHover" style="text-align: center;" v-text="item.goods.go_name">啊八块</p>
