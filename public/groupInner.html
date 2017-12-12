@@ -31,7 +31,7 @@
             /*border-right: 1px solid #797979;*/
             /*border-radius: 0;*/
         }
-        #hot a,#latest a,#resource a{
+        a{
             color:#333333;
         }
     </style>
@@ -83,7 +83,7 @@
     <div id="main">
         <div id="upPart">
             <div id="upPartLeft">
-                <h3 style="padding-left:18px;"><a href="./group.html"><小组导览</a></h3>              <!--abcdef-->
+                <h3 style="padding-left:18px;font-size: 20px;color:#333333; "><a href="./group.html"><span class="glyphicon glyphicon-menu-left"></span>小组导览</a></h3>              <!--abcdef-->
                 <div id="groupInner">
                     <img v-bind:src="'./image/groupInner'+groupId+'.png'" style="width:777px;height:229px;margin-left: -19px;">
                     <p v-html="groupInfo.cf_module" style="position: absolute;top:47px;left:224px;font-size: 30px;"></p>
@@ -97,7 +97,9 @@
                     <input style="width: 110px;height:28px;border:1px solid #979797;border-radius: 5px;" type="text" name="search" id="search"/>
                     <button v-on:click.prevent="gosearch()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
                 </form>
-                <p style="border-left: 4px solid #957573 ; border-bottom: 1px dashed #979797;font-size: 20px;margin-left: 20px;margin-top:20px;margin-right: 30px;padding-left: 3px;">小组活跃用户</p>
+                <div style="border-bottom: 1px dashed #979797;margin:0 20px 0 28px;">
+                    <p style="border-left: 4px solid #957573 ;font-size: 20px;margin-top:20px;margin-right: 30px;padding-left: 5px;">小组活跃用户</p>
+                </div>
                 <div style="width:190px;margin-left: 20px;">
                     <div v-for="item in groupActiveUser" style="width:45px;display: inline-block;vertical-align: top;margin:12px 9px 0 9px;">
                         <a v-bind:href="'./personInfoOther.html?id='+item.user_id"><img v-bind:src="item.user_photo" alt="头像" style="width:45px;height:45px;border-radius: 22px;"></a>                 <!--abcdef头像路径-->
@@ -110,11 +112,11 @@
         <div id="downPart" style="padding:0px 0px;">
             <div id="downPartLeft">
                 <div>
-                    <ul id="myTab" class="nav nav-pills">
+                    <ul id="myTab" class="nav nav-pills" style="border-bottom: 1px solid #979797;margin-left:15px;margin-right: 15px;">
                         <li class="active"><a href="#hot" data-toggle="tab">热帖</a></li>
                         <li><a href="#latest" data-toggle="tab">最新</a></li>
                         <li><a href="#resource" data-toggle="tab">资源</a></li>
-                        <li style="float: right;"><button v-on:click="goToPosting()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:8px;">发帖</button></li>
+                        <li style="float: right;"><button v-on:click="goToPosting()" class="unionBtn" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:8px;">发帖</button></li>
                     </ul>
                 </div>
                 <div>
@@ -131,20 +133,20 @@
                     </div>
                 </div>
             </div>
-            <div id="downPartRight" style="padding-left:20px;padding-right:20px;">
+            <div id="downPartRight" style="padding-left:20px;padding-right:20px;padding-bottom:20px;">
                 <div style="border-bottom: 1px dashed #979797;">
-                    <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >每日排行</p>
+                    <p style="border-left:4px solid #957573;margin-top: 20px; font-size:20px;padding-left: 5px;" >每日排行</p>
                 </div>
-                <div v-for="item in recommend">
-                    <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
-                    <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
+                <div v-for="(item, index) in recommend" style="padding-top: 20px;">
+                    <p class="textOverNoHover" style="width:200px;"><a v-bind:href="'./post.html?id='+item.news_id"><span class="glyphicon glyphicon-triangle-right"></span><span v-text="index+1"></span>.<span class="textOverNoHover" style="vertical-align:top;display: inline-block;width:200px;">{{item.news_title}}</span></a></p>
+                    <p class="text1" style="margin-left: 15px;"><span>{{item.news_createtime}}</span><span style="display:inline-block;width:32px;float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
                 </div>
-                <div style="border-bottom: 1px dashed #979797;">
-                    <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >编辑推荐</p>
+                <div style="border-bottom: 1px dashed #979797;margin-top: 30px;">
+                    <p style="border-left:4px solid #957573; font-size:20px;padding-left: 5px;" >编辑推荐</p>
                 </div>
-                <div v-for="item in editorRecommend">
-                    <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
-                    <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
+                <div v-for="(item, index) in editorRecommend" style="padding-top: 20px;border-bottom: 1px solid #999999;">
+                    <div style="width:200px;"><a v-bind:href="'./post.html?id='+item.news_id"><img v-bind:src="item.news_cover" width="207" height="150" alt=""></a></div>
+                    <p style="text-align: center;padding-top:10px;" class="textOverNoDisplay" v-text="item.news_title"></p>
                 </div>
             </div>
         </div>
@@ -153,24 +155,24 @@
 <script type="text/x-template" id="hotNews">
     <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
-            <div v-for="item in news" style="border-bottom: 1px solid #000;padding-top:15px;padding-bottom: 15px;">
-                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
+            <div v-for="item in news" style="border-bottom: 1px solid #999999;padding-top:15px;padding-bottom: 15px;">
+                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;margin-right: 15px;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 680px;vertical-align: top;padding-top:10px;">
+                <div style="display: inline-block;width: 665px;vertical-align: top;padding-top:10px;">
                     <div class="time" style="float: right;color:#999999;font-size: 12px;">{{item.news_createtime}}</div>
-                    <div class="title textOver" style="font-weight: bold;">
+                    <div class="title textOverNoHover" style="font-weight: bold;">
                         <a v-bind:href="'./post.html?id='+item.news_id">
-                            <span v-show="item.news_isgreat>0" style="color:#f4ab42;">【精华】</span>
-                            <span v-if="item.news_contains==1" style="color:#f4ab42;">【视屏】</span>
-                            <span v-else-if="item.news_contains==2" style="color:#8694a0;">【图书】</span>
-                            <span v-if="item.news_contains==3" style="color:#8f82bc;">【音频】</span>
+                            <span v-show="item.news_isgreat==1" style="color:#f4ab42;margin-left: -8px;">【精华】</span>
+                            <span v-if="item.news_contains==1" style="color:#f4ab42;margin-left: -8px;">【视屏】</span>
+                            <span v-else-if="item.news_contains==2" style="color:#8694a0;margin-left: -8px;">【图书】</span>
+                            <span v-else-if="item.news_contains==3" style="color:#8f82bc;margin-left: -8px;">【音频】</span>
                             {{item.news_title}}
                         </a>
                     </div>
                     <div>
-                        <p style="display: inline-block; "><span class="textOverNoHover" style="width:40px;color:#999999;font-size: 12px;">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="width:50px;color:#999999;font-size: 12px;">最新回帖：{{item.news_lastcomment}}</span></p>
-                        <p style="display: inline-block;float:right;"><img src="./image/eyesIcon.png" width="20" height="12"  alt="">&nbsp<span style="display: inline-block;width:40px;">{{item.news_readtimes}}</span>&nbsp&nbsp<img src="./image/talkIcon.png" width="16" height="13" >&nbsp<span style="display: inline-block;width:40px;">{{item.news_comments}}</span></p>
+                        <p style="display: inline-block; "><span class="textOverNoHover" style="display:inline-block;width:120px;color:#999999;font-size: 12px;vertical-align: middle;">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="width:50px;color:#999999;font-size: 12px;">最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;float:right;color:#999999;font-size: 12px;"><img src="./image/eyesIcon.png" width="20" height="12"  alt="">&nbsp<span class="textOverNoHover" style="display: inline-block;width:32px;vertical-align:middle;">{{item.news_readtimes}}</span>&nbsp&nbsp<img src="./image/talkIcon.png" width="16" height="13" >&nbsp<span class="textOverNoHover" style="display: inline-block;vertical-align:middle;width:32px;">{{item.news_comments}}</span></p>
                     </div>
                 </div>
             </div>
@@ -187,24 +189,24 @@
 <script type="text/x-template" id="latestNews">
     <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
-            <div v-for="item in collections" style="border-bottom: 1px solid #000;padding-top:15px;padding-bottom: 15px;">
-                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
+            <div v-for="item in collections" style="border-bottom: 1px solid #999999;padding-top:15px;padding-bottom: 15px;">
+                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;margin-right: 15px;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 680px;vertical-align: top;padding-top:10px;">
+                <div style="display: inline-block;width: 665px;vertical-align: top;padding-top:10px;">
                     <div class="time" style="float: right;color:#999999;font-size: 12px;">{{item.news_createtime}}</div>
-                    <div class="title textOver" style="font-weight: bold;">
+                    <div class="title textOverNoHover" style="font-weight: bold;">
                         <a v-bind:href="'./post.html?id='+item.news_id">
-                            <span v-show="item.news_isgreat>0" style="color:#f4ab42;">【精华】</span>
-                            <span v-if="item.news_contains==1" style="color:#f4ab42;">【视屏】</span>
-                            <span v-else-if="item.news_contains==2" style="color:#8694a0;">【图书】</span>
-                            <span v-if="item.news_contains==3" style="color:#8f82bc;">【音频】</span>
+                            <span v-show="item.news_isgreat==1" style="color:#f4ab42;margin-left: -8px;">【精华】</span>
+                            <span v-if="item.news_contains==1" style="color:#f4ab42;margin-left: -8px;">【视屏】</span>
+                            <span v-else-if="item.news_contains==2" style="color:#8694a0;margin-left: -8px;">【图书】</span>
+                            <span v-else-if="item.news_contains==3" style="color:#8f82bc;margin-left: -8px;">【音频】</span>
                             {{item.news_title}}
                         </a>
                     </div>
                     <div>
-                        <p style="display: inline-block; "><span class="textOverNoHover" style="width:40px;color:#999999;font-size: 12px;">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="width:50px;color:#999999;font-size: 12px;">最新回帖：{{item.news_lastcomment}}</span></p>
-                        <p style="display: inline-block;float:right;"><img src="./image/eyesIcon.png" width="20" height="12"  alt="">&nbsp<span style="display: inline-block;width:40px;">{{item.news_readtimes}}</span>&nbsp&nbsp<img src="./image/talkIcon.png" width="16" height="13" >&nbsp<span style="display: inline-block;width:40px;">{{item.news_comments}}</span></p>
+                        <p style="display: inline-block; "><span class="textOverNoHover" style="display:inline-block;width:120px;color:#999999;font-size: 12px;vertical-align: middle;">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="width:50px;color:#999999;font-size: 12px;">最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;float:right;color:#999999;font-size: 12px;"><img src="./image/eyesIcon.png" width="20" height="12"  alt="">&nbsp<span class="textOverNoHover" style="display: inline-block;width:32px;vertical-align:middle;">{{item.news_readtimes}}</span>&nbsp&nbsp<img src="./image/talkIcon.png" width="16" height="13" >&nbsp<span class="textOverNoHover" style="display: inline-block;vertical-align:middle;width:32px;">{{item.news_comments}}</span></p>
                     </div>
                 </div>
             </div>
@@ -222,24 +224,24 @@
 <script type="text/x-template" id="resourcePart">
     <div style="margin:5px 15px;">
         <div style="padding-bottom: 50px;">
-            <div v-for="item in resources" style="border-bottom: 1px solid #000;padding-top:15px;padding-bottom: 15px;">
-                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;">
+            <div v-for="item in resources" style="border-bottom: 1px solid #999999;padding-top:15px;padding-bottom: 15px;">
+                <div style="display: inline-block;width:60px;height:60px;vertical-align: top;margin-right: 15px;">
                     <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
                 </div>
-                <div style="display: inline-block;width: 680px;vertical-align: top;padding-top:10px;">
+                <div style="display: inline-block;width: 665px;vertical-align: top;padding-top:10px;">
                     <div class="time" style="float: right;color:#999999;font-size: 12px;">{{item.news_createtime}}</div>
-                    <div class="title textOver" style="font-weight: bold;">
+                    <div class="title textOverNoHover" style="font-weight: bold;">
                         <a v-bind:href="'./post.html?id='+item.news_id">
-                            <span v-show="item.news_isgreat>0" style="color:#f4ab42;">【精华】</span>
-                            <span v-if="item.news_contains==1" style="color:#f4ab42;">【视屏】</span>
-                            <span v-else-if="item.news_contains==2" style="color:#8694a0;">【图书】</span>
-                            <span v-if="item.news_contains==3" style="color:#8f82bc;">【音频】</span>
+                            <span v-show="item.news_isgreat==1" style="color:#f4ab42;margin-left: -8px;">【精华】</span>
+                            <span v-if="item.news_contains==1" style="color:#f4ab42;margin-left: -8px;">【视屏】</span>
+                            <span v-else-if="item.news_contains==2" style="color:#8694a0;margin-left: -8px;">【图书】</span>
+                            <span v-else-if="item.news_contains==3" style="color:#8f82bc;margin-left: -8px;">【音频】</span>
                             {{item.news_title}}
                         </a>
                     </div>
                     <div>
-                        <p style="display: inline-block; "><span class="textOverNoHover" style="width:40px;color:#999999;font-size: 12px;">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="width:50px;color:#999999;font-size: 12px;">最新回帖：{{item.news_lastcomment}}</span></p>
-                        <p style="display: inline-block;float:right;"><img src="./image/eyesIcon.png" width="20" height="12"  alt="">&nbsp<span style="display: inline-block;width:40px;">{{item.news_readtimes}}</span>&nbsp&nbsp<img src="./image/talkIcon.png" width="16" height="13" >&nbsp<span style="display: inline-block;width:40px;">{{item.news_comments}}</span></p>
+                        <p style="display: inline-block; "><span class="textOverNoHover" style="display:inline-block;width:120px;color:#999999;font-size: 12px;vertical-align: middle;">作者：{{item.user_nickname}}</span>&nbsp&nbsp<span style="width:50px;color:#999999;font-size: 12px;">最新回帖：{{item.news_lastcomment}}</span></p>
+                        <p style="display: inline-block;float:right;color:#999999;font-size: 12px;"><img src="./image/eyesIcon.png" width="20" height="12"  alt="">&nbsp<span class="textOverNoHover" style="display: inline-block;width:32px;vertical-align:middle;">{{item.news_readtimes}}</span>&nbsp&nbsp<img src="./image/talkIcon.png" width="16" height="13" >&nbsp<span class="textOverNoHover" style="display: inline-block;vertical-align:middle;width:32px;">{{item.news_comments}}</span></p>
                     </div>
                 </div>
             </div>

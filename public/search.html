@@ -5,124 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>搜索帖子</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<style>
-        body{
-            background-color: #ededed;
-        }
-        .container{
-            width: 1000px;
-        }
-        nav.navbar{
-            font-size: 16px;
-        }
-        ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
-        }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1000px;
-            /*background-color: #1b6d85;*/
-        }
-        #personInfo,#personFunc{
-            background-color: #ffffff;
-        }
-        #personInfo>div,#personFunc>div{
-            display: inline-block;
-            vertical-align: top;
-        }
-        #personInfo>div{
-            padding: 40px;
-        }
-        #personInfoLeft{
-            text-align: center;
-            width:250px;
-        }
-        #personInfoRight{
-            position: relative;
-        }
-        #personFunc>div{
-            margin-top: 10px;
-        }
-        .leftAd,.rightAd{
-            display: inline-block;
-            height:330px;
-        }
-        .leftAd{
-            /* padding-top: 10px;
-             padding-left: 10px;*/
-            float: right;
-        }
-        .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
-        }
-        .carousel-inner{
-            height:330px;
-            width:680px;
-        }
-        #personInfoRight>div,#personInfoMiddle>div{
-            width:274px;
-        }
-        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
-            font-weight:bold;
-            width:100px;
-        }
-        #personInfoMiddle>div p, #personInfoRight>div p{
-            display: inline-block;
-        }
-        #personInfoMiddle>div,#personInfoRight>div{
-            padding-top: 15px;
-        }
-        #login{
-            display: none;
-        }
-        #preview, .img, #preview img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-        }
-        #preview {
-            border: 1px solid #3c763d;
-            border-radius: 50px;
-        }
-        .pagination{
-            float: right;
-        }
-        #file{
-            display: none;
-        }
-        #filelLabel{
-            display: inline-block;
-            border:1px solid #3c763d;
-            border-radius: 3px;
-            cursor: pointer;
-            padding:3px;
-            margin-left: 15px;
-            margin-top: 10px;
-            width:68px;
-        }
-        label{
-            width:100px;
-        }
-        #infoButtom{
-            margin-left: 235px;
-            margin-top: 30px;
-        }
-        #infoTop>div, #infoButtom>div{
-            height:50px;
-        }
-        #infoButtom input, #infoTop input{
-            border-radius: 5px;
-            border: 1px solid #000000;
-        }
-    </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
 </head>
 <body>
@@ -169,59 +51,18 @@
             </div>
         </div>
     </nav>
-        <div class="container">
-            <div class="navbar-header">
-                <img class="navbar-brand" src="#" alt="一品书童有限责任公司">
-            </div>
-            <div class="nav narbar-nav">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公司介绍</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">公司文化</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">公司介绍</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">人才招聘</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">产品商城</a></li>
-                    <li><a href="#">交流社区</a></li>
-                    <li><a href="#">资源下载</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right" id="logout">
-                    <!--<li><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>-->
-                    <li><a href="#">微信登陆</a></li>
-                </ul>
-                <ul class="nav navbar-var navbar-right" id="login">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img v-bind:src="userInfo.user_photo" style="width:30px;height:30px;border-radius: 15px;"><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">个人主页</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">私信</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">退出登录</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div id="main">
         <div id="searchPart">
-            <form>
-                <input  v-model="keyword" type="text" name="search" style="width:675px;height:56px;border-radius: 5px;border: 1px solid #979797;font-size: 45px;"/>
-                <button v-on:click.prevent="search()" class="btn btn-default" style="height:56px; width:65px;background-color: #F4AB42;color:#ffffff;margin-bottom: 25px;margin-left:10px;">搜索</button>
+            <form style="padding-bottom: 50px;">
+                <input  v-model="keyword" type="text" name="search" style="width:675px;height:56px;border-radius: 5px;border: 1px solid #979797;font-size: 24px;padding-left: 14px;"/>
+                <button v-on:click.prevent="search()" class="btn btn-default" style="height:56px; width:65px;background-color: #F4AB42;color:#ffffff;margin-bottom: 10px;margin-left:10px;">搜索</button>
             </form>
-            <div v-for="item in searchResults" style="border-bottom: 1px solid grey;margin-top:10px;">
-                <p sytle="width:640px;font-size:18px;" class="textOver"><b><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></b></p>
-                <p style="color:#BBBBBB;width:640px;height:66px;word-break: normal;" class="textOver">{{item.news_content}}</p>    <!--后期需要改-->
-                <p style="color:#BBBBBB;width:640px;">{{item.user_nickname}}&nbsp&nbsp&nbsp {{item.news_createtime}}</p>
+            <div v-for="item in searchResults" style="border-bottom: 1px solid grey;margin-top:10px;width:624px;">
+                <p  class="textOverNoHover"><a style="display: inline-block;width:624px;font-size: 18px;" class="textOverNoHover" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
+                <p style="color:#BBBBBB;word-break: normal;font-size: 14px;" class="textOverNoDisplay">{{item.news_content}}</p>    <!--后期需要改-->
+                <p style="color:#BBBBBB;font-size: 14px;">{{item.user_nickname}}&nbsp&nbsp&nbsp {{item.news_createtime}}</p>
             </div>
-            <ul class="pagination" v-show="allpage>1"  >
+            <ul class="pagination" v-show="allpage>1" >
                 <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
                 <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
                     <a href="#" >{{index}}</a>
@@ -304,9 +145,17 @@
                             success: function (data) {
                                 that.searchResults = JSON.parse(data);
                                 for(a in that.searchResults){
-                                    that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"");
+                                    that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                                 }
                                 console.log(that.searchResults);
+                            }
+                        });
+                        $.ajax({
+                            type:"post",
+                            url: 'http://localhost:3000/myapp/news/searchNewsTitlePage.php',      //abcdef
+                            data: "check=10086&data="+JSON.stringify([encodeURIComponent(that.keyword)]),
+                            success: function (data) {
+                                that.allpage = data - 0;
                             }
                         });
                     }
@@ -322,24 +171,24 @@
                     var that  = this;
                     $.ajax({
                         type:"post",
-                        url: 'http://localhost:3000/myapp/news/searchNewsTitle.php',
+                        url: 'http://localhost:3000/myapp/news/searchNewsTitle.php',          //abcdef
                         data: "check=10086&data="+JSON.stringify([encodeURIComponent(that.keyword),"1"]),
                         success: function (data) {
                             that.searchResults = JSON.parse(data);
                             for(a in that.searchResults){
-                                that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"");
+                                that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                             }
                             console.log(that.searchResults);
                         }
                     });
                     $.ajax({
                         type:"post",
-                        url: 'http://localhost:3000/myapp/news/searchNewsTitlePage.php',
+                        url: 'http://localhost:3000/myapp/news/searchNewsTitlePage.php',      //abcdef
                         data: "check=10086&data="+JSON.stringify([encodeURIComponent(that.keyword)]),
                         success: function (data) {
                             that.allpage = data - 0;
                         }
-                    })
+                    });
                 },
                 goto:function(index){
                     if(index == this.current) return;
@@ -357,7 +206,7 @@
                         success: function (data) {
                             that.searchResults = JSON.parse(data);
                             for(a in that.searchResults){
-                                that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"");
+                                that.searchResults[a].news_content = that.searchResults[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                             }
                         }
                     });

@@ -155,6 +155,15 @@
         }
     </style>-->
     <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #main{
+            margin-top:10px;
+        }
+        #group{
+            margin-top: 30px;
+        }
+
+    </style>
 </head>
 <body>
 <div id="app">
@@ -201,15 +210,15 @@
         </div>
     </nav>
     <div id="main">
-        <div style="height:62px;text-align: center;margin-top: 20px;background-color: #ffffff;"><h3 style="padding-top: 17px;">小组概览</h3></hi></div>
+        <div style="height:62px;text-align: center;background-color: #ffffff;"><h3 style="padding-top: 17px;">小组概览</h3></hi></div>
         <div id="group">
-            <div v-for="item in groupInfo" style="display: inline-block;margin:0 25px 42px;">
+            <div v-for="item in groupInfo" style="display: inline-block;margin:0 25px 42px;border-top-left-radius:5px;border-top-right-radius: 5px; ">
                 <div class="groupTitle">
                     <div></div>
                     <img v-bind:src="'./image/group'+item.cf_id+'.png'" style="width:465px;margin-top:-27px;">
                     <p v-html="item.cf_module" style="position: absolute;top:84px;left:170px;font-size: 30px;color:#333333;"></p>
                 </div>
-                <div class="groupInfo">
+                <div class="groupInfo" style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
                     <div>
                         <div><img src="item.user_photo" alt="头像" style="width:66px;height:66px;border-radius:33px;position: absolute;bottom:112px;left:42px;"></div>     <!--abcdef头像-->
                         <p class="textOverNoHover">组长:{{item.user_nickname}}</p>

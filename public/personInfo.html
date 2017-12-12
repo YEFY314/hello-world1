@@ -11,6 +11,7 @@
             color: #333333;
             background-color: #ffffff;
             border-radius: 0;
+            border-bottom: none;
         }
         .nav-pills>li.active,.nav-pills>li.active:hover,.nav-pills>li.active:focus{
             border-left: 4px solid #957573;
@@ -22,6 +23,18 @@
             /*border-right: 1px solid #797979;*/
             /*border-radius: 0;*/
         }
+        #personFunc>div{
+            margin-top: 0;
+        }
+        ul.nav>li{
+            padding-left:0;
+            padding-right: 0;
+            background-color: #f6f6f1;
+        }
+        .nav-pills>li>a, .nav-pills>li>a:hover, .nav-pills>li>a:focus{
+            background-color: #f6f6f1;
+        }
+
     </style>
 </head>
 <body>
@@ -132,7 +145,7 @@
                 </div>
             </div>
         </div>
-        <div id="personFunc" style="margin-top:30px;min-height: 500px;">
+        <div id="personFunc" style="margin-top:30px;min-height: 500px;background-color: #f6f6f1;">
             <div id="personFuncLeft" style="width:270px;display: inline-block;">
                 <ul id="myTab" class="nav nav-pills nav-stacked">
                     <li class="active"><a href="#message" data-toggle="tab"><img src="./image/personInfoBell.png" width="21" height="22" alt="">&nbsp;系统消息</a></li>
@@ -140,7 +153,7 @@
                     <li><a href="#collection" data-toggle="tab"><img src="./image/personInfoStar.png" width="21" height="22" alt="">&nbsp;我的收藏</a></li>
                 </ul>
             </div>
-            <div id="personFuncRight" style="width:750px;display: inline-block;">
+            <div id="personFuncRight" style="margin-left:-5px;width:770px;min-height: 500px;display: inline-block;padding-right:15px;padding-bottom:20px;background-color: #ffffff;">
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade" id="post">
                         <mynews></mynews>
@@ -160,7 +173,7 @@
     <div style="margin-left: 20px;">
          <div v-for="item in news" style="border-bottom: 1px solid #000;padding-top:20px;padding-bottom: 14px;">
              <div class="time text1" style="float: right;color:grey;">{{item.news_createtime}}</div>
-             <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
+             <div class="title" style="font-weight: bold;"><a v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></div>
              <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay"></div>
              <p style="color:#797979;font-size: 12px;padding-top:18px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>
          </div>
@@ -179,6 +192,7 @@
             <div class="time text1" style="float: right;color:grey;">{{item.col_time}}</div>
             <div class="title" style="font-weight: bold;"><a v-bind:href="'./post.html?id='+item.col_newsid">{{item.news_title}}</a></div>
             <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay">无内容</div>
+            <p v-on:click.stop="cancelCollect(item.col_newsid)" style="text-align: right;font-size: 12px;color:blue;cursor: pointer;padding-top: 18px;">取消收藏</p>
             <!--<p style="color:#797979;font-size: 12px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>-->
         </div>
         <ul class="pagination"  v-show="allpage>1">
@@ -200,10 +214,10 @@
                 <p v-else-if="item.sys_type=='2'">对话通知</p>
                 <p v-else="item.sys_type=='3'">回复通知</p>
             </div>
-            <p v-if="item.sys_type=='0'" class="textOverNoDisplay text2" >您的帖子<a v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到来自用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的评论&nbsp;</p>
-            <p v-else-if="item.sys_type=='3'" class="textOverNoDisplay text2">用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>在帖子<a v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>中回复您：<span>{{item.sys_content}}</span>&nbsp; </p>
-            <p v-else-if="item.sys_type=='1'" class="textOverNoDisplay text2">您的帖子<a v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的点赞</p>
-            <p v-else="item.sys_type=='2'" class="textOverNoDisplay text2">用户<a v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>给您发送消息：<a v-bind:href="'./talkTo.html?id='+item.user_id">@{{item.sys_content}}</a></p>
+            <p v-if="item.sys_type=='0'" class="textOverNoDisplay text2" >您的帖子<a style="color:blue;" v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到来自用户<a style="color:blue;" v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的评论&nbsp;</p>
+            <p v-else-if="item.sys_type=='3'" class="textOverNoDisplay text2">用户<a style="color:blue;" v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>在帖子<a style="color:blue;" v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>中回复您：<span>{{item.sys_content}}</span>&nbsp; </p>
+            <p v-else-if="item.sys_type=='1'" class="textOverNoDisplay text2">您的帖子<a style="color:blue;" v-bind:href="'./post.html?id='+item.sys_newsid">《{{item.news_title}}》</a>收到用户<a style="color:blue;" v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>的点赞</p>
+            <p v-else="item.sys_type=='2'" class="textOverNoDisplay text2">用户<a style="color:blue;" v-bind:href="'./personInfoOther.html?id='+item.user_id">@{{item.user_nickname}}</a>给您发送消息：<a style="color:blue;" v-bind:href="'./talkTo.html?id='+item.user_id">@{{item.sys_content}}</a></p>
         </div>
         <ul class="pagination" v-show="allpage>1">
             <li v-show="current != 1" @click="current-- && goto(current)" ><a href="#">上一页</a></li>
@@ -368,7 +382,7 @@
                         for(a in that.collections){
                             that.collections[a].news_content = that.collections[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                         }
-                        console.log(that.collections);
+                        console.log(that.collections,"collections");
                     }
                 });
                 var pageData = [userInfo.user_id];
@@ -401,6 +415,31 @@
                             for(var a in that.collections){
                                 that.collections[a].news_content = that.collections[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
                                 console.log(that.collections[a].news_content);
+                            }
+                        }
+                    });
+                },
+                cancelCollect: function (newsId) {
+                    var that = this;
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:3000/myapp/news/changeCollectState.php",
+                        data: "check=10086&data="+JSON.stringify([newsId,userInfo.user_id]),
+                        success: function (data) {
+                            console.log(data,"cancel");
+                            if(data=="1"){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://localhost:3000/myapp/conn/getUserCollectInfo.php",
+                                    data: "check=10086&data="+JSON.stringify([userInfo.user_id,that.current]),
+                                    success: function (data) {
+                                        that.collections = JSON.parse(data);
+                                        for(var a in that.collections){
+                                            that.collections[a].news_content = that.collections[a].news_content.replace(/<.*?>/ig,"").replace(/&nbsp;/ig,"");
+                                            console.log(that.collections[a].news_content);
+                                        }
+                                    }
+                                });
                             }
                         }
                     });

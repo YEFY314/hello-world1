@@ -5,125 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>他人中心</title>
     <link href="./bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<style>
-        body{
-            background-color: #ededed;
-        }
-        .container{
-            width: 1000px;
-        }
-        nav.navbar{
-            font-size: 16px;
+    <link href="./css/yefy.css" rel="stylesheet">
+    <style>
+        #personFunc>div{
+            margin-top: 0;
         }
         ul.nav>li{
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left:0;
+            padding-right: 0;
+            background-color: #f6f6f1;
         }
-        ul.nav.navbar-right>li{
-            padding-right: 5px;
-            padding-left:5px;
+        .nav-pills>li>a, .nav-pills>li>a:hover, .nav-pills>li>a:focus{
+            background-color: #f6f6f1;
         }
-        #main{
-            margin:10px auto;
-            padding-top: 51px;
-            width:1000px;
-            /*background-color: #1b6d85;*/
-        }
-        #personInfo,#personFunc{
-            background-color: #ffffff;
-        }
-        #personInfo>div,#personFunc>div{
-            display: inline-block;
-            vertical-align: top;
-        }
-        #personInfo>div{
-            padding: 40px;
-        }
-        #personInfoLeft{
-            text-align: center;
-            width:250px;
-        }
-        #personInfoRight{
-            position: relative;
-        }
-        #personFunc>div{
-            margin-top: 10px;
-        }
-        .leftAd,.rightAd{
-            display: inline-block;
-            height:330px;
-        }
-        .leftAd{
-            /* padding-top: 10px;
-             padding-left: 10px;*/
-            float: right;
-        }
-        .leftAd img{
-            width:300px;
-            height:150px;
-            margin-bottom: 30px;
-        }
-        .carousel-inner{
-            height:330px;
-            width:680px;
-        }
-        #personInfoRight>div,#personInfoMiddle>div{
-            width:274px;
-        }
-        #personInfoMiddle>div>p:first-child,#personInfoRight>div>p:first-child {
-            font-weight:bold;
-            width:100px;
-        }
-        #personInfoMiddle>div p, #personInfoRight>div p{
-            display: inline-block;
-        }
-        #personInfoMiddle>div,#personInfoRight>div{
-            padding-top: 15px;
-        }
-        #login{
-            display: none;
-        }
-        #preview, .img, #preview img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50px;
-        }
-        #preview {
-            border: 1px solid #3c763d;
-            border-radius: 50px;
-        }
-        .pagination{
-            float: right;
-        }
-        #file{
-            display: none;
-        }
-        #filelLabel{
-            display: inline-block;
-            border:1px solid #3c763d;
-            border-radius: 3px;
-            cursor: pointer;
-            padding:3px;
-            margin-left: 15px;
-            margin-top: 10px;
-            width:68px;
-        }
-        label{
-            width:100px;
-        }
-        #infoButtom{
-            margin-left: 235px;
-            margin-top: 30px;
-        }
-        #infoTop>div, #infoButtom>div{
-            height:50px;
-        }
-        #infoButtom input, #infoTop input{
-            border-radius: 5px;
-            border: 1px solid #000000;
-        }
-    </style>-->
-    <link href="./css/yefy.css" rel="stylesheet">
+    </style>
 </head>
 <body>
 <div id="app">
@@ -231,18 +126,18 @@
                 </div>
             </div>
         </div>-->
-        <div id="personFunc" style="margin-top:30px;min-height: 500px;padding-bottom: 30px;">
-            <div id="personFuncLeft" style="width:200px;display: inline-block;background-color: #f6f6f1;">
+        <div id="personFunc" style="margin-top:30px;min-height: 500px;background-color: #f6f6f1;">
+            <div id="personFuncLeft" style="width:270px;display: inline-block;">
                 <ul id="myTab" class="nav nav-pills nav-stacked">
-                    <li class="active" style="font-size: 15px;text-align: center;border-left:4px solid #000000;height:50px;padding-top: 12px;background-color: "><img src="./image/post.png" style="width:18px;height:24px;" alt="">他的帖子</li>
+                    <li class="active" style="font-size: 15px;text-align: center;border-left:4px solid #000000;height:50px;padding-top: 12px;background-color:#ffffff; "><img src="./image/post.png" style="width:18px;height:24px;" alt="">他的帖子</li>
                 </ul>
             </div>
-            <div id="personFuncRight" style="width:750px;display: inline-block;">
+            <div id="personFuncRight" style="margin-left:-5px;width:770px;min-height: 500px;display: inline-block;padding-right:15px;padding-bottom:20px;background-color: #ffffff;">
                 <div id="myTabContent" class="tab-content">
-                    <div>
+                    <div style="margin-left: 20px;">
                         <div v-for="item in news" style="border-bottom: 1px solid #000;padding-top:20px;padding-bottom: 14px;">
-                            <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
-                            <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
+                            <div class="time text1" style="float: right;color:grey;">{{item.news_createtime}}</div>
+                            <div class="title" style="font-weight: bold;"><a v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></div>
                             <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay"></div>
                             <p style="color:#797979;font-size: 12px;padding-top:18px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>
                         </div>
@@ -254,6 +149,21 @@
                             <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
                         </ul>
                     </div>
+                    <!--<div>
+                        <div v-for="item in news" style="border-bottom: 1px solid #000;padding-top:20px;padding-bottom: 14px;">
+                            <div class="time" style="float: right;color:grey;">{{item.news_createtime}}</div>
+                            <div class="title" style="font-weight: bold;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></div>
+                            <div style="font-size: 12px;padding-top:18px;" v-html="item.news_content" class="textOverNoDisplay"></div>
+                            <p style="color:#797979;font-size: 12px;padding-top:18px;">评论<span style="display: inline-block;width:50px;" v-html="item.news_comments"></span>阅读<span style="display: inline-block;width:50px;" v-html="item.news_readtimes"></span>点赞<span style="display: inline-block;width:50px;" v-html="item.news_liketimes"></span></p>
+                        </div>
+                        <ul class="pagination" v-show="allpage>1" >
+                            <li v-show="current != 1" @click="current&#45;&#45; && goto(current)" ><a href="#">上一页</a></li>
+                            <li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#" >{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)"><a href="#" >下一页</a></li>
+                        </ul>
+                    </div>-->
                 </div>
             </div>
         </div>
