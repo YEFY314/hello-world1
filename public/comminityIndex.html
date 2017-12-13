@@ -290,7 +290,7 @@
                         <li class="active"><a href="#hot" data-toggle="tab">热帖</a></li>
                         <li><a href="#latest" data-toggle="tab">最新</a></li>
                         <li><a href="#resource" data-toggle="tab">资源</a></li>
-                        <li style="float: right;"><button class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:8px;">发帖</button></li>
+                        <li style="float: right;"><button v-on:click.stop="goToPosting()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left:140px;margin-top:8px;">发帖</button></li>
                     </ul>
                 </div>
                 <div>
@@ -781,6 +781,10 @@
                 },
                 goToGroup:function(groupId){
                     window.location.href = "./groupInner.html?groupId="+groupId;
+                },
+                goToPosting: function () {
+                    window.location.href = "./posting.html";
+
                 }
             }
         });

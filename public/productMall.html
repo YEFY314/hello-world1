@@ -107,7 +107,7 @@
         <div id="downPart">
             <div class="bookItem" v-for="item in productsInfo" style="cursor: pointer;" v-on:click.prevent="goToDetail(item.goods.go_id)">
                 <div class="bookItemLeft">
-                    <img src="./image/1.jpg" alt="图书">        <!--abcdef图片地址-->
+                    <img v-bind:src="item.goods.go_cover" alt="图书">        <!--abcdef图片地址-->
                 </div>
                 <div class="bookItemRight">
                     <p v-html="item.goods.go_name" class="bookTitle">无书名</p>
@@ -191,6 +191,14 @@
                     success: function (data) {
                         that.productsInfo = JSON.parse(data);
                         console.log(that.productsInfo);
+                    }
+                });
+                $.post({
+                    url:"http://localhost:3000/myapp/shops/readBookListByClassPage.php",            //abcdef地址修改
+                    data:"check=10086&data="+JSON.stringify(["101"]),
+                    success: function (data){
+                        that.allpage = data-0;
+                        console.log(that.allpage);
                     }
                 });
             },
