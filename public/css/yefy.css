@@ -301,6 +301,17 @@ label{
     background-color: #f4ab42;
     color:#FFFFFF;
     border: 1px solid #f4ab42;
+    padding:0 0;
+}
+.unionBtn:hover,.unionBtn:focus{
+    background-color: #EF9A20;
+    border: 1px solid #EF9A20;
+    color:#ffffff;
+}
+.unionBtn:active:hover{
+    background-color: #EF9A20;
+    border: 1px solid #EF9A20;
+    color:#ffffff;
 }
 .unionBtn2{
     width:80px;
@@ -309,6 +320,17 @@ label{
     background-color: #ffffff;
     color:#f4ab42;
     border: 1px solid #f4ab42;
+    padding:0 0;
+}
+.unionBtn2:hover,.unionBtn2:focus{
+    background-color: #EF9A20;
+    border: 1px solid #EF9A20;
+    color:#ffffff;
+}
+.unionBtn2:active:hover{
+    background-color: #EF9A20;
+    border: 1px solid #EF9A20;
+    color:#ffffff;
 }
 .alert {
     display: none;

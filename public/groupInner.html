@@ -157,7 +157,7 @@
         <div style="padding-bottom: 50px;">
             <div v-for="item in news" style="border-bottom: 1px solid #999999;padding-top:15px;padding-bottom: 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;margin-right: 15px;">
-                    <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
+                    <a v-bind:href="'./personInfoOther.html?id='+item.news_user"><img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;"></a>
                 </div>
                 <div style="display: inline-block;width: 665px;vertical-align: top;padding-top:10px;">
                     <div class="time" style="float: right;color:#999999;font-size: 12px;">{{item.news_createtime}}</div>
@@ -191,7 +191,7 @@
         <div style="padding-bottom: 50px;">
             <div v-for="item in collections" style="border-bottom: 1px solid #999999;padding-top:15px;padding-bottom: 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;margin-right: 15px;">
-                    <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
+                    <a v-bind:href="'./personInfoOther.html?id='+item.news_user"><img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;"></a>
                 </div>
                 <div style="display: inline-block;width: 665px;vertical-align: top;padding-top:10px;">
                     <div class="time" style="float: right;color:#999999;font-size: 12px;">{{item.news_createtime}}</div>
@@ -226,7 +226,7 @@
         <div style="padding-bottom: 50px;">
             <div v-for="item in resources" style="border-bottom: 1px solid #999999;padding-top:15px;padding-bottom: 15px;">
                 <div style="display: inline-block;width:60px;height:60px;vertical-align: top;margin-right: 15px;">
-                    <img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;">
+                    <a v-bind:href="'./personInfoOther.html?id='+item.news_user"><img v-bind:src="item.user_photo" alt="头像" style="width: 60px;height:60px;border: 1px solid #ffffff;border-radius: 30px;"></a>
                 </div>
                 <div style="display: inline-block;width: 665px;vertical-align: top;padding-top:10px;">
                     <div class="time" style="float: right;color:#999999;font-size: 12px;">{{item.news_createtime}}</div>

@@ -96,12 +96,12 @@
                 <p>商品导览</p>
             </div>
             <div style="padding-top: 19px;padding-left:30px; " class="bookType">
-                <button v-on:click="getProducts('101')" class="btn btn-default">类别一</button>
-                <button v-on:click="getProducts('102')" class="btn btn-default">类别二</button>
-                <button v-on:click="getProducts('103')" class="btn btn-default">类别三</button>
-                <button v-on:click="getProducts('104')" class="btn btn-default">类别四</button>
-                <button v-on:click="getProducts('105')" class="btn btn-default">类别五</button>
-                <button v-on:click="getProducts('106')" class="btn btn-default">类别六</button>
+                <button v-on:click="getProducts('101')" class="unionBtn btn btn-default">类别一</button>
+                <button v-on:click="getProducts('102')" class="unionBtn btn btn-default">类别二</button>
+                <button v-on:click="getProducts('103')" class="btn btn-default unionBtn">类别三</button>
+                <button v-on:click="getProducts('104')" class="btn btn-default unionBtn">类别四</button>
+                <button v-on:click="getProducts('105')" class="btn btn-default unionBtn">类别五</button>
+                <button v-on:click="getProducts('106')" class="btn btn-default unionBtn">类别六</button>
             </div>
         </div>
         <div id="downPart">
@@ -114,7 +114,7 @@
                     <p style="margin-top: -5px;">作者：<span v-html="item.goods.go_author">暂无</span></p>
                     <p style="margin-top: -5px;">类别：少儿读物</p>
                     <p style="margin-top: -5px;">￥<span v-html="item.goods.go_price"></span></p>     <!--<span style="text-decoration: line-through;float: right;">18.00</span>-->
-                    <p style="margin-top: -5px;">购买：<button v-on:click.stop = "goToBuy(item.url.url_url)" class="btn btn-default" style="background-color:#f4ab42;color:#ffffff;margin-left: 10px;">微店</button></p>
+                    <p style="margin-top: -5px;">购买：<button v-on:click.stop = "goToBuy(item.url.url_url)" class="btn btn-default unionBtn" style="width:40px;height:26px;font-size: 13px;">微店</button></p>
                 </div>
             </div>
             <ul class="pagination" v-show="allpage>1">
