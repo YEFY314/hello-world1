@@ -42,20 +42,6 @@ ul.nav.navbar-right>li{
 #personFunc>div{
     margin-top: 10px;
 }
-/*.leftAd,.rightAd{
-    display: inline-block;
-    height:330px;
-}
-.leftAd{
-    !* padding-top: 10px;
-     padding-left: 10px;*!
-    float: right;
-}
-.leftAd img{
-    width:300px;
-    height:150px;
-    margin-bottom: 30px;
-}*/
 #personInfoRight>div,#personInfoMiddle>div{
     width:274px;
 }
@@ -122,23 +108,6 @@ label{
     width:465px;
     height:302px;
 }
-/*#group>div{
-    display: inline-block;
-    height: 302px;
-    width:465px;
-}
-#group>div>div:first-child{
-    height:176px;
-    background-color:#E2E6AC;
-    position: relative;
-}
-#group>div>div:nth-child(2){
-    background-color: #f8f8f8;
-    height:100px;
-}
-#group>div>div:nth-child(2)>p{
-    margin-left: 30px;
-}*/
 .groupTitle>div:first-child{
     height:26px;
     width:93px;
@@ -379,6 +348,7 @@ label{
 }
 a:hover{
     text-decoration: none;
+    color:blue !important;
 }
 a{
     color:#333333;
@@ -396,4 +366,39 @@ a{
     background-color: #ffffff;
     /*border-right: 1px solid #797979;*/
     /*border-radius: 0;*/
+}
+footer{
+    width:100%;
+    height:112px;
+    background-color:#333333;
+}
+footer>div{
+    width:1040px;
+    margin: 0 auto;
+}
+.footerLeft,.footerRight{
+    display: inline-block;
+    vertical-align: top;
+}
+.footerLeft{
+    width:777px;
+}
+.footerRight{
+    width:250px;
+}
+.footerLeft p,.footerRight p{
+    color:#a3a7c2;
+    display: inline-block;
+    font-size: 14px;
+    margin: 30px 28px 0;
+}
+.footerLeft a{
+    color:#a3a7c2;
+}
+.footerRight p{
+    color:#a3a7c2;
+    font-size: 14px;
+}
+.footerLeft>div{
+    text-align: center;
 }

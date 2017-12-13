@@ -138,7 +138,7 @@
                     <p style="border-left:4px solid #957573;margin-top: 20px; font-size:20px;padding-left: 5px;" >每日排行</p>
                 </div>
                 <div v-for="(item, index) in recommend" style="padding-top: 20px;">
-                    <p class="textOverNoHover" style="width:200px;"><a v-bind:href="'./post.html?id='+item.news_id"><span class="glyphicon glyphicon-triangle-right"></span><span v-text="index+1"></span>.<span class="textOverNoHover" style="vertical-align:top;display: inline-block;width:200px;">{{item.news_title}}</span></a></p>
+                    <p class="textOverNoHover" ><a v-bind:href="'./post.html?id='+item.news_id"><span class="glyphicon glyphicon-triangle-right"></span><span v-text="index+1"></span>.<span class="textOverNoHover" style="vertical-align:top;display: inline-block;width:170px;">{{item.news_title}}</span></a></p>
                     <p class="text1" style="margin-left: 15px;"><span>{{item.news_createtime}}</span><span style="display:inline-block;width:32px;float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
                 </div>
                 <div style="border-bottom: 1px dashed #979797;margin-top: 30px;">

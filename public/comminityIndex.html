@@ -312,7 +312,7 @@
                     <p style="border-left:4px solid #957573;margin-top: 20px; font-size:20px;padding-left: 5px;" >每日排行</p>
                 </div>
                 <div v-for="(item, index) in recommend" style="padding-top: 20px;">
-                    <p class="textOverNoHover" style="width:200px;"><a v-bind:href="'./post.html?id='+item.news_id"><span class="glyphicon glyphicon-triangle-right"></span><span v-text="index+1"></span>.<span class="textOverNoHover" style="vertical-align:top;display: inline-block;width:200px;">{{item.news_title}}</span></a></p>
+                    <p class="textOverNoHover"><a v-bind:href="'./post.html?id='+item.news_id"><span class="glyphicon glyphicon-triangle-right"></span><span v-text="index+1"></span>.<span class="textOverNoHover" style="vertical-align:top;display: inline-block;width:170px;">{{item.news_title}}</span></a></p>
                     <p class="text1" style="margin-left: 15px;"><span>{{item.news_createtime}}</span><span style="display:inline-block;width:32px;float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
                 </div>
                 <div style="border-bottom: 1px dashed #979797;margin-top: 30px;">
@@ -322,20 +322,6 @@
                     <div style="width:200px;"><a v-bind:href="'./post.html?id='+item.news_id"><img v-bind:src="item.news_cover" width="207" height="150" alt=""></a></div>
                     <p style="text-align: center;padding-top:10px;" class="textOverNoDisplay" v-text="item.news_title"></p>
                 </div>
-                <!--<div style="border-bottom: 1px dashed #979797;">
-                    <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >每日排行</p>
-                </div>
-                <div v-for="item in recommend">
-                    <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
-                    <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
-                </div>
-                <div style="border-bottom: 1px dashed #979797;">
-                    <p style="border-left:4px solid #957573;margin-top: 5px; font-size:20px;" >编辑推荐</p>
-                </div>
-                <div v-for="item in editorRecommend">
-                    <p class="textOver" style="width:200px;"><a v-bind:href="'http://localhost:3000/tiezi.html?id='+item.news_id">{{item.news_title}}</a></p>
-                    <p><span>{{item.news_createtime}}</span><span style="float: right;">{{item.news_liketimes}}</span><span style="float: right;" class="glyphicon glyphicon-thumbs-up"></span></p>
-                </div>-->
             </div>
         </div>
     </div>
@@ -518,9 +504,7 @@
                     url: contextPath + "/myapp/news/readNewsTotalPageByOthers.php",
                     data: "check=10086&data="+postData1,
                     success: function (data) {
-//                        console.log(typeof data,"yefy");
                         that.allpage = data-0;
-//                        console.log(that.allpage);
                     }
                 });
             },
