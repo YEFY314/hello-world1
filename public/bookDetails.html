@@ -146,11 +146,12 @@
             </div>
         </div>
         <div id="downPart">
-            <div>
+            <div v-show="hasPhoto">
                 <p>实物详拍</p>
                 <div style="padding:32px 0; ">
-                    <img src="./image/1.jpg" alt="实物图">
-                    <img src="./image/1.jpg" alt="实物图">
+                    <div style="display: inline-block;" v-for="item in bookInfo.photo" >
+                        <img v-bind:src="item.pho_dir" alt="实物图">
+                    </div>
                 </div>
             </div>
             <div>
@@ -210,6 +211,7 @@
                     success: function (data) {
                         bookInfo = JSON.parse(data)[0];
                         console.log(bookInfo);
+                        console.log( typeof bookInfo.photo);
                     }
                 });
             }
@@ -220,6 +222,16 @@
                 userInfo:userInfo,
                 bookId:bookId,
                 bookInfo:bookInfo
+
+            },
+            computed: {
+                hasPhoto: function () {
+                    if(bookInfo.photo == "null"){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                }
             },
             methods:{
                 goToBuy: function (type) {
