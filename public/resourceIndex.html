@@ -53,8 +53,8 @@
             font-weight: bold;
         }
         button.btn.btn-default{
-            background-color: #ffffff;
-            color:#F4AB42;
+           /* background-color: #ffffff;
+            color:#F4AB42;*/
             width:90px;
         }
         #videoRecommend>div,#bookRecommend>div,#musicRecommend>div{
@@ -186,7 +186,7 @@
                                 <p class="textOverNoHover" style="font-size: 15px;color:#F4AB42;text-align: center;" v-text="item.news_title">无书名</p>
                                 <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                             </div>
-                            <p><button class="btn btn-default">查看更多</button></p>
+                            <p><button class="unionBtn btn btn-default">查看更多</button></p>
                         </div>
                         <div class="tab-pane fade" id="bookRecommend">
                             <div v-for="item in recommendBook">
@@ -194,7 +194,7 @@
                                 <p class="textOverNoHover" style="font-size: 15px;color:#F4AB42;text-align: center;" v-text="item.news_title">无书名</p>
                                 <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                             </div>
-                            <p><button class="btn btn-default">查看更多</button></p>
+                            <p><button class="unionBtn btn btn-default">查看更多</button></p>
                         </div>
                         <div class="tab-pane fade" id="musicRecommend">
                             <div v-for="item in recommendMusic">
@@ -202,7 +202,7 @@
                                 <p class="textOverNoHover" style="font-size: 15px;color:#F4AB42;text-align: center;" v-text="item.news_title">无书名</p>
                                 <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                             </div>
-                            <p><button class="btn btn-default">查看更多</button></p>
+                            <p><button class="unionBtn btn btn-default">查看更多</button></p>
                         </div>
                     </div>
                 </div>
@@ -212,28 +212,28 @@
                 <div v-for="item in videoSources">
                     <p><span style="color:#f4ab42;">【视频】</span><span style="color:#f4ab42;">【{{item.cf_module}}】</span><a class="textOverNoHover" style="display: inline-block;width:180px;color:#333333;vertical-align: top;" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
                 </div>
-                <p><button class="btn btn-default">查看更多</button></p>
+                <p><button class="unionBtn btn btn-default">查看更多</button></p>
             </div>
             <div id="bookResource">
                 <p>图书资源</p>
                 <div v-for="item in bookSources">
                     <p><span style="color:#8694a0;">【图书】</span><span style="color:#f4ab42;">【{{item.cf_module}}】</span><a class="textOverNoHover" style="display: inline-block;width:180px;color:#333333;vertical-align: top;" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
                 </div>
-                <p><button class="btn btn-default">查看更多</button></p>
+                <p><button class="unionBtn btn btn-default">查看更多</button></p>
             </div>
             <div id="musicResource">
                 <p>音频资源</p>
                 <div v-for="item in musicSources">
                     <p><span style="color:#8f82bc;">【音频】</span><span style="color:#f4ab42;">【{{item.cf_module}}】</span><a class="textOverNoHover" style="display: inline-block;width:180px;color:#333333;vertical-align: top;" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
                 </div>
-                <p><button class="btn btn-default">查看更多</button></p>
+                <p><button class="unionBtn btn btn-default">查看更多</button></p>
             </div>
         </div>
         <div id="rightPart">
             <div id="upPartRight">
                 <form style="margin-left: 20px;padding-top:20px;">
                     <input style="width: 110px;height:28px;border:1px solid #979797;border-radius: 5px;" type="text" name="search" id="search"/>
-                    <button v-on:click.prevent="gosearch()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
+                    <button v-on:click.prevent="gosearch()" class="unionBtn btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
                 </form>
                 <div style="border-bottom: 1px dashed #979797;margin-right: 30px;margin-left: 20px;margin-bottom: 9px;"><p style="border-left: 4px solid #957573 ;font-size: 20px;margin-top:20px;padding-left: 5px;">签到</p></div>
                 <form style="border:none; border-radius: 5px;width:190px;height:127px;margin-left: 20px;">
