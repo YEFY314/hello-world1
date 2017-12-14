@@ -107,7 +107,7 @@
                 <div v-html="bookInfo.goods.go_name" style="font-size: 18px;color:#333333;">书名</div>
                 <div>
                     <p style="background-color: #d8d8d8;height:25px;padding-top: 3px;margin-right:-5px;">价格</p>
-                    <p style="background-color: #d8d8d8;font-size:18px;color: #dc4b00;height:25px;">￥<span v-html="bookInfo.goods.go_price"></span></p>       <!--<span style="text-decoration: line-through;">18.00</span>-->
+                    <p style="background-color: #d8d8d8;font-size:18px;color: #dc4b00;height:25px;">￥<span style="font-size:18px;color: #dc4b00;" v-html="bookInfo.goods.go_sale"></span>&nbsp;&nbsp;<span style="font-size: 14px;color:#797979;text-decoration: line-through;" v-text="bookInfo.goods.go_price" ></span></p>       <!--<span style="text-decoration: line-through;">18.00</span>-->
                     <p>购买地址</p>
                     <p>
                         <button v-on:click="goToBuy('3')">微店</button>
@@ -119,7 +119,7 @@
                     <p>ISBN</p>
                     <p v-html="bookInfo.goods.go_isbn"></p>
                     <p>出版社</p>
-                    <p v-html="bookInfo.goods.go_public"></p>
+                    <p class="textOver" v-html="bookInfo.goods.go_public"></p>
                 </div>
                 <div>
                     <p>标识</p>

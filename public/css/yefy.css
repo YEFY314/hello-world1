@@ -323,14 +323,14 @@ label{
     padding:0 0;
 }
 .unionBtn2:hover,.unionBtn2:focus{
-    background-color: #EF9A20;
+    background-color: #ffffff;
     border: 1px solid #EF9A20;
-    color:#ffffff;
+    color:#EF9A20;
 }
 .unionBtn2:active:hover{
-    background-color: #EF9A20;
+    background-color: #ffffff;
     border: 1px solid #EF9A20;
-    color:#ffffff;
+    color:#EF9A20;
 }
 .alert {
     display: none;

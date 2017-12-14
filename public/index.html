@@ -102,10 +102,10 @@
             font-size: 11px;
         }
         button.btn.btn-default{
-            background-color: #ffffff;
-            color:#F4AB42;
+            /*background-color: #ffffff;*/
+            /*color:#F4AB42;*/
             width:90px;
-            border-color:#f4ab42;
+            /*border-color:#f4ab42;*/
         }
         #main>div>p,#musicRecommend>p,#bookRecommend>p,#videoRecommend>p{
             text-align: center;
@@ -169,6 +169,12 @@
             position: relative;
             top:-10px;
         }
+        .carousel-indicators li{
+            margin-left: 20px;
+        }
+        .carousel-indicators li.active{
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -218,7 +224,7 @@
     <div id="main">
         <div id="ad">
             <div class="leftAd">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <div id="carousel-example1-generic" class="carousel slide" data-ride="carousel" data-interval="2000">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -326,7 +332,7 @@
                     </div>
                 </div>
             </div>
-            <p><a href="./group.html"><button class="btn btn-default">查看更多</button></a></p>
+            <p><a href="./group.html"><button class="unionBtn2 btn btn-default">查看更多</button></a></p>
         </div>
         <div id="resource">
             <div><p class="indexTitle" style="padding-top: 10px;"><span style="display: inline-block;width:25px;height:26px;background-color: #957573;position:relative;top:3px;margin-right:10px;"></span>资源下载</p></div>
@@ -345,7 +351,7 @@
                             <p class="textOverNoHover" style="font-size: 15px;color:#F4AB42;text-align: center;" v-text="item.news_title">无书名</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                         </div>
-                        <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
+                        <p><a href="./resourceIndex.html"><button class="btn btn-default unionBtn2">查看更多</button></a></p>
                     </div>
                     <div class="tab-pane fade" id="bookRecommend">
                         <div v-for="item in recommendBook">
@@ -353,7 +359,7 @@
                             <p class="textOverNoHover" style="font-size: 15px;color:#F4AB42;text-align: center;" v-text="item.news_title">无书名</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover" v-text="item.user_nickname">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                         </div>
-                        <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
+                        <p><a href="./resourceIndex.html"><button class="btn btn-default unionBtn2">查看更多</button></a></p>
                     </div>
                     <div class="tab-pane fade" id="musicRecommend">
                         <div v-for="item in recommendMusic">
@@ -386,19 +392,51 @@
                             <p class="textOverNoDisplay">啊八块腹肌福晶科技福晶科技分开多久爱疯狂的减肥了的收费的</p>
                             <p><span style="width:77px;color:#999999;font-size: 11px;" class="textOverNoHover">测试站啊哈哦啊发打发</span><span style="width:80px;">【教育理念】</span></p>
                         </div>-->
-                        <p><a href="./resourceIndex.html"><button class="btn btn-default">查看更多</button></a></p>
+                        <p><a href="./resourceIndex.html"><button class="btn btn-default unionBtn2">查看更多</button></a></p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="onLineMall">
             <div><p class="indexTitle" style="padding-top: 10px;"><span style="display: inline-block;width:25px;height:26px;background-color: #957573;position:relative;top:3px;margin-right:10px;"></span>在线书城</p></div>
-            <div v-for="item in bookInfo" style="display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example1-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example1-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example1-generic" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" style="height:auto;width:1040px;">
+                    <div class="item active" >
+                        <div v-for="item in bookInfo1" v-on:click.stop="goToPost(item.goods.go_id)" style="cursor:pointer;display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
+                            <div style="border-right:1px solid #979797;padding-right:5px;"><img v-bind:src="item.goods.go_cover" width="150" height="150" alt=""></div>
+                            <p class="textOverNoHover" style="text-align: center; width:150px;color:#f4ab42;" v-text="item.goods.go_name">啊八块</p>
+                            <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div v-for="item in bookInfo2" v-on:click.stop="goToPost(item.goods.go_id)" style="cursor:pointer; display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
+                            <div style="border-right:1px solid #979797;padding-right:5px;"><img v-bind:src="item.goods.go_cover" width="150" height="150" alt=""></div>
+                            <p class="textOverNoHover" style="text-align: center; width:150px;color:#f4ab42;" v-text="item.goods.go_name">啊八块</p>
+                            <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div v-for="item in bookInfo2" v-on:click.stop="goToPost(item.goods.go_id)" style="cursor:pointer;display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
+                            <div style="border-right:1px solid #979797;padding-right:5px;"><img v-bind:src="item.goods.go_cover" width="150" height="150" alt=""></div>
+                            <p class="textOverNoHover" style="text-align: center; width:150px;color:#f4ab42;" v-text="item.goods.go_name">啊八块</p>
+                            <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div v-for="item in bookInfo" style="display: inline-block;vertical-align: top;padding-top:20px;padding-left:15px;">
                 <div style="border-right:1px solid #979797;padding-right:5px;"><img v-bind:src="item.goods.go_cover" width="150" height="150" alt=""></div>
                 <p class="textOverNoHover" style="text-align: center; width:150px;color:#f4ab42;" v-text="item.goods.go_name">啊八块</p>
                 <div style="text-align: center;font-size:15px;color:#dc4b00;font-weight:600;padding-top:8px;width:150px;">￥<span v-text="item.goods.go_sale"></span>&nbsp;&nbsp; <span v-text="item.goods.go_price" style="text-decoration: line-through; color:#797979;font-size: 12px;"></span></div>
             </div>
-            <p><a href="./productMall.html"><button class="btn btn-default">查看更多</button></a></p>
+            <p><a href="./productMall.html"><button class="btn btn-default">查看更多</button></a></p>-->
         </div>
     </div>
     <footer id="footer">
@@ -461,6 +499,9 @@
                 num:0,
                 groupInfo:[],
                 bookInfo:[],
+                bookInfo1:[],
+                bookInfo2:[],
+                bookInfo3:[],
                 photoFirst:[]
             },
             created: function () {
@@ -494,7 +535,7 @@
                 $.ajax({
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",             //abcdef推荐电影资源
-                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"])+"grade=1",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","1"])+"&grade=1",
                     success: function (data) {
                         if(data == "no content"){
                             return false;
@@ -506,7 +547,7 @@
                 $.ajax({
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",                //abcdef推荐图书资源
-                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","2"])+"grade=1",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","2"])+"&grade=1",
                     success: function (data) {
                         if(data == "no content"){
                             return false;
@@ -518,7 +559,7 @@
                 $.ajax({
                     type:"POST",
                     url: "http://localhost:3000/myapp/news/readResourceByOthers.php",         //abcdef推荐音频资源
-                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"])+"grade=1",
+                    data: "check=10086&data="+JSON.stringify(["3","1","2","1","3","3"])+"&grade=1",
                     success: function (data) {
                         if(data == "no content"){
                             return false;
@@ -554,9 +595,12 @@
                     data:"check=10086&data="+JSON.stringify(["101","1"]),
                     success: function (data) {
                         that.bookInfo = JSON.parse(data);
-                        if(that.bookInfo.length>6){
+                        that.bookInfo1 = that.bookInfo.slice(0,6);
+                        that.bookInfo2 = that.bookInfo.slice(6,12);
+                        that.bookInfo3 = that.bookInfo.slice(12,18);
+                       /* if(that.bookInfo.length>6){
                             that.bookInfo.length = 6;
-                        }
+                        }*/
                         console.log(that.bookInfo,"bookInfo");
                     }
                 });
@@ -588,6 +632,9 @@
                 },
                 goToOther: function (user_id) {
                     window.location.href = "./personInfoOther.html?id="+user_id;
+                },
+                goToPost: function (go_id) {
+                    window.location.href = "./bookDetails.html?id="+go_id;
                 }
             }
         });

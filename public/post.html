@@ -85,7 +85,7 @@
                 </div>
                 <div v-show="newsInfo.news_resource!='null'">
                     <p style="color: #BBBBBB;">*附件下载</p>
-                    <p><button v-bind:disabled="purchaseState" type="button" class="btn  btn-primary" data-toggle="modal" data-target="#resourceDownload">网盘下载</button></p>
+                    <p style="font-size: 14px;color:#5e666c;"><button v-bind:disabled="purchaseState" type="button" class="btn  btn-default unionBtn" data-toggle="modal" data-target="#resourceDownload" style="width:148px;height:48px;font-size: 20px;">网盘下载</button>&nbsp;&nbsp;下载消耗{{newsInfo.news_pay}}朵鲜花</p>
                     <p v-show="purchaseState">资源地址：<span v-text="newsInfo.news_resource"></span></p>
                     <div id="resourceDownload" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
@@ -99,7 +99,7 @@
                                     <p><span>售价</span><span v-html="newsInfo.news_pay"></span></p>
                                     <p><span>作者所得</span><span v-html="authorGet"></span></p>
                                     <p><span>您所拥有鲜花</span><span v-html="userFlowers"></span></p>
-                                    <p ><button data-dismiss="modal">取消</button><button type="button" data-dismiss="modal" v-on:click.prevent="purchaseResource()">确认</button></p>
+                                    <p ><button class="unionBtn2" data-dismiss="modal">取消</button><button class="unionBtn" type="button" data-dismiss="modal" v-on:click.prevent="purchaseResource()">确认</button></p>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
 
                 <p style="color: #BBBBBB;">*文章为作者独立观点，不代表本网站立场</p>
                 <div style="text-align: center">
-                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default" style="width:90px;height:40px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;"><span v-if="!likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="likeState">已点赞</span>{{newsInfo.news_liketimes}}</button>
+                    <button id="likeIt" v-on:click.prevent="likeIt()" class="btn btn-default unionBtn" style="width:90px;height:40px;border-radius: 5px;margin-left: 10px;"><span v-if="!likeState" class="glyphicon glyphicon-thumbs-up"></span><span v-else="likeState">已点赞</span>{{newsInfo.news_liketimes}}</button>
                 </div>
                 <!--<div id="qrcode"></div>-->
                 <div class="center" v-on:click.prevent="shareToSinaWB()" style="position: absolute;width:60px;height:60px;background-color: #d8d8d8;left:-60px;top:198px;color:#ffffff;cursor: pointer;"><p style="vertical-align: middle;">微博</p></div>
@@ -119,7 +119,7 @@
             <div id="upPartRight">
                 <form style="margin-left: 20px;margin-top:20px;">
                     <input style="width: 110px;height:28px;border:1px solid #979797;border-radius: 5px;" type="text" name="search" id="search"/>
-                    <button v-on:click.prevent="gosearch()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-left: 10px;" >搜索</button>
+                    <button v-on:click.prevent="gosearch()" class="btn btn-default unionBtn" style="width:70px;height:30px;border-radius: 5px;margin-left: 10px;" >搜索</button>
                 </form>
                 <p style="border-left: 4px solid #957573 ; border-bottom: 1px dashed #979797;font-size: 20px;margin-left: 20px;margin-top:20px;margin-right: 30px;padding-left: 3px;">小组活跃用户</p>
                 <div style="width:190px;margin-left: 20px;">
@@ -135,7 +135,7 @@
                 <form>
                     <div v-show="!login" style="width:717px;height:200px;padding:2px;border:1px solid #A9A9A9;display:table-cell;vertical-align: middle;text-align:center;font-size: 20px; ">请登录</div>
                     <textarea v-show="login" name="comments" id="comments" style="width:723px;height:206px;"></textarea>
-                    <button v-on:click.prevent="saySomething()" class="btn btn-default" style="width:70px;height:30px;border-radius: 5px;background-color:#F4AB42;color: #ffffff;margin-top:10px;">发表</button>
+                    <button v-on:click.prevent="saySomething()" class="btn btn-default unionBtn" style="width:70px;height:30px;border-radius: 5px;margin-top:10px;">发表</button>
                 </form>
                 <h3>热门评论</h3>
                 <div>
@@ -152,7 +152,7 @@
                         <div><p style="cursor:pointer;display: inline-block;width:50px;" v-on:click="showBox(item.infomation.com_user)"><span class="glyphicon glyphicon-edit"></span>回复</p><button v-show="userInfo.user_id==item.infomation.user_id" v-on:click.prevent="deleteComment(item.infomation.com_id)" style="float:right;border: none;position: relative;top:-2px;" class="btn btn-default">删除</button></div>
                         <form method="post" style="display: none;" ref="answerBox">
                             <textarea style="width:723px;height:50px;" value="" answerWho="" name="comments"></textarea>
-                            <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)"  class="btn btn-default" style="margin-bottom: 25px;">确定</button>
+                            <button v-on:click.prevent="answerComment(item.infomation.com_id,item.infomation.com_user)"  class="btn btn-default unionBtn2" style="margin-bottom: 25px;">确定</button>
                         </form>
                     </div>
                     <ul class="pagination" v-show="allpage>1">
@@ -404,6 +404,10 @@
                     event.target.previousSibling.previousSibling.parentNode.style.display = "none";
                     console.log(event.target.previousSibling.previousSibling.parentNode.style.display);
                     var contents = encodeURIComponent(event.target.previousSibling.previousSibling.value);
+                    if(contents == ''){
+                        $('<div>').appendTo('body').addClass('alert alert-success').html("发送内容不能为空！").show().delay(1500).fadeOut();
+                        return false;
+                    }
                     var that = this;
                     $.ajax({
                         type:"post",
@@ -420,7 +424,9 @@
                     var keyword = $("#search").val().trim();
                     console.log("1");
                     if(keyword ==""){
-                        alert("搜索内容为空！");
+//                        alert("搜索内容为空！");
+                        $('<div>').appendTo('body').addClass('alert alert-success').html("搜索内容为空！").show().delay(1500).fadeOut();
+                        return false;
                     }
                     window.location.href = "./search.html?search="+keyword;
                 },

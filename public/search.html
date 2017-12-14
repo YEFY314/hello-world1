@@ -55,7 +55,7 @@
         <div id="searchPart">
             <form style="padding-bottom: 50px;">
                 <input  v-model="keyword" type="text" name="search" style="width:675px;height:56px;border-radius: 5px;border: 1px solid #979797;font-size: 24px;padding-left: 14px;"/>
-                <button v-on:click.prevent="search()" class="btn btn-default" style="height:56px; width:65px;background-color: #F4AB42;color:#ffffff;margin-bottom: 10px;margin-left:10px;">搜索</button>
+                <button v-on:click.prevent="search()" class="btn btn-default unionBtn" style="height:56px; width:65px;margin-bottom: 10px;margin-left:10px;">搜索</button>
             </form>
             <div v-for="item in searchResults" style="border-bottom: 1px solid grey;margin-top:10px;width:624px;">
                 <p  class="textOverNoHover"><a style="display: inline-block;width:624px;font-size: 18px;" class="textOverNoHover" v-bind:href="'./post.html?id='+item.news_id">{{item.news_title}}</a></p>
